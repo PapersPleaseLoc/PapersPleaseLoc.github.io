@@ -1,0 +1,418 @@
+img, * { 
+    image-rendering: optimizeSpeed;             /* FUCK SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+    image-rendering: optimize-contrast;
+}
+
+.solid {
+    display: inline-block;
+}
+div {
+    position: relative;
+}
+.abs {
+    position: absolute;
+}
+.markimg {
+}
+.marktxt {
+}
+.markemb {
+    /*background-image: url('../img/Emblem.png');*/
+    background-repeat: no-repeat;
+    background-position: right top; 
+}
+.marktxt, .markimg, .markemb {
+    pointer-events:none;
+}
+.markimg {
+    background-color: rgba(255,0,0,0.1);
+}
+.align-left {
+    text-align: left;
+    width: 100%;
+    background-color: #f00;
+}
+.pageback {
+    position:absolute; left:0; top:0;
+    zoom: 0.5;
+    width: 100%;
+    height: 100%;
+}
+p {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1em;
+}
+.under {
+    text-decoration: underline;
+}
+.capture {
+    margin: 20px 0 20px 0;
+    text-align: left;
+    overflow: hidden;
+}
+.t {
+    cursor: pointer;
+}
+/*
+.t:hover {
+    box-shadow: 0px 0px 2px #888;
+}*/
+.bulletin {
+    width: 150px;
+    height: 200px;
+    color: #565656;
+    text-align: center;
+}
+    .bulletin .marktext {
+        color: #565656;
+    }
+    .bulletin .topblock {
+        text-align: left;
+        width: 80%;
+        top: 20px;
+        margin-left: 10%;
+        line-height: 10px;
+    }
+    .bulletin .botblock {
+        text-align: left;
+        width: 80%;
+        top: 140px;
+        margin-left: 10%;
+        line-height: 10px;
+    }
+    .bulletin .red {
+        color: #c8241c;
+    }
+    .bulletin .footer {
+        position: absolute;
+        color: #a3a3a3;
+        bottom:12px; width:80%; margin-left:10%;
+    }
+    .bulletin .solid {
+        display: inline-block;
+        background-color: #f0f0f0;
+    }
+.lovesong {
+    color: #394c72;
+    width: 175px;
+    height: 90px;
+    text-align: center;
+    font-family: 'scribble';
+    font-size: 16px;
+    line-height: 16px;
+    word-spacing: 5px;
+    letter-spacing: -1px;
+}
+    .lovesong .text {
+        position: absolute;
+        top: 55px;
+        width: 100%;
+    }
+    .lovesong .drawing {
+        position: absolute;
+        color: #76bdea;
+    }
+    .lovesong .label {
+        position: absolute;
+        text-align:left; 
+        font-size: 12px;
+        line-height: 12px;
+    }
+.fullwidth {
+    width: 100%;
+}
+table 
+{
+    position: relative; 
+    margin: 0;
+    padding: 0;
+}
+td {
+    padding: 0;
+    margin: 0;
+    vertical-align: baseline;
+}
+.passport {
+    width: 130px;
+    height: 162px;
+    color: #574848;
+}
+    .visa {
+        color: #b19600;
+        top: 60px;
+        width: 100%;
+        text-align: center;
+    }
+    .passport .name {
+        position: absolute;
+    }
+    .passport table {
+        table-layout: fixed;
+        width: 77px;
+        position: absolute;
+        border-spacing: 1px;
+        border-collapse: separate;
+        padding: 0px;
+        overflow: hidden;
+        margin: -1px -1px;
+    }
+        .passport .k {
+            display: block;
+            font-family: 'small';
+            background-color: #a29490;
+            color: #ede0d8;
+            line-height: 7px;
+            padding-left: 2px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .passport .v {
+            line-height: 5px;
+            width: 56px;
+        }
+        .passport table td {
+            position: relative;
+            padding-left: 2px;
+        }
+        .passport .face {
+            position:absolute;
+            width: 40px;
+            height: 48px;
+        }
+        .passport .id {
+            position: absolute;
+        }        
+
+.plaque {
+    color: #a9784f;
+    width: 190px;
+    height: 196px;
+    text-align: center;
+    font-family: 'title_tall';
+    font-size: 16px;
+    line-height: 16px;
+}
+    .plaque div {
+        position: absolute;
+        width: 100%;
+    }
+    .plaque .title {
+        top: 27px;
+    }
+    .plaque .recogouter {
+        top: 45px;
+    }    
+    .plaque .recoginner {
+        position: relative;
+        background-color:#f5f3d6; 
+        width: auto; 
+        display: inline-block; 
+        padding: 0 6px;
+    }
+    .plaque .for {
+        top: 134px;
+    }
+    .plaque .name {
+        font-family: 'large';
+        font-size: 8px;
+        line-height: 8px;
+        top: 158px;
+    }
+    .plaque .hangouter {
+        font-family: 'ui_regular';
+        font-size: 8px;
+        line-height: 10px;
+        top: 182px;
+    }
+    .plaque .hanginner {
+        position: relative;
+        background-color:#dbb667; 
+        width: auto; 
+        display: inline-block; 
+        padding: 0 6px;
+    }
+    .plaque .marktxt {
+        margin-top: -1px;
+    }
+
+.rulebutton {
+    background-color: #e4e6bd;
+    color: #94967b;
+    text-align: center;
+    border: 1px solid #94967b;
+    line-height: 9px;
+}
+    .outer {
+        display: table;
+        height: 100%;
+        width: 100%;
+    }
+    .inner {
+        display: table-cell; 
+        vertical-align: middle;
+        width: 100%;
+        top: 1px;
+    }
+    .rulebutton .iss span {
+        font-family: 'small';
+        color: #e4e6bd;
+        background-color: #94967b;
+        padding: 0 1px 0 2px;
+    }
+
+.rules {
+    color: #94967b;
+    text-align: center;
+    width: 246px;
+    height: 160px;
+
+    font-family: 'small_tight';
+    font-size: 8px;
+    line-height: 8px;
+}
+    .rules .left, .rules .right {
+        position: absolute;
+        width: 103px;
+        height: 156px;
+    }
+    .rules .left {
+        left: 12px;
+        top: 2px;
+    }
+    .rules .right {
+        left: 131px;
+        top: 2px;
+    }
+    .rules .light {
+        color: #e4e6bd;
+    }
+    .rules .dark {
+        color: #574848;
+    }
+    .rules .doctitle {
+        font-family: 'title_thick';
+        font-size: 14px;
+        line-height: 12px;
+        color: #574848;
+        margin-top: 8px;
+        background-color: #e4e6bd;
+    }
+    .rules .validseals {
+        margin-top: 20px;
+    }
+    .rules .property {
+        position: absolute;
+        text-align: center;
+        display:inline-block;
+        -webkit-transform: rotate(-15deg);
+        -moz-transform: rotate(-15deg);
+        overflow: visible;
+        width: 120px;
+        left: 58px;
+        margin-left:-60px;
+    }
+
+.upgrade {
+    background-color: #e4e6bd;
+    color: #94967b;
+    text-align: left;
+    width: 93px;
+    height: 23px;
+    font-family: 'small_tight';
+}
+    .upgrade .title {
+        position: absolute;
+        left: 5px;
+        top: 0px;
+    }
+
+.actionbutton {
+    color: #352d29;
+    text-align: center;
+    padding-top: 5px;
+    height: 85px;
+    font-family: 'ui_regular';
+    line-height: 30px;
+}
+    .actionbutton div {
+        padding-left: 8px;
+        text-shadow: 0px 1px 0px #7c796f;
+    }
+    .actionbutton div:first-of-type {
+        margin-top: -10px;
+    }
+    .actionbutton div:last-of-type {
+        margin-top: 2px;
+    }
+    .reasonbutton {
+        padding-top: 4px;
+        height: 86px;
+        color: #7c796f;
+    }
+    .reasonbutton div {
+        padding-left: 0px;
+        text-shadow: 0px 1px 0px #352d29;
+    }
+    .reasonbutton div:last-of-type {
+        margin-top: 3px;
+    }
+
+.ink {
+    width: 70px;
+    height: 30px;
+    text-align: left;
+}
+    .ink div {
+        position: absolute;
+        font-family: 'ui_regular';
+        font-size: 8px;
+        line-height: 8px;
+        left: 3px;
+        top: 12px;
+    }
+
+.rifle {
+    width: 186px;
+    height: 170px;
+    color: #352d29;
+}
+    .rifle .top, .rifle .bot {
+        position: absolute;
+        left: 6px;
+        top: 5px;
+    }
+    .rifle .bot {
+        top: 90px;
+    }
+
+.rulestableft, .rulestabright {
+    width: 8px;
+    height: 32px;
+    position: relative;
+    color: #94967b;
+    font-family: 'small_harsh';
+}
+.rulestableft .t, .rulestabright .t {
+    position: absolute;
+    width: 32px;
+    line-height: 8px;
+    left: 0;
+    top: 100%;
+    transform: rotate(-90deg); 
+    -webkit-transform: rotate(-90deg); 
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+    text-align: center;
+}
+.rulestabright .t {
+    top: 0;
+    margin-left: 8px;
+    transform: rotate(90deg); 
+    -webkit-transform: rotate(90deg); 
+}

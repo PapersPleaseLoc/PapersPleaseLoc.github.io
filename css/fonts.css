@@ -1,0 +1,151 @@
+/*
+_____________________________________________
+To edit the fonts for this localization tool:
+
+1. Download and uncompress the tool fonts (https://www.dropbox.com/s/b372cd3p8mtlggd/ToolFonts.7z)
+2. Get your own server
+3. Copy this stylesheet and all the fonts to your server
+4. Update your hosted stylesheet to repoint all the @font-face src urls to your server's fonts
+5. Edit the "Font Stylesheet Override" value to point to the full path of your hosted stylesheet
+6. Verify that everything looks ok
+7. Edit your hosted fonts
+8. Reload the localization tool (possibly clearing your cache first) to get the updated fonts
+
+_____________________________________________
+To use your updated fonts in the game:
+
+[Not all fonts that appear in the localization tool are used in the game]
+
+1. Generate & Download the language pack from the localization tool with the latest text
+2. Uncompress the language pack into a directory named "PACK"
+3. Download and uncompress the game fonts and data into a directory named "GAMEDATA" 
+	(https://www.dropbox.com/s/hduurlym0zpwenw/GameFonts.7z)
+4. For any ttf files in the "GAMEDATA/fonts" dir, overwrite with your custom font
+5. Run FontBuilder (https://github.com/andryblack/fontbuilder) and configure it:
+	Font Tab:
+		Font Fonts directory: GAMEDATA/fonts
+		Options Smoothing: no
+		Options DPI: 72
+		Options Hinting: Default
+		Options Show missing glyphs: no
+		Options Faux bold: 0
+		Options Faux italic: 0
+		Scale Width: 100.0
+		Scale Height: 100.0
+		Spacing Char: 0
+		Spacing Line: 0
+	Characters Tab:
+		Paste the text from PACK/data/UsedChars.txt
+	Layout Tab:
+		Layout engine: Box layout
+		One pixel separator: yes
+		Power of two image: no
+		Pading: 0, 0, 0, 0
+	Output Tab:
+		Output directory: PACK/fonts (create this directory if necessary)
+		Image: yes
+		File name: [set automatically]
+		Format: png
+		Write grid: no
+		Description: yes
+		File name: [set automatically]
+		Format: Sparrow
+6. Select the first source ttf file from the Font->Family combobox
+7. Set the correct Size
+	- Check the .fnt files in GAMEDATA/fonts to see which size each font should be
+	- EG: "Chixa" font -> chixa_demibold_14.fnt -> size 14
+8. Verify that the font looks ok in the preview
+9. From the Output tab, click the "Write font" button at the bottom
+10. Go back to step 5 and select the next font
+11. Continue for all fonts
+12. At this point, PACK should contain all the game-ready font files (.png and .fnt)
+13. Re-zip everything in PACK
+	- Zip using NO COMPRESSION (STORE only)
+	- Select all the files and directories to zip them, don't just zip the PACK folder
+	- When in doubt, verify the zip structure against the tool-generated zip
+14. This is your new language pack with custom fonts
+15. The game will first search for custom fonts in the language pack before using the built-in ones
+
+NOTE: It is possible to edit (most, not all) line-heights, but not recommended. To do so,
+first copy GAMEDATA/data/Fonts.xml to PACK/data/Fonts.xml. Then edit BOTH the line-heights 
+in your custom stylesheet and in the PACK/data/Fonts.xml file with the same values.
+
+*/
+
+@font-face { font-family: 'fallback'; src: url('../fonts/fallback.ttf'); }
+
+/*---- tiny -------------------------------------------------*/
+@font-face { font-family: 'tiny'; src: url('../fonts/MiniKylie-U--misaki_gothic.ttf'); }
+.font-tiny { font-family: 'tiny'; font-size: 8px; line-height: 8px; }
+
+/*---- small -------------------------------------------------*/
+@font-face { font-family: 'small'; src: url('../fonts/53Veda-U--misaki_gothic.ttf'); }
+.font-small { font-family: 'small'; font-size: 8px; line-height: 8px;}
+
+@font-face { font-family: 'small_tight'; src: url('../fonts/AtariSmall-U--misaki_gothic--88Zen.ttf'); }
+.font-small_tight { font-family: 'small_tight'; font-size: 8px; line-height: 8px; }
+
+@font-face { font-family: 'small_harsh'; src: url('../fonts/5mikropix--misaki_gothic.ttf'); }
+.font-small_harsh { font-family: 'small_harsh'; font-size: 8px; line-height: 9px; }
+
+/*---- regular -------------------------------------------------*/
+@font-face { font-family: 'regular'; src: url('../fonts/BMmini-U--88Zen--misaki_gothic.ttf'); }
+.font-regular, body { font-family: 'regular'; font-size: 8px; line-height: 8px; }
+
+@font-face { font-family: 'regular_short'; src: url('../fonts/04B03-U--misaki_gothic.ttf'); }
+.font-regular_short { font-family: 'regular_short'; font-size: 8px; line-height: 8px; }
+
+/*---- title -------------------------------------------------*/
+@font-face { font-family: 'title_tall'; src: url('../fonts/pixelplay--shnmk14.ttf'); }
+.font-title_tall { font-family: 'title_tall'; font-size: 16px; line-height: 16px; }
+
+@font-face { font-family: 'title_news'; src: url('../fonts/MotorolaScreentype-U--shnmk16b.ttf'); } 
+.font-title_news { font-family: 'title_news'; font-size: 16px; line-height: 16px; }
+
+@font-face { font-family: 'title_serif'; src: local("Times New Roman"); font-weight: bold; }
+.font-title_serif { font-family:'title_serif'; font-weight:bold; font-size: 10px; line-height: 10px; }
+
+@font-face { font-family: 'title_thick'; src: url('../fonts/ChixaDemiBold--shnmk12b.ttf'); }
+.font-title_thick { font-family: 'title_thick'; font-size: 14px; line-height: 11px; }
+
+/*---- ui -------------------------------------------------*/
+@font-face { font-family: 'ui_regular'; src: url('../fonts/NotNokia-U--knj10b.ttf'); }
+.font-ui_regular { font-family: 'ui_regular'; font-size: 8px; line-height: 8px; }
+
+/*---- cursive -------------------------------------------------*/
+@font-face { font-family: 'cursive'; src: url('../fonts/Bangalor-U--elisat10.ttf'); }
+.font-cursive { font-family: 'cursive'; font-size: 8px; line-height: 8px; }
+
+/*---- large -------------------------------------------------*/
+@font-face { font-family: 'large'; src: url('../fonts/Resource-U--knj10.ttf'); }
+.font-large { font-family: 'large'; font-size: 8px; line-height: 10px; }
+
+/*---- scribble -------------------------------------------------*/
+@font-face { /* Sam Derrick */ font-family: 'scribble'; src: url('../fonts/sd_auto_pilot--BetinaScriptExtraCTT--nagurip.ttf'); }
+.font-scribble { font-family: 'scribble'; font-size: 16px; line-height: 16px; }
+
+/*---- passport -------------------------------------------------*/
+@font-face { font-family: 'passport_arstotzka'; src: url('../fonts/v5loxical.ttf'); }
+@font-face { font-family: 'passport_republia'; src: url('../fonts/Arial-Black.ttf'); }
+@font-face { font-family: 'passport_unitedfed'; src: url('../fonts/84-Orange.ttf');}
+@font-face { font-family: 'passport_kolechia'; src: url('../fonts/BMgermar.ttf'); }
+
+/*---- misc -------------------------------------------------*/
+@font-face { font-family: 'press'; src: url('../fonts/Raleway-Heavy.otf'); }
+.font-press { font-family: 'press'; font-size: 22px; line-height: 22px; font-weight: normal; }
+
+@font-face { font-family: 'propaganda'; src: url('../fonts/PROPAGAN.ttf'); }
+.font-propaganda { font-family: 'propaganda'; font-size: 10px; line-height: 10px; }
+
+@font-face { font-family: 'kid_writing'; src: url('../fonts/RightyUsesLeftHand.ttf'); }
+.font-kid_writing { font-family: 'kid_writing'; font-size: 16px; line-height: 16px; font-weight: bold; }
+
+@font-face { font-family: 'news'; src: url('../fonts/PlainBlack--EncientGermanGothic.ttf'); }
+.font-news { font-family: 'news'; font-size: 23px; line-height: 34px; font-weight: normal; }
+
+body {
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+}
+
+
