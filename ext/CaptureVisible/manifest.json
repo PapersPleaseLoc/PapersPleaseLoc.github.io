@@ -3,7 +3,7 @@
 
   "name": "\"Papers, Please\" Localization Snapshotter",
   "description": "Take in-browser snapshots of image captures in order to generate a localization pack for <Papers, Please>.",
-  "version": "1.0.5",
+  "version": "1.0.6",
 
   "icons": { 
     "128": "icon_128.png" 
@@ -13,7 +13,8 @@
     "tabs", 
     "*://*.papersplea.se/loc*", 
     "*://*.lucaspope.com/loc*", 
-    "*://localhost/*" 
+    "*://localhost/*",
+    "*://paperspleaseloc.github.io/*"
   ],
 
   "background": {
