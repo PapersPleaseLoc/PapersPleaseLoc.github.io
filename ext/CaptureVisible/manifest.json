@@ -3,18 +3,15 @@
 
   "name": "\"Papers, Please\" Localization Snapshotter",
   "description": "Take in-browser snapshots of image captures in order to generate a localization pack for <Papers, Please>.",
-  "version": "1.0.6",
+  "version": "1.0.7",
 
   "icons": { 
     "128": "icon_128.png" 
   },
 
   "permissions": [ 
-    "tabs", 
-    "*://*.papersplea.se/loc*", 
-    "*://*.lucaspope.com/loc*", 
-    "*://localhost/*",
-    "*://paperspleaseloc.github.io/*"
+    "tabs",
+    "<all_urls>"
   ],
 
   "background": {
@@ -23,13 +20,13 @@
 
   "content_scripts": [
     {
-      "matches": ["*://*.papersplea.se/loc*", "*://*.lucaspope.com/loc*", "*://localhost/*", "*://paperspleaseloc.github.io/*"],
+      "matches": ["*://localhost/*", "*://paperspleaseloc.github.io/*"],
       "js": ["installed.js"]
     }
   ],
 
   "externally_connectable": {
-    "matches": ["*://*.papersplea.se/loc*", "*://*.lucaspope.com/loc*", "*://localhost/*", "*://paperspleaseloc.github.io/*"]
+    "matches": ["*://localhost/*", "*://paperspleaseloc.github.io/*"]
   }
 
 }
