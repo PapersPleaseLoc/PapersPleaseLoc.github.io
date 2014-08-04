@@ -2,7 +2,7 @@
 _____________________________________________
 To edit the fonts for this localization tool:
 
-1. Download and uncompress the tool fonts (https://www.dropbox.com/s/b372cd3p8mtlggd/ToolFonts.7z)
+1. Download and uncompress the tool fonts (https://dl.dropboxusercontent.com/u/8663530/ppl/fonts/ToolFonts.7z)
 2. Get your own server
 3. Copy this stylesheet and all the fonts to your server
 4. Update your hosted stylesheet to repoint all the @font-face src urls to your server's fonts
@@ -19,7 +19,7 @@ To use your updated fonts in the game:
 1. Generate & Download the language pack from the localization tool with the latest text
 2. Uncompress the language pack into a directory named "PACK"
 3. Download and uncompress the game fonts and data into a directory named "GAMEDATA" 
-	(https://www.dropbox.com/s/hduurlym0zpwenw/GameFonts.7z)
+	(https://dl.dropboxusercontent.com/u/8663530/ppl/fonts/GameFonts.7z)
 4. For any ttf files in the "GAMEDATA/fonts" dir, overwrite with your custom font
 5. Run FontBuilder (https://github.com/andryblack/fontbuilder) and configure it:
 	Font Tab:
