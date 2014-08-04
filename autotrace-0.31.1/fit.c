@@ -109,17 +109,17 @@ new_fitting_opts (void)
 {
   fitting_opts_type fitting_opts;
 
-  fitting_opts.background_color = NULL;
+  fitting_opts.background_color = NULL; // EDECEB
   fitting_opts.color_count = 0;
-  fitting_opts.corner_always_threshold = (at_real) 60.0;
-  fitting_opts.corner_surround = 4;
-  fitting_opts.corner_threshold = (at_real) 100.0;
+  fitting_opts.corner_always_threshold = (at_real) 360;
+  fitting_opts.corner_surround = 1;
+  fitting_opts.corner_threshold = (at_real) 360.0;
   fitting_opts.error_threshold = (at_real) 2.0;
-  fitting_opts.filter_iterations = 4;
+  fitting_opts.filter_iterations = 0;
   fitting_opts.line_reversion_threshold = (at_real) .01;
   fitting_opts.line_threshold = (at_real) 1.0;
   fitting_opts.remove_adjacent_corners = false;
-  fitting_opts.tangent_surround = 3;
+  fitting_opts.tangent_surround = 1;
   fitting_opts.despeckle_level = 0;
   fitting_opts.despeckle_tightness = 2.0;
   fitting_opts.centerline = false;
@@ -373,9 +373,12 @@ fit_curve (curve_type curve, fitting_opts_type *fitting_opts,
     }
 
   /* Do we have enough points to fit with a spline?  */
+  fittedsplines = fit_with_line (curve);
+/* POPE
   fittedsplines = CURVE_LENGTH (curve) < 4
                    ? fit_with_line (curve)
                    : fit_with_least_squares (curve, fitting_opts, exception);
+*/
 
   return fittedsplines;
 }
@@ -433,7 +436,10 @@ split_at_corners (pixel_outline_list_type pixel_list, fitting_opts_type *fitting
          corners.  We need at least `corner_surround' more pixels on
          either side of a point before it is conceivable that we might
          want another corner.  */
+/* POPE
       if (O_LENGTH (pixel_o) > fitting_opts->corner_surround * 2 + 2)
+*/
+        if (1)
 	  corner_list = find_corners (pixel_o, fitting_opts,
 				      exception);
 
@@ -668,14 +674,16 @@ find_corners (pixel_outline_type pixel_outline,
         }                       /* End of searching for the best corner.  */
     }                           /* End of considering each pixel.  */
 
-  if (INDEX_LIST_LENGTH (corner_list) > 0)
+  /*if (INDEX_LIST_LENGTH (corner_list) > 0)*/
     /* We never want two corners next to each other, since the
        only way to fit such a ``curve'' would be with a straight
        line, which usually interrupts the continuity dreadfully.  */
+  /*
     remove_adjacent_corners (&corner_list,
 			     O_LENGTH (pixel_outline) - (pixel_outline.open ? 2 : 1),
 			     fitting_opts->remove_adjacent_corners,
      			     exception);
+               */
  cleanup:  
   return corner_list;
 }
