@@ -24,11 +24,11 @@ function Cloud(username, password, repo)
                 var message = "Failed to connect to repo " + self.user + "/" + self.repoName + "<br/>" + err.error;
                 if (err.error == 401)
                     message += ": Invalid username or password";
-                errorFunc(message);
+                if (errorFunc) errorFunc(message);
             }
             else
             {
-                doneFunc();
+                if (doneFunc) doneFunc();
             }
         });
     }
@@ -139,6 +139,12 @@ function Diff(beforeCsvStr, afterCsvStr)
 {
     var beforeCsv = beforeCsvStr != null ? (beforeCsvStr.csvToArray({ rSep:'\n', cSep: ',', trim:true })) : [];
     var afterCsv = afterCsvStr.csvToArray({ rSep:'\n', cSep: ',', trim:true });
+
+    if (beforeCsv[0].length == 1 && beforeCsv[0][0] == "")
+        beforeCsv = [];
+
+    console.log(beforeCsv);
+    console.log(afterCsv);
 
     this.rows = [];
     
