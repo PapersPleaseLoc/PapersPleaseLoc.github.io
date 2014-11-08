@@ -54,7 +54,7 @@
           }
         }
       };
-      xhr.setRequestHeader('Accept','application/vnd.github.raw+json');
+      xhr.setRequestHeader('Accept','application/vnd.github.v3.raw+json');
       xhr.setRequestHeader('Content-Type','application/json;charset=UTF-8');
       if ((options.token) || (options.username && options.password)) {
            xhr.setRequestHeader('Authorization', options.token
@@ -357,7 +357,12 @@
             "content": content,
             "encoding": "utf-8"
           };
-        }
+        } else {
+          	content = {
+              "content": btoa(String.fromCharCode.apply(null, new Uint8Array(content))),
+              "encoding": "base64"
+            };
+          }
 
         _request("POST", repoPath + "/git/blobs", content, function(err, res) {
           if (err) return cb(err);
@@ -404,9 +409,9 @@
       this.commit = function(parent, tree, message, cb) {
         var data = {
           "message": message,
-          "author": {
-            "name": options.username
-          },
+          // "author": {
+          //   "name": options.username
+          // },
           "parents": [
             parent
           ],
@@ -544,7 +549,24 @@
           });
         });
       };
-
+      
+      // Delete a file from the tree
+      // -------
+      
+      this.delete = function(branch, path, cb) {
+        that.getSha(branch, path, function(err, sha) {
+          if (!sha) return cb("not found", null);
+          var delPath = repoPath + "/contents/" + path;
+          var params = {
+            "message": "Deleted " + path,
+            "sha": sha 
+          };
+          delPath += "?message=" + encodeURIComponent(params.message);
+          delPath += "&sha=" + encodeURIComponent(params.sha);
+          _request("DELETE", delPath, null, cb);
+        })
+      }
+      
       // Move a file to a new location
       // -------
 
