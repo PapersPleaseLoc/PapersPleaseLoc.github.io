@@ -908,6 +908,16 @@ function downloadPack(doneFunc)
         elems.push($(this));
     });
 
+    if (document.URL.indexOf("local") >= 0)
+    {
+        elems = [];
+        //elems.push($("#RulesInnerBooth2"));
+        //elems.push($("#BulletinInnerBoothTut2"));
+        //elems.push($("#RulesUpgrade4"));
+        //elems.push($("#Upgrades"));
+        elems.push($("#BulletinInnerTouchTut"));
+    }
+
     var divCap = new DivCap(elems, function() 
     {
         // Text.xml
@@ -1457,7 +1467,7 @@ zoomIn();
 
 function downloadAllPacks()
 {
-    // ?autocap=en,fr,it,de,es,pt-BR,ru,ja
+    // ?autocap=en,fr,it,de,es,pt-BR,ru,ja,pl
     var autoCap = getUrlVar("autocap");
     if (autoCap == "") return;
     
