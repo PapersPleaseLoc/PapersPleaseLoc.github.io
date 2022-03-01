@@ -1,2 +1,6 @@
 *.sublime*
 sftp-config.*
+__tmp__*/
+*.zip
+node_modules
+makepacker.sh

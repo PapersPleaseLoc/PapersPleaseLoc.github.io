@@ -102,7 +102,8 @@ in your custom stylesheet and in the PACK/data/Fonts.xml file with the same valu
 @font-face { font-family: 'title_news'; src: url('../fonts/MotorolaScreentype-U--shnmk16b.ttf'); } 
 .font-title_news { font-family: 'title_news'; font-size: 16px; line-height: 16px; }
 
-@font-face { font-family: 'title_serif'; src: local("Times New Roman"); font-weight: bold; }
+/* @font-face { font-family: 'title_serif'; src: local("Times New Roman"); font-weight: bold; } */
+@font-face { font-family: 'title_serif';src: url('../fonts/PT_Serif-Web-Bold.ttf'); font-weight:700; }
 .font-title_serif { font-family:'title_serif'; font-weight:bold; font-size: 10px; line-height: 10px; }
 
 @font-face { font-family: 'title_thick'; src: url('../fonts/ChixaDemiBold--shnmk12b.ttf'); }

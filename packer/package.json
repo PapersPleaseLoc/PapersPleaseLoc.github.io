@@ -1,0 +1,28 @@
+{
+  "name": "packer",
+  "version": "1.0.0",
+  "description": "<Papers, Please> localization package builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PapersPleaseLoc/PapersPleaseLoc.github.io.git"
+  },
+  "author": "Lucas Pope @dukope (http://dukope.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PapersPleaseLoc/PapersPleaseLoc.github.io/issues"
+  },
+  "homepage": "https://github.com/PapersPleaseLoc/PapersPleaseLoc.github.io#readme",
+  "dependencies": {
+    "jimp": "0.2.28",
+    "minimist": "1.2.0",
+    "node-zip": "1.1.1",
+    "puppeteer": "^13.4.0"
+  },
+  "engines": {
+    "node": ">=8.1.2"
+  }
+}

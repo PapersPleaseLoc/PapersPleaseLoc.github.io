@@ -75,21 +75,21 @@ p {
     .bulletin .topblock {
         text-align: left;
         width: 80%;
-        top: 20px;
+        top: 19px;
         margin-left: 10%;
         line-height: 10px;
     }
     .bulletin .botblock {
         text-align: left;
         width: 80%;
-        top: 140px;
+        top: 139px;
         margin-left: 10%;
         line-height: 10px;
     }
     .bulletin .botblock2 {
         text-align: left;
         width: 80%;
-        top: 152px;
+        top: 151px;
         margin-left: 10%;
         line-height: 10px;
     }    
@@ -99,7 +99,7 @@ p {
     .bulletin .footer {
         position: absolute;
         color: #a3a3a3;
-        bottom:12px; width:80%; margin-left:10%;
+        bottom:13px; width:80%; margin-left:10%;
     }
     .bulletin .solid {
         display: inline-block;
@@ -152,7 +152,9 @@ td {
 }
     .visa {
         color: #b19600;
-        top: 60px;
+        top: 59px;
+        font-size: 9.75px;
+        padding-left:0.5px;
         width: 100%;
         text-align: center;
     }
@@ -210,10 +212,10 @@ td {
         width: 100%;
     }
     .plaque .title {
-        top: 27px;
+        top: 26px;
     }
     .plaque .recogouter {
-        top: 45px;
+        top: 44px;
     }    
     .plaque .recoginner {
         position: relative;
@@ -223,7 +225,7 @@ td {
         padding: 0 6px;
     }
     .plaque .for {
-        top: 134px;
+        top: 133px;
     }
     .plaque .name {
         font-family: 'large';
@@ -248,11 +250,12 @@ td {
         margin-top: -1px;
     }
 
+
+    
 .rulebutton {
-    background-color: #e4e6bd;
+    display: block;
     color: #94967b;
     text-align: center;
-    border: 1px solid #94967b;
     line-height: 9px;
 }
     .outer {
@@ -264,13 +267,17 @@ td {
         display: table-cell; 
         vertical-align: middle;
         width: 100%;
-        top: 1px;
+        /* top: 1px; */
     }
     .rulebutton .iss span {
         font-family: 'small';
         color: #e4e6bd;
         background-color: #94967b;
         padding: 0 1px 0 2px;
+    }
+    .rulebuttonborder {
+        /* background-color: #e4e6bd; */
+        border: 1px solid #94967b;
     }
 
 .rules {
@@ -342,33 +349,51 @@ td {
 .actionbutton {
     color: #352d29;
     text-align: center;
-    padding-top: 5px;
-    height: 85px;
+    height: 90px;
     font-family: 'ui_regular';
-    line-height: 30px;
 }
-    .actionbutton div {
-        padding-left: 8px;
+    .actionbutton .holder {
+        display: table;
+        width: 100%;
+        padding-top: 6px;
+        padding-left: 4px;
+    }
+    .actionbutton .t {
+        display: table-row;
+        width: 100%;
         text-shadow: 0px 1px 0px #7c796f;
+        vertical-align: top;
     }
-    .actionbutton div:first-of-type {
-        margin-top: -10px;
+    .actionbutton .t:nth-of-type(1) {
+        height: 30px;
     }
-    .actionbutton div:last-of-type {
-        margin-top: 2px;
+    .actionbutton .t:nth-of-type(2) {
+        height: 32px;
     }
+    .actionbutton .t:nth-of-type(3) {
+        height: 26px;
+    }
+
     .reasonbutton {
-        padding-top: 4px;
-        height: 86px;
+        /* height: 90px; */
         color: #7c796f;
     }
-    .reasonbutton div {
-        padding-left: 0px;
-        text-shadow: 0px 1px 0px #352d29;
-    }
-    .reasonbutton div:last-of-type {
-        margin-top: 3px;
-    }
+        .reasonbutton .holder {
+            padding-top: 5px;
+            padding-left: 0px;
+        }
+        .reasonbutton .t {
+            text-shadow: 0px 1px 0px #352d29;
+        }
+        /* .reasonbutton .t:nth-of-type(1) {
+            height: 29px;
+        } */
+        .reasonbutton .t:nth-of-type(2) {
+            height: 33px;
+        }
+        .reasonbutton .t:nth-of-type(3) {
+            height: 25px;
+        }
 
 .ink {
     width: 70px;
@@ -422,4 +447,7 @@ td {
     margin-left: 8px;
     transform: rotate(90deg); 
     -webkit-transform: rotate(90deg); 
+}
+.rulestableft .t {
+    left: -1px;
 }

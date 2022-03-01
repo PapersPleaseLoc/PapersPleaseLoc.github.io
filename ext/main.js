@@ -1,6 +1,5 @@
 $(document).ready(function()
 {
-
 var locVersion = 1;
 
 function getContextElem(elem)
@@ -201,6 +200,7 @@ function exportCsv()
     var dateStr = now.getFullYear() + leftPad(month) + leftPad(day) + "-";
     dateStr += leftPad(now.getHours()) + leftPad(now.getMinutes()) + leftPad(now.getSeconds());
     download("PapersPleaseLoc-" + getLanguageCode() + "-" + dateStr + ".csv", csv);
+    //download("UsedChars.txt", getUsedChars());
 }
 
 function exportCsvStr()
@@ -228,74 +228,77 @@ function exportCsvStr()
     return csv;
 }
 
+function importCsvSync(str)
+{
+    var rows = str.csvToArray({ rSep:'\n', cSep: ',', trim:true });
+    if (rows == null)
+    {
+        return { "error": "Invalid CSV file" };
+    }
+
+    var textElems = getTextElems(true);
+    var textElemsDict = {};
+
+    for (var t=0; t<textElems.length; t++)
+    {
+        var textElem = textElems[t];
+        textElem.setFromCsv = false;
+        var key = textElem.contextId + "//" + textElem.enKey;
+        if (key in textElemsDict)
+            textElemsDict[key].push(textElem);
+        else
+            textElemsDict[key] = [textElem];
+    }
+
+    var numRowsImported = 0;
+    for (var i=0; i<rows.length; i++)
+    {
+        var row = rows[i];
+        var rowEnKey = makeEnKey(row[1]);
+        var key = row[0] + "//" + rowEnKey;
+        if (key in textElemsDict)
+        {
+            matchingTextElems = textElemsDict[key];
+            for (var t=0; t<matchingTextElems.length; t++)
+            {
+                var textElem = matchingTextElems[t];
+                numRowsImported++;
+                textElem.set(row[2]);
+                textElem.setFromCsv = true;
+            }
+        }
+    }
+
+    // reset anything not in csv
+    for (var t=0; t<textElems.length; t++)
+    {
+        if (!textElems[t].setFromCsv) textElems[t].set(textElems[t].text_en);
+    }        
+
+    //notify("Imported " + numRowsImported + " rows");
+
+    isolateElems();
+    selectedTextElem = null;
+    $("#original_en").html("");
+    setTextboxText("");
+    validateTextElems(textElems);
+    updateVarious();
+
+    //if (doneFunc != null) doneFunc();
+
+    return { "message": "Imported " + numRowsImported + " rows" };
+}
+
 function importCsv(str, doneFunc)
 {
     notify("Importing...", true);
-
-    window.setTimeout(function() {
-        var rows = str.csvToArray({ rSep:'\n', cSep: ',', trim:true });
-        if (rows == null)
-        {
-            notify("Invalid CSV file");
-        }
-
-        var textElems = getTextElems(true);
-        var textElemsDict = {};
-
-        for (var t=0; t<textElems.length; t++)
-        {
-            var textElem = textElems[t];
-            textElem.setFromCsv = false;
-            var key = textElem.contextId + "//" + textElem.enKey;
-            if (key in textElemsDict)
-                textElemsDict[key].push(textElem);
-            else
-                textElemsDict[key] = [textElem];
-        }
-
-
-        var numRowsImported = 0;
-        for (var i=0; i<rows.length; i++)
-        {
-            var row = rows[i];
-            var rowEnKey = makeEnKey(row[1]);
-
-            //for (var t=0; t<textElems.length; t++)
-            {
-                //var textElem = textElems[t];
-                //if (textElem.contextId == row[0] && textElem.enKey == rowEnKey)
-                var key = row[0] + "//" + rowEnKey;
-                if (key in textElemsDict)
-                {
-                    matchingTextElems = textElemsDict[key];
-                    for (var t=0; t<matchingTextElems.length; t++)
-                    {
-                        var textElem = matchingTextElems[t];
-                        numRowsImported++;
-                        textElem.set(row[2]);
-                        textElem.setFromCsv = true;
-                    }
-                }
-            }
-        }
-
-        // reset anything not in csv
-        for (var t=0; t<textElems.length; t++)
-        {
-            if (!textElems[t].setFromCsv) textElems[t].set(textElems[t].text_en);
-        }        
-
-        notify("Imported " + numRowsImported + " rows");
-
-        isolateElems();
-        selectedTextElem = null;
-        $("#original_en").html("");
-        setTextboxText("");
-        validateTextElems(textElems);
-        updateVarious();
-
+    window.setTimeout(function() 
+    {
+        var result = importCsvSync(str);
+        if (result.error != null) notify(result.error);
+        else if (result.message != null) notify(result.message);
         if (doneFunc != null) doneFunc();
-    }, 100);
+    }, 1);
 }
 
 function findFirstTextElem(textElems, contextId)
@@ -396,6 +399,16 @@ $('#import-csv').click(function(e)
     e.stopImmediatePropagation();
     e.preventDefault();
     $("#file-open-button").click();
+    return false;
+});
+
+$("#show-non-vita-button").click(function(e)
+{
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    $("#show-non-vita-button").hide();//css("display", "none");
+    $(".non-vita").show();//
+    
     return false;
 });
 
@@ -539,45 +552,19 @@ function updateCustomizableImages()
 // Zoom
 //-----------------------------------------------------------------------------------------------------------
 var zoom = 1;
-function zoomIn()
+function zoomIn(zoom_)
 {
-    // var isChrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase()); 
-    // if (isChrome)
-    // {
-    //     // manually scale images using nearest-neighbor in Chrome since smoothing is always on
-    //     $(".pageback").each(
-    //         function() {
-    //             var image = $(this)[0];
-    //             if (image.tagName == "IMG")
-    //             {
-
-    //                 var canvas = document.createElement('canvas');
-    //                 canvas.width = image.width*2;
-    //                 canvas.height = image.height*2;
-    //                 canvas.imageSmoothingEnabled = false;
-    //                 context = canvas.getContext("2d");
-    //                 context.webkitImageSmoothingEnabled = false;
-    //                 context.mozImageSmoothingEnabled = false;
-    //                 context.drawImage(image, 0, 0, image.width*2, image.height*2);
-
-    //                 $(this).replaceWith(canvas);
-    //                 $(canvas).css("zoom", "0.5");
-    //                 $(canvas).addClass("pageback");
-    //             }
-    //         }
-    //     );
-    // }
+    zoom_ = (typeof zoom_ === 'undefined') ? 2 : zoom_;
 
     var scrollTop = $("body").scrollTop();
 
-    $('body').css("zoom", "2");
-    $('.uibase').css("zoom", "0.5");
+    zoom = zoom_;
+    
+    $('body').css("zoom", (zoom).toString());
+    $('.uibase').css("zoom", (1.0/zoom).toString());
     $('#zoom-in').hide();
     $('#zoom-out').show();
-
-    $("body").scrollTop(scrollTop*2);
-
-    zoom = 2;
+    $("body").scrollTop(scrollTop*zoom);
 }
 
 function zoomOut()
@@ -589,7 +576,7 @@ function zoomOut()
     $('#zoom-in').show();
     $('#zoom-out').hide();
 
-    $("body").scrollTop(scrollTop/2);
+    $("body").scrollTop(scrollTop/zoom);
 
     zoom = 1;
 }
@@ -860,22 +847,6 @@ $('#show-unlocalized').click(function(e)
     e.preventDefault(); return false;
 });
 
-function installExtension(successCallback)
-{
-    if (document.getElementById('extension-is-installed-CaptureVisible'))
-    {
-        successCallback();
-    }
-    else
-    {
-        chrome.webstore.install(
-            "https://chrome.google.com/webstore/detail/bgigfngpiapeiicnamikpicikekkjcpi", 
-            successCallback, 
-            function(detail) { notify("Failed to install Chrome extension: " + detail); }
-        );
-    }
-}
-
 function fixGenderSwitches(str)
 {
     if (str == null) return null;
@@ -885,104 +856,6 @@ function fixGenderSwitches(str)
     str = str.replace(/<\/f>/ig, "[/f]");
     return str;
 }
-
-function downloadPack(doneFunc)
-{
-    if (!validateTextElems(getTextElems()))
-        return;
-
-    zoomOut();
-    $(".ui").hide();
-    showGenderingPreview(false);
-    $(".capturing").show();
-    $("#notification").hide();
-
-    $(".transparent").css("color", "#ff00ff");
-    markLib.beforeCapture();
-
-    $(".capturing_language_code").html(getLanguageCode());
-
-    var elems = [];
-    $(".capture").each(function() 
-    {
-        elems.push($(this));
-    });
-
-    if (document.URL.indexOf("local") >= 0)
-    {
-        elems = [];
-        //elems.push($("#RulesInnerBooth2"));
-        //elems.push($("#BulletinInnerBoothTut2"));
-        //elems.push($("#RulesUpgrade4"));
-        //elems.push($("#Upgrades"));
-        elems.push($("#BulletinInnerTouchTut"));
-    }
-
-    var divCap = new DivCap(elems, function() 
-    {
-        // Text.xml
-        var textXml = document.createElement("data");
-        $(".texts .context").each(function(){
-            var id = $(this).attr("id").split(":")[1];
-            var node = document.createElement("item");
-            node.setAttribute("id", id);
-            textXml.appendChild(node);
-            
-            var t = document.createElement("t");
-
-            var text = $(this).find(".t").html();
-            text = escapeHtml(fixGenderSwitches(text));
-            //text = text.replace(/<br[^>]*>/ig, "\n");
-            t.innerHTML = text;
-            node.appendChild(t);
-        })
-
-        var textXmlFormatted = textXml.outerHTML.replace(/<\/item>/ig, "</item>\n");
-        divCap.addFileToZip("data", "Text.xml", textXmlFormatted);
-
-        // Loc.csv
-        var locCsv = '"CONTEXT", "ID", "TEXT"\n';
-        var textElems = getTextElems();
-        for (var i=0; i<textElems.length; i++)
-        {
-            var textElem = textElems[i];
-            // if (
-            //     textElem.contextId.indexOf("text:") == 0 || 
-            //     textElem.contextId.indexOf("image:") == 0 || 
-            //     textElem.contextElem.hasClass("capture")
-            // ) continue;
-
-            //locCsv += quote(textElem.contextId) + ",0x" + makeEnKey(textElem.text_en).toString(16) + "," + quote(fixGenderSwitches(textElem.text)) + "\n";
-            locCsv += quote(textElem.contextId) + "," + quote(textElem.text_en) + "," + quote(fixGenderSwitches(textElem.text)) + "\n";
-            //locCsv += quote(textElem.contextId) + ",0x" + makeEnKey(textElem.text_en).toString(16) + "," + quote(fixGenderSwitches(textElem.text)) + "," + quote(textElem.text_en) + "\n";
-        }
-        divCap.addFileToZip("data", "Loc.csv", locCsv);
-        divCap.addFileToZip("data", "LocVersion.txt", "" + locVersion);
-
-        // UsedChars.txt
-        var usedChars = getUsedChars();
-        divCap.addFileToZip("data", "UsedChars.txt", usedChars);
-
-        divCap.downloadZip(getLanguageCode() + ".zip");
-
-        $("#capturing_status").html("Done!");
-        if (doneFunc != null) doneFunc();
-
-    }, function() {
-        // error Func
-        $("body").css("background-color", "#ff3232");
-        $(".capturing").hide();
-        $(".capturing_error_cleartype").show();
-        return;
-    });
-}
-
-$("#download-pack").click(function(e) 
-{
-    installExtension(downloadPack);
-    e.preventDefault();
-    return false;
-});
 
 $("#export-csv").click(function(e)
 {
@@ -1001,7 +874,6 @@ $('#textbox').bind('input propertychange', function()
     updateVarious();
 
     //console.log(selectedTextElems);
-
     //validateTextElems(selectedTextElems);
 });
 
@@ -1111,8 +983,8 @@ function onClickTextElem(e)
     $("#terms").css("display", (hasTerm || $(".term-selected").length != 0) ? "block" : "none");
 }
 
-$("#zoom-in").click(function(e) { zoomIn(); e.preventDefault(); return false; });
-$("#zoom-out").click(function(e) { zoomOut(); e.preventDefault(); return false; });
+// $("#zoom-in").click(function(e) { zoomIn(); e.preventDefault(); return false; });
+// $("#zoom-out").click(function(e) { zoomOut(); e.preventDefault(); return false; });
 
 $(".genderpopup .closebutton").click(function(e) { showGenderingPreview(false); e.preventDefault(); return false; });
 $(".genderpopup .helpbutton").click(function(e) { toggleGenderingHelp(false); e.preventDefault(); return false; });
@@ -1120,27 +992,18 @@ $(".genderpopup .helpbutton").click(function(e) { toggleGenderingHelp(false); e.
 $(".ui .language-code-button").click(function() {
     var elem = $("#text\\:language_code .t");
     onClickTextElem.call(elem);
-    //document.documentElement.scrollTop = elem.offset().top;
-    zoomOut();
-    $("body,html,document").scrollTop(elem.offset().top-50);
-    zoomIn();
+    // //document.documentElement.scrollTop = elem.offset().top;
+    // zoomOut();
+    // //$("body,html,document").scrollTop(elem.offset().top-50);
+    // console.log(elem.offset().top);
+    // $("body,html,document").scrollTop(elem.offset().top-50);
+    // zoomIn();
+
+    elem.get(0).scrollIntoView();
+
     elem.addClass('highlight-red');
     window.setTimeout(function(){ elem.removeClass('highlight-red'); }, 1000);
 });
-
-function dumpCapturedImageNames()
-{
-    var captureImages = [];
-    $(".dir").each(function()
-    {
-        dir = $(this).data("dir") + "/";
-        if (dir == "./") dir = "";
-        $(".capture", $(this)).each(function(){
-            captureImages.push("\"" + dir + $(this).attr("id") + ".png\"");        
-        })
-    });
-    console.log(captureImages.join(","));
-}
 
 //-----------------------------------------------------------------------------------------------------------
 // Cloud
@@ -1445,19 +1308,131 @@ $("#sync-syncbutton").click(function()
 });
 
 //-----------------------------------------------------------------------------------------------------------
-
-$(window).load(function()
+// Capture API
+//-----------------------------------------------------------------------------------------------------------
+function generateDataFiles()
 {
-    $("#loading").hide();
-    $("#content").show();
-});
+    var dataFiles = [];
 
-if (document.URL.indexOf("local") >= 0) 
-{
-    dumpCapturedImageNames();
-    //$("#download-pack").show();
+    // Text.xml
+    var textXml = document.createElement("data");
+    $(".texts .context").each(function(){
+        var id = $(this).attr("id").split(":")[1];
+        var node = document.createElement("item");
+        node.setAttribute("id", id);
+        textXml.appendChild(node);
+        
+        var t = document.createElement("t");
+
+        var text = $(this).find(".t").html();
+        text = escapeHtml(fixGenderSwitches(text));
+        //text = text.replace(/<br[^>]*>/ig, "\n");
+        t.innerHTML = text;
+        node.appendChild(t);
+    })
+    dataFiles.push({
+        'filename': 'data/Text.xml',
+        'contents': textXml.outerHTML.replace(/<\/item>/ig, "</item>\n")
+    });
+
+    // Loc.csv
+    var locCsv = '"CONTEXT", "ID", "TEXT"\n';
+    var textElems = getTextElems();
+    for (var i=0; i<textElems.length; i++)
+    {
+        var textElem = textElems[i];
+        locCsv += quote(textElem.contextId) + "," + quote(textElem.text_en) + "," + quote(fixGenderSwitches(textElem.text)) + "\n";
+    }
+    dataFiles.push({
+        'filename': 'data/Loc.csv',
+        'contents': locCsv
+    });
+    dataFiles.push({
+        'filename': 'data/LocVersion.txt',
+        'contents': locVersion.toString()
+    });
+
+    // UsedChars.txt
+    var usedChars = getUsedChars();
+    dataFiles.push({
+        'filename': 'data/UsedChars.txt',
+        'contents': usedChars
+    });
+
+    return dataFiles;
 }
 
+//-----------------------------------------------------------------------------------------------------------
+function getImageQuantizeRects(captureElem)
+{
+    var pals = []
+    captureElem.find(".quantize").each(function() 
+    {
+        // quantize
+        var quantizeElem = $(this);
+        var colors = $.trim((quantizeElem).data("pal")).split(" ");
+        for (var p=0; p<colors.length; p++)
+        {
+            var color = parseInt(colors[p]);
+            colors[p] = [
+                (color>>16) & 0xff,
+                (color>>8) & 0xff,
+                (color) & 0xff
+            ];
+        }
+        var pos = quantizeElem.position();
+        var rect = { x:pos.left, y:pos.top, width:quantizeElem.width(), height:quantizeElem.height() };
+        pals.push({ colors:colors, rect:rect });
+    });
+    return pals;
+}
+
+//-----------------------------------------------------------------------------------------------------------
+$.capture = {
+    begin: function(locCsv)
+    {
+        var result = importCsvSync(locCsv);
+        if (result.error) return { 'error': result.error };
+
+        images = []
+        $(".dir").each(function()
+        {
+            dir = $(this).data("dir") + "/";
+            if (dir == "./") dir = "";
+            $(".capture", $(this)).each(function(){
+                var captureElem = $(this);
+                images.push(
+                { 
+                    id: captureElem.attr("id"),
+                    filename: dir + captureElem.attr("id") + ".png",
+                    w: captureElem.width(),
+                    h: captureElem.height(),
+                    quantizeRects: getImageQuantizeRects(captureElem)
+                });
+            })
+        });
+
+        // zooming is handled by phantomjs page
+        zoomOut();
+        $(".transparent").css("color", "#ff00ff");
+        markLib.beforeCapture();
+        $("body, html, head, .capture").css("margin", 0);
+        $("body, html, head, .capture").css("padding", 0);
+
+        return { 'images': images, 'dataFiles': generateDataFiles(), 'lang': getLanguageCode() };
+    },
+    isolate: function(id)
+    {
+        var elem = $("#" + id);
+        elem.detach().prependTo("body");
+        elem.parents().show();
+        elem.show();
+        elem.siblings().hide()
+        elem.parents().siblings().hide()
+    },
+}
+
+//-----------------------------------------------------------------------------------------------------------
 fixFonts();
 moveHelpSections();
 prepareCustomizableImages();
@@ -1465,48 +1440,13 @@ prepareTextElems();
 updateVarious();
 zoomIn();
 
-function downloadAllPacks()
+//-----------------------------------------------------------------------------------------------------------
+$(window).load(function()
 {
-    // ?autocap=en,fr,it,de,es,pt-BR,ru,ja,pl
-    var autoCap = getUrlVar("autocap");
-    if (autoCap == "") return;
-    
-    var langs = autoCap.split(",");
-    var lang = langs.shift();
-    if (lang != null)
-    {
-        // first, get the latest content from the cloud
-        var user = getUrlVar("user");
-        var pass = getUrlVar("pass");
-        var repo = getUrlVar("repo");
-        var cloud = new Cloud(user, pass, repo);
+    $("#loading").hide();
+    $("#content").show();
 
-        cloud.init(function() {
-            cloud.refreshContent(lang + ".csv", function(content)
-            {
-                // import it into the page
-                importCsv(content, function()
-                {
-                    // download the pack
-                    downloadPack(function() 
-                    {
-                        // do the next language
-                        if (langs.length == 0)
-                            window.location.search = "";
-                        else
-                            window.location.search = 
-                                "user=" + user + "&" + 
-                                "pass=" + pass + "&" +
-                                "repo=" + repo + "&" +
-                                "autocap=" + langs.join(",")
-                            ;
-                    });
-                });
-            });
-        });
-    }
-}
-
-downloadAllPacks();
+    $.capture.isLoaded = true;
+});
 
 });
