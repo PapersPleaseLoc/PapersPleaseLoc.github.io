@@ -103,7 +103,7 @@ in your custom stylesheet and in the PACK/data/Fonts.xml file with the same valu
 .font-title_news { font-family: 'title_news'; font-size: 16px; line-height: 16px; }
 
 /* @font-face { font-family: 'title_serif'; src: local("Times New Roman"); font-weight: bold; } */
-@font-face { font-family: 'title_serif';src: url('../fonts/PT_Serif-Web-Bold.ttf'); font-weight:700; }
+@font-face { font-family: 'title_serif';src: url('../fonts/PT_Serif-Bold.ttf'); font-weight:700; }
 .font-title_serif { font-family:'title_serif'; font-weight:bold; font-size: 10px; line-height: 10px; }
 
 @font-face { font-family: 'title_thick'; src: url('../fonts/ChixaDemiBold--shnmk12b.ttf'); }
@@ -132,8 +132,15 @@ in your custom stylesheet and in the PACK/data/Fonts.xml file with the same valu
 @font-face { font-family: 'passport_kolechia'; src: url('../fonts/BMgermar.ttf'); }
 
 /*---- misc -------------------------------------------------*/
+
+@font-face { font-family: 'press'; src: url('../fonts/Raleway-VariableFont_wght.ttf'); }
+.font-press { font-family: 'press'; font-size: 22px; line-height: 22px; font-variation-settings: 'wght' 900; }
+
+/* 
 @font-face { font-family: 'press'; src: url('../fonts/Raleway-Heavy.otf'); }
 .font-press { font-family: 'press'; font-size: 22px; line-height: 22px; font-weight: normal; }
+*/
+
 
 @font-face { font-family: 'propaganda'; src: url('../fonts/PROPAGAN.ttf'); }
 .font-propaganda { font-family: 'propaganda'; font-size: 10px; line-height: 10px; }

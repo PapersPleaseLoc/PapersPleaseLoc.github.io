@@ -193,6 +193,16 @@ pre {
         padding: 4px;
         cursor: pointer;
     }
+    .ui .reset-all-button {
+        position: absolute;
+        /* background-color: #E12128; */
+        /* color: #E12128; */
+        width: 20pt;
+        right: 0px;
+        top: 4px;
+        padding: 4px;
+        cursor: pointer;
+    }
 
 .genderpopup {
     position: fixed;   

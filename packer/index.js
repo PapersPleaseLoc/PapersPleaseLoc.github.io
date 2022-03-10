@@ -176,7 +176,7 @@ async function finalizeImage(filename, width, height, quantizeRects)
 		jimp.read(filename, function(err, img) 
 		{
 			if (err) reject(err);
-			img.resize(width, height, jimp.RESIZE_NEAREST_NEIGHBOR);
+			// img.resize(width, height, jimp.RESIZE_NEAREST_NEIGHBOR);
 			resolve(img);
 		});	
 	});
@@ -331,7 +331,7 @@ process.on('unhandledRejection', (reason, p) => {
 //---------------------------------------------------------------------------------------------------------------------
 function showUsage()
 {
-	console.log("Usage: node packer --csv <input Loc.csv file> --url <loc tool url>");
+	console.log("Usage: node packer --csv <input Loc.csv file> --url <loc tool url> --out <output directory>");
 	process.exit(1);
 }
 
@@ -351,11 +351,11 @@ function abortWithError(err)
 	console.time(timerId);
 
 	var args = minimist(process.argv.slice(2), {
-		"string": [ "csv", "url" ],
+		"string": [ "csv", "url", "out" ],
 		"unknown": function(a) { console.error("Unknown argument: " + a); return false; }
 	})
 	
-	if (args.csv == null || args.url == null) showUsage();
+	if (args.csv == null || args.url == null || args.out == null) showUsage();
 	if (!fs.existsSync(args.csv)) abortWithError("File not found: " + args.csv);
 
 	const url = args.url;
@@ -369,13 +369,13 @@ function abortWithError(err)
 
 	console.log("Loading csv from " + args.csv);
 	const code = path.parse(args.csv).name
-	const dir = "__tmp__" + code;
+	const dir = path.join(args.out, "__tmp__" + code);
 	const csv = fs.readFileSync(args.csv, "utf8");
 	
 	const lang = await capture(page, 1, dir, csv);
 	await instance.close();
 
-	const zipFilename = lang + ".zip";
+	const zipFilename = path.join(args.out, lang + ".zip");
 
 	// remap zip dir entries from tmp dir to lang code
 	var dirNameMap = {};

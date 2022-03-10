@@ -12,14 +12,18 @@
 
 <script src="ext/lib/base64.js" type="text/javascript"></script>
 <script src="ext/lib/underscore-min.js" type="text/javascript"></script>
-<script src="ext/github.js" type="text/javascript"></script>
-<script src="ext/cloud.js" type="text/javascript"></script>
+<!-- <script src="ext/github.js" type="text/javascript"></script> -->
+<!-- <script src="ext/cloud.js" type="text/javascript"></script> -->
 
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/captures.css">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 
 <script src="ext/marklib.js" type="text/javascript"></script>
 <script src="ext/main.js" type="text/javascript"></script>
@@ -60,7 +64,7 @@ Loading...
 
 <div class="captures">
     <div class="dir" data-dir="papers">
-
+    
         <!-- AccessPermitInner -->    
         <div class="capture context" id="AccessPermitInner" style="
             width: 147px;
@@ -114,7 +118,7 @@ Loading...
                 <div id="$ExpirationDate" class="marktxt">1984.01.01</div>
             </div>
 
-            <div class="font-tiny abs" style="text-align:left; left:13.5px; top:164.5px; border:1pt solid #896789; padding:2px 2px 1px 2px;">
+            <div class="font-tiny abs" style="text-align:left; left:14px; top:165px; border:1pt solid #896789; padding:1.5px 1.5px 1px 2px;">
                 <div class="t" style="margin-top:-3px">Keep on person</div>
             </div>
             <div class="t font-tiny solid abs" style="bottom:7px; padding:0 2px; right:12px;">
@@ -215,7 +219,14 @@ Loading...
             <img class="pageback" src="capture/BrothelHelpInner.png"/>
             <style>
                 #BrothelHelpInner p { margin-bottom: 10px; }
-                #BrothelHelpInner span { border-bottom: 1px solid #867b99; }
+                /* #BrothelHelpInner span { border-bottom: 1px solid #867b99; line-height:6px; } */
+
+                #BrothelHelpInner span {
+                    background-image: linear-gradient(to bottom, #867b99 0%, #867b99 100%);
+                    background-position: 0 9px;
+                    background-repeat: repeat-x;
+                    background-size: 2px 1px;
+                }
             </style>
             <div class="abs" style="left:25px; top:14px; width:120px; height:130px; line-height:10px">
                 <p class="t">A man named <span>Dari Ludum</span> promised me and my sister good work in Arstotzka.</p>
@@ -335,6 +346,25 @@ Loading...
             </div>
         </div>
 
+        <!-- BulletinInnerBoothTut3 -->    
+        <div class="capture context bulletin" id="BulletinInnerBoothTut3" style="
+            color: #ffe5fd
+        ">
+            <img class="pageback" src="capture/BulletinInnerBoothTut3.png"/>
+            <div class="t font-tiny" style="top:18px">
+                Arstotzkan<br/>Ministry of Admission
+            </div>
+            <div class="t abs font-large" style="top:42px; width:100%">
+                Inspector's Booth
+            </div>
+            <div class="t abs" style="left:77px; top:62px; line-height:10px; text-align:left">
+                Shutter<br/>Time &amp; Date<br/>Weight
+            </div>
+            <div class="t abs" style="left:53px; top:146px; line-height:10px; text-align:left">
+                Rule Book<br/>Audio Transcript<br/>Bulletin
+            </div>
+        </div>
+
         <!-- BulletinInnerScrollTut (Moved to plain text) -->    
         <!--<div class="capture context bulletin" id="BulletinInnerScrollTut">
             <img class="pageback" src="capture/BulletinInnerScrollTut.png"/>
@@ -349,7 +379,7 @@ Loading...
             <div class="t font-title_tall" style="padding-top:8px">
                 Weapons Protocol
             </div>
-            <div class="t red" style="display:inline-block; margin-top:6px; border:1px solid #c8241c; padding:1px 2px 1px 2px">
+            <div class="t red" style="display:inline-block; margin-top:6px; border:1px solid #c8241c; padding:1px 2.5px">
                 WHEN ALARM SOUNDS
             </div>
             <div class="t abs" style="top:87px; width:80%; margin-left:10%">
@@ -394,32 +424,44 @@ Loading...
         <!-- BulletinInnerNews -->    
         <div class="capture context bulletin" id="BulletinInnerNews">
             <img class="pageback" style="z-index:-200" src="capture/BulletinInnerNews.png"/>
-            <div class="font-title_serif" style="position:absolute; top:18px; padding:0 3px; color:#cbcabb; width:100%; font-weight: 900">
+            <div class="font-title_serif" style="position:absolute; top:18px; padding:0 3px; color:#cbcabb; width:100%; font-weight:900">
                 <div style="display:inline;">
-                    <span class="t" style="background-image:url(capture/BulletinInnerNewsBack.png); background-position:0 1px; padding:0 4px;">NEWS</span>
+                    <span class="t" style="background-image:url(capture/BulletinInnerNewsBack.png); background-position:0 0.5px; padding:0 4px;">NEWS</span>
                 </div>
             </div>
         </div>
 
-        <!-- BulletinPagesNote -->    
-        <div class="capture context font-regular_short" id="BulletinPagesNote" style="
+        <!-- BulletinPagesNote -->   
+        <div class="capture context font-regular_short" id="BulletinPagesNote" data-expand="-4 -1" style="
             color: #967c62;            
             display: inline-block;
             line-height: 6px;
         ">
-            <!-- <style>
-                #BulletinPagesNote span { display:inline-block; }
-            </style> -->
             <div style="
                 background-color: #ecd49a;
                 display: inline-block;
                 border: 1px solid #a3a3a3;
                 border-width: 0 1px 1px 0;
-                padding-top:1px; padding: 1px 4px;
+                padding: 1px 4px 1.5px 4px;
             ">
                 <span class="t">CHECK ALL<br/>PAGES</span> <span style="position:relative; font-family:'arial'; font-size:10px; vertical-align:middle; top:1px">➞</span>
             </div>
         </div>
+
+        <!-- <div class="capture context font-regular_short" id="BulletinPagesNote" style="
+                 display: inline-block;
++                color: #967c62;
++                line-height: 6px;
++                background-color: #ecd49a;
+                 border: 1px solid #a3a3a3;
+                 border-width: 0 1px 1px 0;
+                padding-top:1px; padding: 1px 4px;
+            ">
+            <div style="margin: 1px 3px 1.5px 4px;">
+                <span class="t">CHECK ALL<br/>PAGES</span> <span style="position:relative; font-family:'arial'; font-size:10px; vertical-align:middle; top:1px">➞</span>
+            </div>
+        </div>
+        </div> -->
 
         <!-- CitationInner -->    
         <div class="capture context" id="CitationInner" style="
@@ -519,13 +561,13 @@ Loading...
                 <div class="t font-small_tight" style="height:24px">
                     Conditional entry to the sovereign nation of Arstotzka is hereby granted to
                 </div>
-                <div class="line" style="width:100%; height:7px; margin:8px 0; padding-bottom:1px">
+                <div class="line" style="width:100%; height:7px; margin:7px 0 8px 0; padding-bottom:2px">
                     <div id="$Name" class="marktxt">ALEXANDER STOLICHANOV</div>
                 </div>
                 <div class="t font-small_tight">
                     bearing passport number
                 </div>
-                <div class="line" style="width:100%; height:7px; margin:8px 0; padding-bottom:1px">
+                <div class="line" style="width:100%; height:7px; margin:7px 0 8px 0; padding-bottom:2px">
                     <div id="$IdNumber" class="marktxt">12345-67890</div>
                 </div>
 
@@ -572,7 +614,7 @@ Loading...
             text-align: center;
         ">
             <img class="pageback" src="capture/EzicNoteInnerOpen.png"/>
-            <div class="font-small_harsh" style="padding:4px 10%; top:7px; line-height:8px">
+            <div class="font-small_harsh" style="padding:4px 17px; top:6px; line-height:8px">
                 <div class="t">READ QUICKLY</div>
                 <div class="t">RETURN TO MESSENGER</div>
             </div>
@@ -604,7 +646,7 @@ Loading...
             text-align: center;
         ">
             <img class="pageback" src="capture/FingerprintsInner.png"/>
-            <div class="t" style="width:100%; top:4px">
+            <div class="t" style="width:100%; top:3px">
                 GIVE THIS PAPER TO APPLICANT
             </div>
             <div class="abs markimg" style="left:6px; top:13px; width:160px; height:32px"></div>
@@ -618,7 +660,7 @@ Loading...
             text-align: center;
         ">
             <img class="pageback" src="capture/ForgeryFlyerInnerFront.png"/>
-            <div class="t font-title_news" style="left:5px; top:2px; width:121px; border:1px solid #8ca0ab; padding:3px 1px;">
+            <div class="t font-title_news" style="left:5px; top:2px; width:121px; border:1px solid #8ca0ab; padding:2px 1px 4px 1px;">
                 NEED FORGED<br/>OBRISTAN DOCS?
             </div>
             <div class="abs" style="top:44px; width:100%; line-height:10px">
@@ -703,10 +745,10 @@ Loading...
             line-height: 10px;
         ">
             <img class="pageback" src="capture/HintMissingInner.png"/>
-            <div class="t" style="top:14px">
+            <div class="t" style="top:13px">
                 THIS ENTRANT HAS NO DOCUMENTS
             </div>
-            <div class="abs" style="top:37px; width:80%; margin:0 10%; text-align:left">
+            <div class="abs" style="top:36px; width:80%; margin:0 19px; text-align:left">
                 <p class="t">To proceed, use INSPECT mode to interrogate.</p>
                 <p class="t">Review page 2 of today's bulletin for full instructions.</p>
             </div>
@@ -828,7 +870,7 @@ Loading...
             <div class="t abs font-tiny" style="left:19px; top:10px; width:36px;">
                 To Sergiu from your Elisa
             </div>
-            <div class="t abs font-small" style="left:74px; top:15px; width:36px;">
+            <div class="t abs font-small" style="left:74px; top:14px; width:36px;">
                 I Love You Always
             </div>            
         </div>
@@ -898,7 +940,7 @@ Loading...
                 #PassportInnerAntegria table { left:6px; top:100px; padding-left:2px}
                 #PassportInnerAntegria table td { padding-left:0;}
                 #PassportInnerAntegria table .k { background-color: transparent; color:#a29490; line-height:8px; }
-                #PassportInnerAntegria .nation { font-family:'Helvetica'; left:7.5px; top:89px; font-size:12px; position:absolute; color:#a29490; }
+                #PassportInnerAntegria .nation { font-family:'Outfit', sans-serif; left:8px; top:88px; font-size:13px; position:absolute; color:#a29490; }
                 #PassportInnerAntegria .face { left: 83px; top: 88px; }
                 #PassportInnerAntegria .id { right: 6px; bottom: 6px; text-align:right;}
             </style>
@@ -928,11 +970,11 @@ Loading...
 
         <div class="capture context passport" id="PassportInnerArstotzka">
             <style>
-                #PassportInnerArstotzka .name { left:8px; top:88px;}
+                #PassportInnerArstotzka .name { left:8px; top:87px;}
                 #PassportInnerArstotzka table { left:49px; top:98px;}
-                #PassportInnerArstotzka .nation { font-family:'passport_arstotzka'; right:6px; bottom:20px; font-size:16px;  position:absolute; color:#a29490; letter-spacing:-1px;}
+                #PassportInnerArstotzka .nation { font-family:'passport_arstotzka'; right:6px; bottom:20px; font-size:16px;  position:absolute; color:#a29490; letter-spacing:-0.5px;}
                 #PassportInnerArstotzka .face { left: 8px; top: 98px; }
-                #PassportInnerArstotzka .id { left: 8px; bottom: 6px; }
+                #PassportInnerArstotzka .id { left: 8px; bottom: 7px; }
             </style>
             <img class="pageback" src="capture/PassportInnerArstotzka.png"/>
             <div class="t visa font-title_serif">ENTRY VISA</div>
@@ -951,11 +993,11 @@ Loading...
         <!-- PassportInnerImpor -->    
         <div class="capture context passport" id="PassportInnerImpor">
             <style>
-                #PassportInnerImpor .name { left:8px; top:86px;}
+                #PassportInnerImpor .name { left:8px; top:85px;}
                 #PassportInnerImpor table { left:51px; top:97px;}
                 #PassportInnerImpor .nation { font-family:'cursive'; left:10px; bottom:8px; font-size:8px; position:absolute; color:#a29490; }
                 #PassportInnerImpor .face { left: 9px; top: 96px; }
-                #PassportInnerImpor .id { right: 8px; bottom: 8px; text-align:right;}
+                #PassportInnerImpor .id { right: 8px; bottom: 9px; text-align:right;}
             </style>
             <img class="pageback" src="capture/PassportInnerImpor.png"/>
             <div class="t visa font-title_serif">ENTRY VISA</div>
@@ -974,11 +1016,11 @@ Loading...
         <!-- PassportInnerKolechia -->    
         <div class="capture context passport" id="PassportInnerKolechia">
             <style>
-                #PassportInnerKolechia .name { left:8px; top:98px;}
+                #PassportInnerKolechia .name { left:8px; top:97px;}
                 #PassportInnerKolechia table { left:50px; top:107px;}
-                #PassportInnerKolechia .nation { font-family:'passport_kolechia'; right:6px; top:88px; font-size:12.5px; letter-spacing:1px; position:absolute; color:#a29490; background-color:#ede0d8; padding-left:2px;}
+                #PassportInnerKolechia .nation { font-family:'passport_kolechia'; right:6px; top:88px; font-size:13px; letter-spacing:2px; position:absolute; color:#a29490; background-color:#ede0d8; padding-left:2px;}
                 #PassportInnerKolechia .face { left: 8px; top: 107px; }
-                #PassportInnerKolechia .id { right: 6px; bottom: 6px; text-align:right;}
+                #PassportInnerKolechia .id { right: 6px; bottom: 7px; text-align:right;}
             </style>
             <img class="pageback" src="capture/PassportInnerKolechia.png"/>
             <div class="t visa font-title_serif">ENTRY VISA</div>
@@ -997,11 +1039,11 @@ Loading...
         <!-- PassportInnerObristan -->    
         <div class="capture context passport" id="PassportInnerObristan">
             <style>
-                #PassportInnerObristan .name { left:8px; top:98px;}
+                #PassportInnerObristan .name { left:8px; top:97px;}
                 #PassportInnerObristan table { left:8px; top:111px;}
                 #PassportInnerObristan .nation { font-family:'title_serif'; font-weight:bold; top:77px; font-size:11px; color:#ede0d8; vertical-align:top;}
                 #PassportInnerObristan .face { left: 84px; top: 107px; }
-                #PassportInnerObristan .id { left: 10px; top: 148px; }
+                #PassportInnerObristan .id { left: 10px; top: 147px; }
                 #PassportInnerObristan table .marktxt, #PassportInnerObristan .id { color:#ede0d8; }
             </style>
             <img class="pageback" src="capture/PassportInnerObristan.png"/>
@@ -1021,11 +1063,11 @@ Loading...
         <!-- PassportInnerRepublia -->    
         <div class="capture context passport" id="PassportInnerRepublia">
             <style>
-                #PassportInnerRepublia .name { left:8px; top:87px;}
+                #PassportInnerRepublia .name { left:8px; top:86px;}
                 #PassportInnerRepublia table { left:8px; top:98px;}
                 #PassportInnerRepublia .nation { font-family:'passport_republia'; left:8px; top:136px; font-size:11px; position:absolute; color:#a29490; }
                 #PassportInnerRepublia .face { left: 85px; top: 96px; }
-                #PassportInnerRepublia .id { right: 5px; bottom: 6px; text-align:right;}
+                #PassportInnerRepublia .id { right: 5px; bottom: 7px; text-align:right;}
             </style>
             <img class="pageback" src="capture/PassportInnerRepublia.png"/>
             <div class="t visa font-title_serif">ENTRY VISA</div>
@@ -1044,11 +1086,11 @@ Loading...
         <!-- PassportInnerUnitedFed -->    
         <div class="capture context passport" id="PassportInnerUnitedFed">
             <style>
-                #PassportInnerUnitedFed .name { left:8px; top:98px;}
+                #PassportInnerUnitedFed .name { left:8px; top:97px;}
                 #PassportInnerUnitedFed table { left:50px; top:106px;}
-                #PassportInnerUnitedFed .nation { font-family:'passport_unitedfed'; top:77px; font-size:8px; position:relative; color:#a29490; background-color:#ede0d8; padding: 0 2px; display:inline-block;}
+                #PassportInnerUnitedFed .nation { font-family:'passport_unitedfed'; top:77px; font-size:8px; position:relative; color:#a29490; background-color:#ede0d8; padding: 0 3.5px; display:inline-block;}
                 #PassportInnerUnitedFed .face { left: 8px; top: 106px; }
-                #PassportInnerUnitedFed .id { right: 5px; bottom: 6px; text-align:right;}
+                #PassportInnerUnitedFed .id { right: 5px; bottom: 7px; text-align:right;}
             </style>
             <img class="pageback" src="capture/PassportInnerUnitedFed.png"/>
             <div class="t visa font-title_serif">ENTRY VISA</div>
@@ -1079,7 +1121,7 @@ Loading...
             <style>
                 #PlaqueTwoInner { height:186px; color: #8a7b6e; }
                 #PlaqueTwoInner .recoginner { background-color:#eae9e0; }
-                #PlaqueTwoInner .for { top:124px; }
+                #PlaqueTwoInner .for { top:123px; }
                 #PlaqueTwoInner .hangouter { top:172px; }
                 #PlaqueTwoInner .name { top:148px; }
                 #PlaqueTwoInner .hanginner { background-color:#b3a78f; }
@@ -1144,7 +1186,7 @@ Loading...
                 <div class="t">East Grestin Division</div>
                 <div class="t">Special Investigator</div>
             </div>
-            <div class="abs font-regular" style="top:124px; left:16px">
+            <div class="abs font-regular" style="top:123px; left:16px">
                 <div>M. Vonel</div>
                 <div>00AJ-7100M-QP00-BR</div>
             </div>
@@ -1167,7 +1209,7 @@ Loading...
             <div class="t" style="padding-top:18px;">INTERNATIONAL</div>
             <div class="t font-press" style="margin-top:-1px">PRESS</div>
             <div class="t" style="margin-top:-3px;">IDENTIFICATION</div>
-            <div class="abs font-regular marktxt" style="width:100%; bottom:6px;">Dartan Caplane</div>
+            <div class="abs font-regular marktxt" style="width:100%; bottom:7px;">Dartan Caplane</div>
             <div class="abs markimg" style="left:26px; top:58px; width:40px; height:48px"></div>
         </div>
 
@@ -1278,7 +1320,7 @@ Loading...
         <div class="capture context rules" id="RulesInnerBooth">
             <img class="pageback" src="capture/RulesInnerBooth.png"/>
             <div class="left">
-                <div class="t dark font-title_thick" style="top:10px">INSPECTOR'S BOOTH</div>
+                <div class="t dark font-title_thick" style="top:9px">INSPECTOR'S BOOTH</div>
                 <div class="abs" style="left:-10px; top:-20px; width:200%">
                     <div class="abs" style="left:70px; top:0px">
                         <div class="t abs nowrap" style="top:63px">Shutter</div>
@@ -1290,7 +1332,7 @@ Loading...
                 </div>
             </div>
             <div class="right">
-                <div class="t dark font-title_thick" style="margin-top:10px">UPGRADES</div>
+                <div class="t dark font-title_thick" style="margin-top:9px">UPGRADES</div>
                 <div class="t" style="margin-top:15px">NO UPGRADES<br/>INSTALLED</div>
             </div>
         </div>
@@ -1299,7 +1341,7 @@ Loading...
         <div class="capture context rules" id="RulesInnerBooth2">
             <img class="pageback" src="capture/RulesInnerBooth2.png"/>
             <div class="left">
-                <div class="t dark font-title_thick" style="top:10px">INSPECTOR'S BOOTH</div>
+                <div class="t dark font-title_thick" style="top:9px">INSPECTOR'S BOOTH</div>
                 <div class="abs" style="left:-10px; top:-20px; width:120%">
                     <div class="abs" style="left:0px; width:100%; top:0px">
                         <div class="t abs nowrap" style="top:63px; width:100%">Shutter</div>
@@ -1314,7 +1356,27 @@ Loading...
                 </div>
             </div>
             <div class="right">
-                <div class="t dark font-title_thick" style="margin-top:10px">UPGRADES</div>
+                <div class="t dark font-title_thick" style="margin-top:9px">UPGRADES</div>
+                <div class="t" style="margin-top:15px">NO UPGRADES<br/>INSTALLED</div>
+            </div>
+        </div>
+
+        <!-- RulesInnerBooth3 -->    
+        <div class="capture context rules" id="RulesInnerBooth3">
+            <img class="pageback" src="capture/RulesInnerBooth3.png"/>
+            <div class="left">
+                <div class="t dark font-title_thick" style="top:9px">INSPECTOR'S BOOTH</div>
+                <div class="abs" style="left:-10px; top:-20px; width:200%">
+                    <div class="t abs" style="left:65px; top:57px; line-height:10px; text-align:left">
+                        Shutter<br/>Time &amp; Date<br/>Weight
+                    </div>
+                    <div class="t abs" style="left:49px; top:141px; line-height:10px; text-align:left">
+                        Rule Book<br/>Audio Trans.<br/>Bulletin
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="t dark font-title_thick" style="margin-top:9px">UPGRADES</div>
                 <div class="t" style="margin-top:15px">NO UPGRADES<br/>INSTALLED</div>
             </div>
         </div>
@@ -1710,7 +1772,7 @@ Loading...
                 #VaccineCertInner .cov { margin-top:-6px; line-height: 10px;};
             </style>
             <img class="pageback" src="capture/VaccineCertInner.png"/>
-            <div class="t font-title_tall cov" style="padding-top:17px; left:1px">
+            <div class="t font-title_tall cov" style="padding-top:16px; left:1px">
                 Certificate<span>of</span>Vaccination
             </div>
             <!--<div class="t font-title_tall" style="margin-top:-6px; left:1px">Vaccination</div>-->
@@ -1788,7 +1850,7 @@ Loading...
                     <tr><td class="nowrap"><div class="t k">UNTIL</div></td><td class="line"><div id="$ExpirationDate" class="marktxt">1984.01.01</div></td></tr>
                 </table>
             </div>
-            <div class="font-tiny abs" style="left:7px; top:109px; width:131px; height:16px;">
+            <div class="font-tiny abs" style="left:7px; top:110px; width:131px; height:16px;">
                 <div class="outer"><div class="t inner">
                     Keep this pass with you at all times.
                 </div></div>
@@ -1825,7 +1887,7 @@ Loading...
                 #ApartmentClass td { width:40px; overflow:hidden; text-align:center; margin:0; padding-left:1px;}
             </style>
             <img class="pageback" src="capture/ApartmentClass.png"/>
-            <table style="position:absolute; bottom:-1px"><tr>
+            <table style="position:absolute; bottom:0px"><tr>
                 <td class="t">CLASS</td>
                 <td class="t">CLASS</td>
                 <td class="t">CLASS</td>
@@ -1994,10 +2056,10 @@ Loading...
             text-align: center;
         ">
             <img class="pageback" src="capture/LoadButtonNew.png"/>
-            <div class="t" style="position:absolute; width:100%; top:6px; color:#fff">
+            <div class="t" style="position:absolute; width:100%; top:5px; color:#fff">
                 NEW
             </div>
-            <div class="t" style="position:absolute; width:100%; top:35px; color:#000">
+            <div class="t" style="position:absolute; width:100%; top:34px; color:#000">
                 NEW
             </div>
         </div>
@@ -2099,10 +2161,10 @@ Loading...
             text-align: left;
         ">
             <img class="pageback" src="capture/Upgrades.png"/>
-            <div class="t" style="position:absolute; left:4px; top:19px">
+            <div class="t" style="position:absolute; left:4px; top:18px">
                 SPACE
             </div>
-            <div class="t" style="position:absolute; left:4px; top:34px">
+            <div class="t" style="position:absolute; left:4px; top:33px">
                 TAB
             </div>
         </div> 
@@ -2159,7 +2221,7 @@ Loading...
         </div>
         <div class="capture context passport" id="PezpertInner">
             <style>
-                #PezpertInner .visa { top: 58px; font-size:14px; word-spacing: 4px}
+                #PezpertInner .visa { top: 57px; font-size:14px; word-spacing: 4px; letter-spacing: 0.2px; }
             </style>
             <div class="quantize" style="left:7px; top:54px; width:117px; height:21px" data-pal="0xede0d8 0xb19600"></div>
             <img class="pageback" src="capture/PezpertInner.png"/>
@@ -3082,6 +3144,16 @@ CLEARED</div></td>
     <tr class="context" id="text:env_typochars">
         <td class="name">env_typochars</td><td><div class="comment">Comma-separated list of groups of similar characters. Will be used to make typos and misspellings for issuing cities and districts. Letters in each group can be randomly swapped for other letters in the same group.</div><div class="t ">aeiou,iuy,pgq,lj,ck,bh</div></td>
     </tr>
+    <tr class="context" id="text:carousel_give">
+        <td class="name">carousel_give</td><td><div class="t font-ui_regular">GIVE</div></td>
+    </tr>
+    <tr class="context" id="text:carousel_hang">
+        <td class="name">carousel_hang</td><td><div class="t font-ui_regular">HANG ON WALL</div></td>
+    </tr>
+    <tr class="context" id="text:carousel_confiscate">
+        <td class="name">carousel_confiscate</td><td><div class="t font-ui_regular">CONFISCATE</div></td>
+    </tr>
+
     <tr class="context" id="text:endless_complete">
         <td class="name">endless_complete</td><td><div class="t font-title_tall">$style
 $course
@@ -6839,22 +6911,17 @@ HOLD YOUR FIRE
                  -->
                 <div><a href="http://papersplea.se" target="_blank">Papers, Please</a></div>
                 <div>Localizer</div>
+                
                 <div class="splitbutton">
                     <div class="name">SHOW</div>
                     <div class="button first" id="show-localizable" href="#"><i class="fa fa-edit"></i>LOCALIZABLE</div><div class="button" id="show-unlocalized" href="#"><i class="fa fa-warning"></i>UNLOCALIZED</div>
                 </div>
+
                 <div class="splitbutton">
                     <div class="name">CSV</div>
                     <div class="button first" id="import-csv" href="#"><i class="fa fa-sign-in"></i>IMPORT</div><div class="button" id="export-csv" href="#"><i class="fa fa-sign-out"></i>EXPORT</div>
                 </div>
-                    <div class="button" id="sync-cloud" href="#"><i class="fa fa-cloud"></i>CLOUD SYNC</div>
-                <!-- <div class="advanced-button">
-                    <div class="button" id="download-pack" href="#"><i class="fa fa-download"></i>GENERATE &amp; DOWNLOAD PACK</div>
-                </div> -->
-                
-                <!--
-                <div class="button" id="reset-all" href="#" style="display:none">RESET TO ENGLISH...</div>
-                -->
+                                
                 <input id="file-open-button" type="file" name="files[]"/>
 
                 <div class="box">
@@ -6863,6 +6930,7 @@ HOLD YOUR FIRE
                 </div>
 
                 <div class="language-code-button">en</div>
+                <div class="reset-all-button" id="reset-all" href="#"><i class="fa fa-trash"></i>&nbsp;</div>
                 
             </td></tr>
             <tr class="last"><td>
@@ -6877,12 +6945,9 @@ INSTRUCTIONS
 
 Use SHOW LOCALIZABLE button above to highlight which items can be localized.
 
-Changes are autosaved locally. Use CSV for versioning/backups. Use CLOUD SYNC
-for collaboration (GitHub repo required).
+Changes are autosaved locally. Use CSV for versioning/backups.
 
 Items with shared terms can be isolated using buttons that appear below.
-
-Use the zoom button above to see exactly how documents will appear in game (Chrome only).
                 </textarea>
             </td></tr>
 
@@ -6892,6 +6957,7 @@ Use the zoom button above to see exactly how documents will appear in game (Chro
                 </div>
             </td></tr>
         </table>
+        
     </div>
 
 <div class="genderpopup uibase" style="display:none">
@@ -6969,7 +7035,7 @@ Use the zoom button above to see exactly how documents will appear in game (Chro
 
 <div class="uibase" id="notification"></div>
 
-<div class="syncdiff uibase">
+<!-- <div class="syncdiff uibase">
     <div class="panel">
 
         <i class="top fa fa-cloud"></i>
@@ -7035,7 +7101,7 @@ Use the zoom button above to see exactly how documents will appear in game (Chro
         </div>
 
     </div>
-</div>
+</div> -->
 
 </body>
 </html>

@@ -29,6 +29,11 @@ function quote(str)
     return "\"" + str.replace(/"/g, "\"\"") + "\"";
 }
 
+function isLocalHost()
+{
+    return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "");
+}
+
 function download(filename, text) {
     var pom = document.createElement('a');
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -191,7 +196,7 @@ function leftPad(i)
     return (("" + i).length < 2 ? "0" : "") + i;
 }
 
-function exportCsv()
+async function exportCsv()
 {
     var csv = exportCsvStr();
     var now = new Date();
@@ -199,8 +204,29 @@ function exportCsv()
     var day = now.getDate();
     var dateStr = now.getFullYear() + leftPad(month) + leftPad(day) + "-";
     dateStr += leftPad(now.getHours()) + leftPad(now.getMinutes()) + leftPad(now.getSeconds());
-    download("PapersPleaseLoc-" + getLanguageCode() + "-" + dateStr + ".csv", csv);
-    //download("UsedChars.txt", getUsedChars());
+
+    if (isLocalHost())
+    {
+        // use local file API
+        const saveFileOptions = {
+            suggestedName: getLanguageCode() + ".csv",
+            types: [{
+                description: 'CSV file',
+                accept: {'text/plain': ['.csv']},
+            }]
+        };
+
+        var fileHandle = await window.showSaveFilePicker(saveFileOptions);
+        const writable = await fileHandle.createWritable();
+        await writable.write(csv);
+        await writable.close();
+    }
+    else
+    {
+        // download file
+        download("PapersPleaseLoc-" + getLanguageCode() + "-" + dateStr + ".csv", csv);
+        //download("UsedChars.txt", getUsedChars());
+    }
 }
 
 function exportCsvStr()
@@ -394,23 +420,47 @@ $('#file-open-button').on('change', function(e)
     $(this).val(null);
 });
 
+async function loadCsvFromLocal()
+{
+    // use local file API
+    const openFileOptions = {
+        types: [{
+            description: 'CSV file',
+            accept: {'text/plain': ['.csv']},
+        }]
+    };
+    let fileHandle;
+    [fileHandle] = await window.showOpenFilePicker(openFileOptions);
+    const file = await fileHandle.getFile();
+    const contents = await file.text();
+    importCsv(contents);
+}
+
 $('#import-csv').click(function(e)
 {
     e.stopImmediatePropagation();
     e.preventDefault();
-    $("#file-open-button").click();
+
+    if (isLocalHost())
+    {
+        loadCsvFromLocal();
+    }
+    else
+    {
+        $("#file-open-button").click();
+    }
     return false;
 });
 
-$("#show-non-vita-button").click(function(e)
-{
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    $("#show-non-vita-button").hide();//css("display", "none");
-    $(".non-vita").show();//
+// $("#show-non-vita-button").click(function(e)
+// {
+// 	e.stopImmediatePropagation();
+// 	e.preventDefault();
+// 	$("#show-non-vita-button").hide();//css("display", "none");
+// 	$(".non-vita").show();//
     
-    return false;
-});
+// 	return false;
+// });
 
 //-----------------------------------------------------------------------------------------------------------
 // TextElem
@@ -887,6 +937,7 @@ $("#reset-all").click(function()
         {
             textElems[i].set(textElems[i].text_en);
         }
+        $(".ui .language-code-button").html(getLanguageCode());
     }
 });
 
@@ -1006,308 +1057,6 @@ $(".ui .language-code-button").click(function() {
 });
 
 //-----------------------------------------------------------------------------------------------------------
-// Cloud
-//-----------------------------------------------------------------------------------------------------------
-function clickSyncTableCell()
-{
-    var selected = $(this);
-    $(this).closest("tr").find("*").removeClass("selected");
-    selected.addClass("selected");
-}
-
-$("#sync-selectallcloud").click(function(e) {
-    $("#synctable .cloud").addClass("selected");
-    $("#synctable .local").removeClass("selected");
-    e.preventDefault(); return false;
-});
-
-$("#sync-selectalllocal").click(function(e) {
-    $("#synctable .local").addClass("selected");
-    $("#synctable .cloud").removeClass("selected");
-    e.preventDefault(); return false;
-});
-
-function setCloudMode(className) 
-{
-    var classNames = [ "result", "waiting", "doing", "login" ];
-    for (var i=0; i<classNames.length; i++)
-    {
-        var id = ".syncdiff ." + classNames[i];
-        if (className == classNames[i]) $(id).show();
-        else $(id).hide();
-    }
-}
-
-var cloudResultOkFunc = null;
-function setCloudResult(message, okFunc)
-{
-    $(".syncdiff .result .message").html(message);
-    setCloudMode("result");
-    cloudResultOkFunc = okFunc;
-}
-
-function getNonNullOrBlank(val)
-{
-    return val ? val : "";
-}
-
-function setCloudLogin()
-{
-    cloudResultOkFunc = null;
-    $("#github-user").val(getNonNullOrBlank(sessionStorage.getItem("github-user")));
-    $("#github-pass").val(getNonNullOrBlank(sessionStorage.getItem("github-pass")));
-    $("#github-repo").val(getNonNullOrBlank(sessionStorage.getItem("github-repo")));
-    setCloudMode("login");
-}
-
-function setCloudError(error)
-{
-    cloudResultOkFunc = null;
-    setCloudResult("ERROR: " + error);
-}
-
-function setCloudWait()
-{
-    cloudResultOkFunc = null;
-    setCloudMode("waiting");
-}
-
-function getCloudFilename()
-{
-    return getLanguageCode() + ".csv";
-}
-
-var cloudCurDiff = null;
-var cloud = null;
-
-function setCloudLoginOk(b) {
-    if (b) sessionStorage.setItem("cloud-login-ok", "true");
-    else sessionStorage.removeItem("cloud-login-ok");
-}
-
-function getCloudLoginOk() {
-    return sessionStorage.getItem("cloud-login-ok") == "true";
-}
-
-function syncCloud()
-{
-    cloudResultOkFunc = null;
-    setCloudWait();
-
-    if (getLanguageCode() == "en" && (document.URL.indexOf("local") < 0))
-    {
-        setCloudError(
-            "You must set <b>language_code</b> to the " +
-            "<a href='http://www.loc.gov/standards/iso639-2/php/code_list.php'>ISO 639-1 or ISO 639-2 code</a> " +
-            "for your language before syncing."
-        );
-        return;
-    }
-
-    cloud = new Cloud(
-        sessionStorage.getItem("github-user"), 
-        sessionStorage.getItem("github-pass"), 
-        sessionStorage.getItem("github-repo")
-    );
-
-    setCloudLoginOk(false);
-
-    cloud.init(
-        function() 
-        {
-            setCloudLoginOk(true);
-
-            $("#sync-url-page").attr("href", cloud.getUrl(getCloudFilename()));
-            $("#sync-url-page span").html(getCloudFilename());
-            $("#sync-relogin span").html(cloud.user + "/" + cloud.repoName);
-
-            cloud.getDiff(getCloudFilename(), exportCsvStr(), function(diff) 
-            {
-                cloudCurDiff = diff;
-                setCloudMode("doing");
-            
-                $("#sync-changed").html(diff.changed.length);
-                $("#sync-added").html("" + diff.added.length);
-                $("#sync-removed").html("" + diff.removed.length);
-
-                var syncTable = $("#synctable");
-                syncTable.empty();
-
-                for (var i=0; i<diff.rows.length; i++)
-                {
-                    var diffRow = diff.rows[i];
-
-                    if (!diffRow.changed && !diffRow.added && !diffRow.removed) continue;
-
-                    var tableRow = $(document.createElement("tr"));
-                    syncTable.append(tableRow);
-                    tableRow.addClass("diffRow");
-                    if (diffRow.changed) tableRow.addClass("changed");
-                    if (diffRow.added) tableRow.addClass("added");
-                    if (diffRow.removed) tableRow.addClass("removed");
-
-                    tableRow.data("diffRow", diffRow);
-                    tableRow.append($("<td class='synccontext'><div>" + (diffRow.beforeRow != null ? diffRow.beforeRow[0] : diffRow.afterRow[0]) + "</div></td>"));
-                    tableRow.append($("<td class='cloud'><div>" + (diffRow.beforeRow != null ? diffRow.beforeRow[2] : "&nbsp;") + "</div></td>").click(clickSyncTableCell));
-                    tableRow.append($("<td class='local'><div>" + (diffRow.afterRow != null ? diffRow.afterRow[2] : "&nbsp;") + "</div></td>").click(clickSyncTableCell));
-                }
-            }, function(error)
-            {
-                setCloudError(error);
-            });
-
-        }, 
-        function(error) 
-        {
-            setCloudError(error);
-        }
-    );
-}
-
-$("#sync-cloud").click(function() 
-{
-    $(".syncdiff h1 span").html(getCloudFilename());
-    $(".syncdiff").show();
-
-    if (sessionStorage.getItem("github-user") == null || !getCloudLoginOk())
-        setCloudLogin();
-    else
-        syncCloud();
-});
-
-$("#sync-loginbutton").click(function()
-{
-    sessionStorage.setItem("github-user", $("#github-user").val());
-    sessionStorage.setItem("github-pass", $("#github-pass").val());
-    sessionStorage.setItem("github-repo", $("#github-repo").val());
-    syncCloud();
-});
-
-$("#sync-relogin").click(function(e)
-{
-    setCloudLogin();
-    e.preventDefault();
-    return false;
-});
-
-$("#sync-cancelbutton, #sync-cancelbutton2, #sync-cancelbutton3").click(function() 
-{
-    $(".syncdiff").hide();
-    $("#synctable").empty();
-    if (cloudResultOkFunc != null) cloudResultOkFunc();
-});
-
-$("#sync-syncbutton").click(function() 
-{
-    var ok = true;
-
-    var kSelectedCloud = 'g';
-    var kSelectedLocal = 'l';
-
-    $("#synctable .diffRow").each(function() {
-        var diffRow = $(this).data("diffRow");
-        var selected = $(this).find(".selected");
-        if (selected.length == 1) 
-        {
-            if (selected.first().hasClass("cloud")) 
-                diffRow.selected = kSelectedCloud;
-            else if (selected.first().hasClass("local")) 
-                diffRow.selected = kSelectedLocal;
-        }
-        else
-        {
-            alert("You must choose which data to use by clicking either the CLOUD or LOCAL value for each row.")
-            ok = false;
-            return false;
-        }
-    });
-
-    if (!ok) return;
-
-    var rows = [];
-    var numCloud = 0;
-    var numLocal = 0;
-    var numSame = 0;
-    var numRemoved = 0;
-    for (var i=0; i<cloudCurDiff.rows.length; i++)
-    {
-        var diffRow = cloudCurDiff.rows[i];
-        var row = (diffRow.selected == kSelectedCloud) ? diffRow.beforeRow : diffRow.afterRow;
-        if (row != null) 
-        {
-            if (diffRow.selected == kSelectedLocal) numLocal++;
-            else if (diffRow.selected == kSelectedCloud) numCloud++;
-            else numSame++;
-            rows.push(row);
-        }
-        else
-        {
-            numRemoved++;
-        }
-    }
-
-    if (numCloud == 0 && numLocal == 0 && numRemoved == 0)
-    {
-        setCloudResult("Nothing has changed!");
-        return;
-    }
-
-    if (!window.confirm(
-        "Sync the following changes?\n\n" + 
-        numCloud + " rows from cloud\n" + 
-        numLocal + " rows from local\n" + 
-        numRemoved + " rows removed\n" +
-        numSame + " rows unchanged."
-    )) return;
-
-    setCloudWait();
-    window.setTimeout(function() 
-    {
-        // make sure the content hasn't changed while we were slowly selecting files
-        var beforeContent = cloud.content(getCloudFilename());
-        cloud.refreshContent(getCloudFilename(), 
-            function(content)
-            {
-                if (content != beforeContent)
-                {
-                    setCloudError("Cloud data changed! Re-run cloud sync to try again.");
-                    return;
-                }
-                else
-                {
-                    var csv = rows.map(function (r) { return r.map(function(s) { return quote(s); }); }).join("\n");
-
-                    var urlMessage = "<p>You can visit <a href='" + cloud.getUrl(getCloudFilename()) + "'>this GitHub file</a> to view the data online.</p>"
-
-                    if (beforeContent == csv)
-                    {
-                        // no need to publish, just import
-                        setCloudResult("<p>Sync completed! (No publish necessary)</p>" + urlMessage, function() { importCsv(content); });
-                    }
-                    else
-                    {
-                        cloud.publish(getCloudFilename(), csv, 
-                            function(content) 
-                            {
-                                setCloudResult("<p>Sync completed successfully!</p>" + urlMessage, function() { importCsv(content); });
-                            },
-                            function (error) 
-                            {
-                                setCloudError(error);
-                            }
-                        );
-                    }
-                }
-            }, 
-            function(error) 
-            {
-                setCloudError(error);
-            }
-        );
-    }, 10);
-});
-
-//-----------------------------------------------------------------------------------------------------------
 // Capture API
 //-----------------------------------------------------------------------------------------------------------
 function generateDataFiles()
@@ -1387,6 +1136,19 @@ function getImageQuantizeRects(captureElem)
     return pals;
 }
 
+function getCaptureElemExpand(captureElem)
+{
+    var expand = { 'w': 0, 'h': 0 };
+    var expandData = $(captureElem).data("expand");
+    if (expandData)
+    {
+        var expandVals = $.trim(expandData).split(" ");
+        expand.w = Number(expandVals[0]);
+        expand.h = Number(expandVals[1]);
+    }
+    return expand;
+}
+
 //-----------------------------------------------------------------------------------------------------------
 $.capture = {
     begin: function(locCsv)
@@ -1401,12 +1163,13 @@ $.capture = {
             if (dir == "./") dir = "";
             $(".capture", $(this)).each(function(){
                 var captureElem = $(this);
+                var expand = getCaptureElemExpand(captureElem);
                 images.push(
                 { 
                     id: captureElem.attr("id"),
                     filename: dir + captureElem.attr("id") + ".png",
-                    w: captureElem.width(),
-                    h: captureElem.height(),
+                    w: captureElem.width() + expand.w,
+                    h: captureElem.height() + expand.h,
                     quantizeRects: getImageQuantizeRects(captureElem)
                 });
             })
