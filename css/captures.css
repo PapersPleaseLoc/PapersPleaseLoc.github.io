@@ -269,13 +269,15 @@ td {
         display: table-cell; 
         vertical-align: middle;
         width: 100%;
+        padding-left: 1px;
+        padding-right: -1px;
         /* top: 1px; */
     }
     .rulebutton .iss span {
         font-family: 'small';
         color: #e4e6bd;
         background-color: #94967b;
-        padding: 0.5px 1px 0.5px 2px;
+        padding: 0px 1px 0px 4px;
     }
     .rulebuttonborder {
         /* background-color: #e4e6bd; */

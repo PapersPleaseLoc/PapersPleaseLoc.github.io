@@ -612,6 +612,7 @@ function getBakedCapturesRootUrl()
     return bakedUrlRoot;
 }
 
+
 function applyBakedCaptures()
 {
     // undo any previously baked
@@ -650,6 +651,56 @@ function applyBakedCaptures()
                 });
             })
         });
+    }
+}
+
+function loadBinaryUrl(url, doneFunc)
+{
+    // https://stackoverflow.com/a/33903375
+    var oReq = new XMLHttpRequest();
+    oReq.open("GET", url, true);
+    oReq.responseType = "arraybuffer";
+
+    oReq.onload = function(oEvent) {
+        var arrayBuffer = oReq.response;
+
+        // if you want to access the bytes:
+        var byteArray = new Uint8Array(arrayBuffer);
+        doneFunc(arrayBuffer);
+        // ...
+
+        // If you want to use the image in your DOM:
+        // var blob = new Blob([arrayBuffer], {type: "image/png"});
+        // var url = URL.createObjectURL(blob);
+        // someImageElement.src = url;
+        // whatever...
+    };
+
+    oReq.send();
+}
+
+var bakedDataFiles = {};
+function loadBakedDataFiles()
+{
+    bakedDataFiles = {};
+
+    var bakedUrlRoot = getBakedCapturesRootUrl();
+    if (bakedUrlRoot != null)
+    {
+        var fontsXmlUrl = bakedUrlRoot + "data/Fonts.xml";
+        $.get(fontsXmlUrl, function(data) 
+        {
+            //Fonts.xml
+            bakedDataFiles["data/Fonts.xml"] = { contents: data };
+            const doc = new DOMParser().parseFromString(data, "application/xml");
+            doc.querySelectorAll('font').forEach(function(node) {
+                var fontFile = node.getAttribute("file");
+                var fontFntPath = "fonts/" + fontFile + ".fnt";
+                var fontPngPath = "fonts/" + fontFile + ".png";
+                bakedDataFiles[fontFntPath] = { dataType:"url", contents:bakedUrlRoot + fontFntPath };
+                bakedDataFiles[fontPngPath] = { dataType:"url", contents:bakedUrlRoot + fontPngPath };
+            });
+        }, "text");
     }
 }
 
@@ -1164,6 +1215,11 @@ function generateDataFiles()
         'contents': usedChars
     });
 
+    for (const [key, value] of Object.entries(bakedDataFiles)) 
+    {
+        dataFiles.push({'filename': key, 'dataType': value.dataType, 'contents': value.contents});
+    }
+
     return dataFiles;
 }
 
@@ -1260,10 +1316,17 @@ $.capture = {
     load: function(locCsv)
     {
         var result = importCsvSync(locCsv);
-        if (result.error) return { 'error': result.error };
-        else return result;
+        if (result.error)
+        {
+            return { 'error': result.error };
+        }
+        else 
+        {
+            loadBakedDataFiles();
+            return result;
+        }
     },
-    begin: function()
+    begin: function(scale)
     {
         captureFixBorders();
 
@@ -1287,9 +1350,7 @@ $.capture = {
             })
         });
 
-        // zooming is handled by phantomjs page
-        // zoomIn();
-        zoomOut();
+        zoomIn(scale);
         $(".transparent").css("color", "#ff00ff");
         markLib.beforeCapture();
         $("body, html, head, .capture").css("margin", 0);

@@ -72,77 +72,77 @@ in your custom stylesheet and in the PACK/data/Fonts.xml file with the same valu
 
 */
 
-@font-face { font-family: 'fallback'; src: url('fonts/zh/SourceHanSans-Regular.otf'); }
+@font-face { font-family: 'fallback'; src: url('fonts/SourceHanSans-Regular.otf'); }
 
 /*---- tiny -------------------------------------------------*/
-@font-face { font-family: 'tiny'; src: url('fonts/zh/Tiny.otf'); }
+@font-face { font-family: 'tiny'; src: url('fonts/Tiny.otf'); }
 .font-tiny { font-family: 'tiny'; font-size: 8px; line-height: 8px; }
 
 /*---- small -------------------------------------------------*/
-@font-face { font-family: 'small'; src: url('fonts/zh/DroidSansFallback.ttf'); }
+@font-face { font-family: 'small'; src: url('fonts/DroidSansFallback.ttf'); }
 .font-small { font-family: 'small'; font-size: 8px; line-height: 8px;}
 
-@font-face { font-family: 'small_tight'; src: url('fonts/zh/Hei.ttf'); }
+@font-face { font-family: 'small_tight'; src: url('fonts/Hei.ttf'); }
 .font-small_tight { font-family: 'small_tight'; font-size: 8px; line-height: 8px; }
 
-@font-face { font-family: 'small_harsh'; src: url('fonts/zh/Italien.ttf'); }
+@font-face { font-family: 'small_harsh'; src: url('fonts/Italien.ttf'); }
 .font-small_harsh { font-family: 'small_harsh'; font-size: 8px; line-height: 9px; }
 
 /*---- regular -------------------------------------------------*/
-@font-face { font-family: 'regular'; src: url('fonts/zh/SourceHanSans-Regular.otf'); }
+@font-face { font-family: 'regular'; src: url('fonts/SourceHanSans-Regular.otf'); }
 .font-regular, body { font-family: 'regular'; font-size: 8px; line-height: 8px; }
 
-@font-face { font-family: 'regular_short'; src: url('fonts/zh/ThickBold.ttf'); }
+@font-face { font-family: 'regular_short'; src: url('fonts/ThickBold.ttf'); }
 .font-regular_short { font-family: 'regular_short'; font-size: 8px; line-height: 8px; }
 
 /*---- title -------------------------------------------------*/
-@font-face { font-family: 'title_tall'; src: url('fonts/zh/RegularSquare.otf'); }
+@font-face { font-family: 'title_tall'; src: url('fonts/RegularSquare.otf'); }
 .font-title_tall { font-family: 'title_tall'; font-size: 16px; line-height: 16px; }
 
-@font-face { font-family: 'title_news'; src: url('fonts/zh/RoundCorner.ttf'); } 
+@font-face { font-family: 'title_news'; src: url('fonts/RoundCorner.ttf'); } 
 .font-title_news { font-family: 'title_news'; font-size: 16px; line-height: 16px; }
 
 /* @font-face { font-family: 'title_serif'; src: local("Times New Roman"); font-weight: bold; } */
-@font-face { font-family: 'title_serif'; src: url('fonts/zh/Serif.ttf'); font-weight:700; }
+@font-face { font-family: 'title_serif'; src: url('fonts/Serif.ttf'); font-weight:700; }
 .font-title_serif { font-family:'title_serif'; font-weight:bold; font-size: 10px; line-height: 10px; }
 
-@font-face { font-family: 'title_thick'; src: url('fonts/zh/RoundCorner.ttf'); }
+@font-face { font-family: 'title_thick'; src: url('fonts/RoundCorner.ttf'); }
 .font-title_thick { font-family: 'title_thick'; font-size: 14px; line-height: 11px; }
 
 /*---- ui -------------------------------------------------*/
-@font-face { font-family: 'ui_regular'; src: url('fonts/zh/BoldShort.ttf'); }
+@font-face { font-family: 'ui_regular'; src: url('fonts/BoldShort.ttf'); }
 .font-ui_regular { font-family: 'ui_regular'; font-size: 8px; line-height: 8px; }
 
 /*---- cursive -------------------------------------------------*/
-@font-face { font-family: 'cursive'; src: url('fonts/zh/Lively.ttf'); }
+@font-face { font-family: 'cursive'; src: url('fonts/Lively.ttf'); }
 .font-cursive { font-family: 'cursive'; font-size: 8px; line-height: 8px; }
 
 /*---- large -------------------------------------------------*/
-@font-face { font-family: 'large'; src: url('fonts/zh/ElegentThick.ttf'); }
+@font-face { font-family: 'large'; src: url('fonts/ElegentThick.ttf'); }
 .font-large { font-family: 'large'; font-size: 8px; line-height: 10px; }
 
 /*---- scribble -------------------------------------------------*/
-@font-face { /* Sam Derrick */ font-family: 'scribble'; src: url('fonts/zh/Dump.ttf'); }
+@font-face { /* Sam Derrick */ font-family: 'scribble'; src: url('fonts/Dump.ttf'); }
 .font-scribble { font-family: 'scribble'; font-size: 16px; line-height: 16px; }
 
 /*---- passport -------------------------------------------------*/
-@font-face { font-family: 'passport_arstotzka'; src: url('fonts/zh/Elegent.ttf'); }
-@font-face { font-family: 'passport_republia'; src: url('fonts/zh/STHupo.ttf'); }
-@font-face { font-family: 'passport_unitedfed'; src: url('fonts/zh/RegularSquare.otf');}
-@font-face { font-family: 'passport_kolechia'; src: url('fonts/zh/RoundCorner.ttf'); }
-@font-face { font-family: 'Helvetica'; src: url('fonts/zh/CN_Light.otf'); }
+@font-face { font-family: 'passport_arstotzka'; src: url('fonts/Elegent.ttf'); }
+@font-face { font-family: 'passport_republia'; src: url('fonts/STHupo.ttf'); }
+@font-face { font-family: 'passport_unitedfed'; src: url('fonts/RegularSquare.otf');}
+@font-face { font-family: 'passport_kolechia'; src: url('fonts/RoundCorner.ttf'); }
+@font-face { font-family: 'Helvetica'; src: url('fonts/CN_Light.otf'); }
 
 /*---- misc -------------------------------------------------*/
-@font-face { font-family: 'press'; src: url('fonts/zh/ThickBold.ttf'); }
+@font-face { font-family: 'press'; src: url('fonts/ThickBold.ttf'); }
 .font-press { font-family: 'press'; font-size: 20px; line-height: 25px; font-weight: normal; }
 
-@font-face { font-family: 'propaganda'; src: url('fonts/zh/Revolutionary.ttf'); }
+@font-face { font-family: 'propaganda'; src: url('fonts/Revolutionary.ttf'); }
 .font-propaganda { font-family: 'propaganda'; font-size: 10px; line-height: 10px; }
 
-@font-face { font-family: 'kid_writing'; src: url('fonts/zh/Maid.ttf'); }
+@font-face { font-family: 'kid_writing'; src: url('fonts/Maid.ttf'); }
 .font-kid_writing { font-family: 'kid_writing'; font-size: 16px; line-height: 16px; font-weight: bold; }
 
-@font-face { font-family: 'news'; src: url('fonts/zh/Revolutionary.ttf'); }
+@font-face { font-family: 'news'; src: url('fonts/Revolutionary.ttf'); }
 .font-news { font-family: 'news'; font-size: 23px; line-height: 27px; font-weight: normal; }
 
 body {

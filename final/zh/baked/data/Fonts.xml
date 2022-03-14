@@ -1,0 +1,28 @@
+<fonts>
+	<!--<font id="tiny" file="6px_normal_6" baselineheight="2"/>-->
+
+	<font id="tiny" file="z_8" lineheight="8"/>
+	<font id="small_harsh" file="z_10" lineheight="10"/>
+	<font id="small_tight" file="z_10" lineheight="10"/>
+	
+	<font id="digits" file="Digits"/>
+	
+	<font id="regular" file="z_9" lineheight="9"/>
+	<font id="regular_short2" file="z_8" lineheight="8"/>
+	<font id="regular_tall" file="z_10" lineheight="12"/>
+
+	<font id="regular_short" file="z_10" lineheight="10"/>
+	<font id="regular_transcript" file="z_10" lineheight="10"/>
+
+	<font id="ui_regular" file="z_10" lineheight="10"/>
+
+	<font id="ui_large" file="dl_16" lineheight="20"/>
+	<font id="title_tall" file="dl_16" lineheight="20"/>
+
+	<font id="large" file="z_10" lineheight="10"/>
+
+	<font id="fixed" file="proggytinytt_regular_16" lineheight="16"/>
+
+	<font id="title_thick" file="rui_14" lineheight="11"/>
+	<font id="title_news" file="rui_16" lineheight="20"/>
+</fonts>

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const jimp = require('jimp');
+const Jimp = require('jimp');
 const puppeteer = require('puppeteer');
 const minimist = require('minimist');
 require('node-zip');
@@ -30,7 +30,7 @@ function mkDirByPathSync(targetDir, {isRelativeToScript = false} = {})
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-async function writeFileAsync(filename, contents)
+async function writeUtf8FileAsync(filename, contents)
 {
 	return new Promise(function(resolve, reject) {
 		dir = path.dirname(filename);
@@ -40,6 +40,48 @@ async function writeFileAsync(filename, contents)
 			else resolve();
 		});
 	});
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+async function writeBinaryFileAsync(filename, contents)
+{
+	return new Promise(function(resolve, reject) {
+		dir = path.dirname(filename);
+		if (!fs.existsSync(dir)) mkDirByPathSync(dir);
+		fs.writeFile(filename, contents, 'binary', function(err) {
+			if (err) reject(err);
+			else resolve();
+		});
+	});
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+async function loadBinaryAtUrl(page, url)
+{
+	// https://github.com/puppeteer/puppeteer/issues/3722
+	async function getBinaryAsString() {
+		return page.evaluate(url => {
+			return new Promise(async resolve => {
+				const reader = new FileReader();
+				const response = await window.fetch(url).then((response) => {
+					return (response.ok) ? response : null;
+				});
+				if (response != null)
+				{
+					const data = await response.blob();
+					reader.readAsBinaryString(data);
+					reader.onload = () => resolve(reader.result);
+					reader.onerror = () => reject('Error occurred while reading binary string');
+				}
+				else
+				{
+					resolve(null);
+				}
+			});
+		}, url);
+	}
+    const str = await getBinaryAsString();
+    return (str != null) ? Buffer.from(str, 'binary') : null;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -197,15 +239,20 @@ async function finalizeImage(filename, width, height, quantizeRects, wantAutoCro
 	// load and shrink
 	const image = await new Promise (resolve => 
 	{
-		jimp.read(filename, function(err, img) 
+		Jimp.read(filename, function(err, img) 
 		{
 			if (err) reject(err);
-			// img.resize(width, height, jimp.RESIZE_NEAREST_NEIGHBOR);
-
+			
 			if (wantAutoCrop) 
 			{
 				autocropImage(img);
 			}
+
+			// if (width != img.width || height != img.height)
+			// {
+			// 	//img.resize(width, height, Jimp.RESIZE_NEAREST_NEIGHBOR);
+			// 	img = resizeNearestNeighbor(img, width, height);
+			// }
 
 			resolve(img);
 		});
@@ -292,9 +339,9 @@ async function capture(page, scale, dir, csv)
 	// wait for all image/resource requests for finish loading
 	await page.requestsDone();
 
-	const begin = await page.evaluate(function() {
-		return $.capture.begin();
-	});
+	const begin = await page.evaluate(function(scale) {
+		return $.capture.begin(scale);
+	}, scale);
 	
 	if (typeof begin.error !== 'undefined') abortWithError(begin.error);
 
@@ -304,21 +351,26 @@ async function capture(page, scale, dir, csv)
 	console.log("Language: " + begin.lang);
 	console.log("Packing " + images.length + " images and " + dataFiles.length + " data files");
 
-	// var elem = await page.$("#BulletinPagesNote");
-	// await elem.screenshot({path: path.join(dir, "TEST.png")});
-
 	// write out all data files
 	for (var i=0; i<dataFiles.length; i++)
 	{
 		var dataFile = dataFiles[i];
 		console.log(progress("Data   ", i, dataFiles.length) + " " + dataFile.filename);
-		await writeFileAsync(path.join(dir, dataFile.filename), dataFile.contents);
+		if (dataFile.dataType == "url")
+		{
+			var data = await loadBinaryAtUrl(page, dataFile.contents);
+			if (data != null)
+				await writeBinaryFileAsync(path.join(dir, dataFile.filename), data);
+		}
+		else
+			await writeUtf8FileAsync(path.join(dir, dataFile.filename), dataFile.contents);
 	}
 
 	// write out all image files
 	for (var i=0; i<images.length; i++)
 	{
 		const image = images[i];
+		// if (image.id != "RuleIssuingCity") continue;
 		//if (image.id != "BulletinPagesNote") continue;
 		//if (image.id != "BulletinInnerTouchTut") continue;
 		// if (!image.id.startsWith("AccessPermit")) continue;
@@ -430,16 +482,28 @@ function attachRequestTracker(page)
 
 	// page.on('console', message => console.log(message));
 	page.on('console', message => console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`));
-    page.on('pageerror', ({ message }) => console.log(message));
+    // page.on('pageerror', ({ message }) => console.log(message));
 	// page.on('response', response => console.log(`${response.status()} ${response.url()}`));
-	page.on('requestfailed', request => console.log(`${request.failure().errorText} ${request.url()}`));
+	// page.on('requestfailed', 
+	// 	request => console.log(`${request.failure().errorText} ${request.url()}`)
+	// );
+
+	page.on('requestfailed', request => {
+        console.log(`url: ${request.url()}, errText: ${request.failure().errorText}, method: ${request.method()}`)
+    });
+	page.on("pageerror", err => {
+        console.log(`Page error: ${err.toString()}`);
+    });
 
 	console.log("Opening page: " + url);
 	const status = await page.goto(url);
 
 	console.log("Loading csv from " + args.csv);
 	const code = path.parse(args.csv).name
+	
 	const dir = path.join(args.out, "__tmp__" + code);
+	fs.rmSync(dir, { recursive: true, force: true });
+
 	const csv = fs.readFileSync(args.csv, "utf8");
 	
 	const lang = await capture(page, 1, dir, csv);

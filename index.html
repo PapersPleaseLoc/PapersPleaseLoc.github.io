@@ -399,6 +399,9 @@ Loading...
         <!-- BulletinInnerFilerTut -->    
         <div class="capture context bulletin" id="BulletinInnerFilerTut">
             <img class="pageback" src="capture/BulletinInnerFilerTut.png"/>
+            <div class="t font-tiny abs" style="left:33px; top:39px; text-align:left; color:#f0f0f0;">
+                ALTAN &nbsp; DISTRICT
+            </div>
             <div class="t font-title_tall" style="padding-top:5px">
                 Passport Confiscation
             </div>
@@ -584,6 +587,7 @@ Loading...
             <img class="pageback" src="capture/EntryTicketInner.png"/>
             <style>
                 #EntryTicketInner .marktxt { color: #776789; font-family:regular;}
+                #EntryTicketInner td { vertical-align: middle; line-height:6px; }
             </style>
             <div class="t abs font-tiny" style="left:8px; top:7px; width:40px; text-align:center;">
                 Arstotzka
@@ -591,10 +595,13 @@ Loading...
             <div class="t abs font-title_tall" style="left:51px; top:7px">
                 ENTRY TICKET
             </div>
-            <div class="abs" style="left:51px; top:30px">
+            <table class="abs" style="left:51px; top:31px">
+                <tr><td class="t font-tiny" style="text-align:right">VALID ON</td><td class="marktxt">1982.11.28</td></tr>
+            </table>
+            <!-- <div class="abs" style="left:51px; top:30px">
                 <span class="t font-tiny">VALID ON</span>
                 <span class="marktxt" style="margin-left:-2px">1982.11.28</span>
-            </div>
+            </div> -->
         </div>    
 
 
@@ -839,8 +846,8 @@ Loading...
             <div class="abs marktxt" style="left:10px; top:65px; height:23px; width:70px; text-align:left; line-height:8px">
                 SHORT<br/>DARK<br/>HAIR
             </div>
-            <div class="abs" style="left:7px; top:90px; height:9px; padding-left:2px; padding-right:2px; background-color:#837485">
-                <div class="t name" style="margin-top:-2px">THUMB</div>
+            <div class="abs" style="left:7px; top:90px; padding-left:2px; padding-right:2px; background-color:#837485">
+                <div class="t name" style="margin-top:0px; padding-bottom:1px; line-height:8px;">THUMB</div>
             </div>
             <div class="abs t font-tiny" style="width:100%; text-align:center; top:127px">
                 Keep on person
@@ -1080,11 +1087,12 @@ Loading...
             <style>
                 #PassportInnerUnitedFed .name { left:8px; top:97px;}
                 #PassportInnerUnitedFed table { left:50px; top:106px;}
-                #PassportInnerUnitedFed .nation { font-family:'passport_unitedfed'; top:77px; font-size:8px; position:relative; color:#a29490; background-color:#ede0d8; padding: 0 2px; display:inline-block;}
+                #PassportInnerUnitedFed .nation { font-family:'passport_unitedfed'; top:77px; font-size:8px; position:relative; color:#a29490; background-color:#ede0d8; padding: 0 2px; display:inline-block; margin-left:1px;}
                 #PassportInnerUnitedFed .face { left: 8px; top: 106px; }
                 #PassportInnerUnitedFed .id { right: 5px; bottom: 7px; text-align:right;}
             </style>
             <img class="pageback" src="capture/PassportInnerUnitedFed.png"/>
+            <!-- <div class="quantize" style="left:7px; top:85px; width:119px; height:12px" data-pal="0xede0d8 0xa29490"></div> -->
             <div class="t visa font-title_serif">ENTRY VISA</div>
             <div id="$Name" class="marktxt name">Stolichanov, Alexander</div>
             <table>
@@ -1093,7 +1101,7 @@ Loading...
                 <tr><td class="t k">ISS.</td><td id="$IssuingCity" class="marktxt v">Glorian</td></tr>
                 <tr><td class="t k">EXP.</td><td id="$ExpirationDate" class="marktxt v">1984.01.01</td></tr>
             </table>
-            <div style="width:100%; text-align:center"><div id="$Nation" class="t nation">UNITED FEDERATION</div></div>
+            <div style="width:100%; text-align:center"><div id="$Nation" class="t nation capture-fix-border">UNITED FEDERATION</div></div>
             <div id="$Face" class="face markimg"></div>
             <div id="$IdNumber" class="id marktxt">12345-67890</div>
         </div>
@@ -1190,6 +1198,12 @@ Loading...
         </div>
 
         <!-- PressPassInner -->    
+        <div class="styletweak context" id="tweak-press-pass-title-weight" data-selector=".font-press" data-style="font-variation-settings">
+            <div class="title">Style Tweak</div>
+            <div class="name">Press Pass title variation</div>
+            <div class="t value">'wght' 900</div>
+        </div>
+
         <div class="capture context font-tiny" id="PressPassInner" style="
             color: #bad196;
             width: 91px;
@@ -1222,6 +1236,7 @@ Loading...
             height: 22px;
         ">
             <img class="pageback" src="capture/RuleIssuingCity.png"/>
+            <div class="quantize" style="left:0px; top:0px; width:83px; height:22px" data-pal="0xe4e6bd 0x94967b"></div>
             <div class="outer"><div class="t inner iss">
                 PASSPORT <span>ISS.</span> FIELD MUST BE VALID
             </div></div>
@@ -2051,10 +2066,10 @@ Loading...
             text-align: center;
         ">
             <img class="pageback" src="capture/LoadButtonNew.png"/>
-            <div class="t" style="position:absolute; width:100%; top:5px; color:#fff">
+            <div class="t" style="position:absolute; width:58px; left:1px; top:5px; color:#fff">
                 NEW
             </div>
-            <div class="t" style="position:absolute; width:100%; top:34px; color:#000">
+            <div class="t" style="position:absolute; width:58px; left:1px; top:34px; color:#000">
                 NEW
             </div>
         </div>
