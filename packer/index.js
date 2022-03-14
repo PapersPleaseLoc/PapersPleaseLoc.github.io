@@ -166,9 +166,33 @@ async function quantizeImage(image, rect, colors)
 		this.bitmap.data[i+2] = colors[minP][2];
 	});
 }
-	
+
+function autocropImage(image)
+{
+	//image.crop( x, y, w, h ); 
+	var x0 = 10000;
+	var x1 = -10000;
+	var y0 = 10000;
+	var y1 = -10000;
+
+	image.scan(0,0,image.bitmap.width,image.bitmap.height, function (x, y, i) 
+	{
+		var a = this.bitmap.data[i+3];
+		if (a > 1)
+		{
+			x0 = Math.min(x0, x);
+			x1 = Math.max(x1, x);
+			y0 = Math.min(y0, y);
+			y1 = Math.max(y1, y);
+		}
+	});
+
+	if (x1 > x0 && y1 > y0)
+		image.crop(x0, y0, x1-x0+1, y1-y0+1);
+}
+
 //---------------------------------------------------------------------------------------------------------------------
-async function finalizeImage(filename, width, height, quantizeRects)
+async function finalizeImage(filename, width, height, quantizeRects, wantAutoCrop)
 {
 	// load and shrink
 	const image = await new Promise (resolve => 
@@ -177,8 +201,14 @@ async function finalizeImage(filename, width, height, quantizeRects)
 		{
 			if (err) reject(err);
 			// img.resize(width, height, jimp.RESIZE_NEAREST_NEIGHBOR);
+
+			if (wantAutoCrop) 
+			{
+				autocropImage(img);
+			}
+
 			resolve(img);
-		});	
+		});
 	});
 
 	// quantize areas if necessary
@@ -192,28 +222,6 @@ async function finalizeImage(filename, width, height, quantizeRects)
 
 	// overwrite original file
 	await image.write(filename);
-}
-
-//---------------------------------------------------------------------------------------------------------------------
-async function waitForLoaded(page)
-{
-	// wait for the page to set $.capture.isLoaded after window.load()
-	while (true)
-	{
-		var isLoaded = await page.evaluate(function() 
-		{ 
-			return $.capture.isLoaded
-		});
-		if (isLoaded) return;
-		
-		//console.log("Waiting for isLoaded()");
-		
-		// wait a bit
-		await new Promise (resolve => 
-		{	
-			setTimeout(resolve, 10) 
-		});
-	}
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -262,16 +270,31 @@ function makeZip(dir, dirNameMap, outputFilename)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+function sleep(ms) 
+{
+	return new Promise((resolve) => {
+		setTimeout(resolve, ms);
+	});
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 async function capture(page, scale, dir, csv)
 {
 	console.log("Preparing page");
 
-	await waitForLoaded(page);
-	
 	// begin capture with the input Loc.csv
-	const begin = await page.evaluate(function(a) {
-		return $.capture.begin(a);
+	const load = await page.evaluate(function(a) {
+		return $.capture.load(a);
 	}, csv);
+	
+	if (typeof load.error !== 'undefined') abortWithError(load.error);
+
+	// wait for all image/resource requests for finish loading
+	await page.requestsDone();
+
+	const begin = await page.evaluate(function() {
+		return $.capture.begin();
+	});
 	
 	if (typeof begin.error !== 'undefined') abortWithError(begin.error);
 
@@ -281,6 +304,9 @@ async function capture(page, scale, dir, csv)
 	console.log("Language: " + begin.lang);
 	console.log("Packing " + images.length + " images and " + dataFiles.length + " data files");
 
+	// var elem = await page.$("#BulletinPagesNote");
+	// await elem.screenshot({path: path.join(dir, "TEST.png")});
+
 	// write out all data files
 	for (var i=0; i<dataFiles.length; i++)
 	{
@@ -288,7 +314,7 @@ async function capture(page, scale, dir, csv)
 		console.log(progress("Data   ", i, dataFiles.length) + " " + dataFile.filename);
 		await writeFileAsync(path.join(dir, dataFile.filename), dataFile.contents);
 	}
-	
+
 	// write out all image files
 	for (var i=0; i<images.length; i++)
 	{
@@ -297,27 +323,36 @@ async function capture(page, scale, dir, csv)
 		//if (image.id != "BulletinInnerTouchTut") continue;
 		// if (!image.id.startsWith("AccessPermit")) continue;
 		
-		console.log(progress("Image", i, images.length) + " " + image.filename + " (" + image.w + "x" + image.h + ") " + (image.quantizeRects.length ? "PAL" : ""));
+		console.log(progress("Image", i, images.length) + " " + image.filename + " (" + image.w + "x" + image.h + ")" + (image.quantizeRects.length ? " PAL" : "") + (image.baked ? " BAKED" : ""));
 		
+		const filename = path.join(dir, image.filename);
+
+		if (!fs.existsSync(path.dirname(filename))) mkDirByPathSync(path.dirname(filename));
+
+		// isolate element and capture page
 		await page.evaluate(function(imageId) { 
 			$.capture.isolate(imageId) 
 		}, image.id);
 
-		const filename = path.join(dir, image.filename);
-
-		if (!fs.existsSync(path.dirname(filename))) mkDirByPathSync(path.dirname(filename));
-	
 		const options = {
 			"path": filename,
-			// "fullPage": true,
 			"clip": { "x":0, "y":0, "width":scale*image.w, "height":scale*image.h },
 			"omitBackground": true,
 			"encoding": "binary"
 		}
-
+		
 		await page.screenshot(options);
 
-		await finalizeImage(filename, image.w, image.h, image.quantizeRects);
+		// Capturing just the element doesn't work correctly, of course
+		// var elem = await page.$("#" + image.id);
+		// const options = {
+		// 	"path": filename,
+		// 	"omitBackground": true,
+		// 	"encoding": "binary"
+		// }
+		// await elem.screenshot(options);
+
+		await finalizeImage(filename, image.w, image.h, image.quantizeRects, image.wantAutoCrop);
 	}
 
 	return begin.lang;
@@ -342,6 +377,34 @@ function abortWithError(err)
 	process.exit(1);
 }
 
+function attachRequestTracker(page)
+{
+	page.requestCount = 0;
+	var requestTracker = {
+		request: function() { page.requestCount++; },// console.log(`request (${page.requestCount})`); },
+		requestfailed: function() { page.requestCount--; },//console.log(`requestfailed (${page.requestCount})`); },
+		requestfinished: function() { page.requestCount--; },//console.log(`requestfinished (${page.requestCount})`); },
+	};
+
+	page.on('request', requestTracker.request);
+    page.on('requestfailed', requestTracker.requestfailed);
+    page.on('requestfinished', requestTracker.requestfinished);
+
+	page.requestsDone = function()
+	{
+		return new Promise(function(resolve) {
+			function f()
+			{
+				if (page.requestCount == 0) 
+					resolve();
+				else 
+					setTimeout(f, 10);
+			}
+			f();
+		});
+	}
+}
+
 //---------------------------------------------------------------------------------------------------------------------
 // Main
 //---------------------------------------------------------------------------------------------------------------------
@@ -359,11 +422,18 @@ function abortWithError(err)
 	if (!fs.existsSync(args.csv)) abortWithError("File not found: " + args.csv);
 
 	const url = args.url;
-	
+
 	const instance = await puppeteer.launch();
 	const page = await instance.newPage();
-	// await page.setting("userAgent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/602.4.8 (KHTML, like Gecko) Version/10.0.3 Safari/602.4.8");
-	
+
+	attachRequestTracker(page);
+
+	// page.on('console', message => console.log(message));
+	page.on('console', message => console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`));
+    page.on('pageerror', ({ message }) => console.log(message));
+	// page.on('response', response => console.log(`${response.status()} ${response.url()}`));
+	page.on('requestfailed', request => console.log(`${request.failure().errorText} ${request.url()}`));
+
 	console.log("Opening page: " + url);
 	const status = await page.goto(url);
 

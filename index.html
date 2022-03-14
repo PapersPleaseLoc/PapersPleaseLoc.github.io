@@ -118,7 +118,7 @@ Loading...
                 <div id="$ExpirationDate" class="marktxt">1984.01.01</div>
             </div>
 
-            <div class="font-tiny abs" style="text-align:left; left:14px; top:165px; border:1pt solid #896789; padding:1.5px 1.5px 1px 2px;">
+            <div class="font-tiny abs capture-fix-border" style="text-align:left; left:14px; top:165px; border:1pt solid #896789; padding:1px 1px 1px 2px;">
                 <div class="t" style="margin-top:-3px">Keep on person</div>
             </div>
             <div class="t font-tiny solid abs" style="bottom:7px; padding:0 2px; right:12px;">
@@ -199,7 +199,7 @@ Loading...
             text-align: center;
         ">
             <img class="pageback" src="capture/BizCardInnerBack.png"/>
-            <div class="t solid" style="top:10px; border:1px solid #504e38; padding: 0px 2px 1px 2px;">
+            <div class="t solid capture-fix-border" style="top:10px; border:1px solid #504e38; padding: 0px 2px 1px 2px;">
                 WE NEED ENGINEERS
             </div>
             <div style="top:15px; line-height:9px">
@@ -331,7 +331,7 @@ Loading...
             <div class="t font-tiny" style="top:18px">
                 Arstotzkan<br/>Ministry of Admission
             </div>
-            <div class="t abs font-large" style="top:42px; width:100%">
+            <div class="t abs font-large" style="top:41px; width:100%">
                 Inspector's Booth
             </div>
             <div class="abs" style="left:0px; top:0px; width:100%;">
@@ -354,11 +354,14 @@ Loading...
             <div class="t font-tiny" style="top:18px">
                 Arstotzkan<br/>Ministry of Admission
             </div>
-            <div class="t abs font-large" style="top:42px; width:100%">
+            <div class="t abs font-large" style="top:41px; width:100%">
                 Inspector's Booth
             </div>
             <div class="t abs" style="left:77px; top:62px; line-height:10px; text-align:left">
                 Shutter<br/>Time &amp; Date<br/>Weight
+            </div>
+            <div class="t abs" style="left:77px; top:128px; line-height:10px; text-align:left">
+                Counter
             </div>
             <div class="t abs" style="left:53px; top:146px; line-height:10px; text-align:left">
                 Rule Book<br/>Audio Transcript<br/>Bulletin
@@ -379,7 +382,7 @@ Loading...
             <div class="t font-title_tall" style="padding-top:8px">
                 Weapons Protocol
             </div>
-            <div class="t red" style="display:inline-block; margin-top:6px; border:1px solid #c8241c; padding:1px 2.5px">
+            <div class="t red capture-fix-border" style="display:inline-block; margin-top:6px; border:1px solid #c8241c; padding:1px 2px">
                 WHEN ALARM SOUNDS
             </div>
             <div class="t abs" style="top:87px; width:80%; margin-left:10%">
@@ -431,37 +434,25 @@ Loading...
             </div>
         </div>
 
-        <!-- BulletinPagesNote -->   
-        <div class="capture context font-regular_short" id="BulletinPagesNote" data-expand="-4 -1" style="
-            color: #967c62;            
-            display: inline-block;
-            line-height: 6px;
+        <!-- BulletinPagesNote -->  
+        <!-- This originally had a nice ➞ in it, but Puppeteer is incapabe of rendering an inline-block div with spans correctly -->
+        <div class="capture context font-regular_short capture-fix-autocrop" id="BulletinPagesNote" style="
+            width: fit-content;
+            height: fit-content;
         ">
             <div style="
-                background-color: #ecd49a;
-                display: inline-block;
-                border: 1px solid #a3a3a3;
-                border-width: 0 1px 1px 0;
-                padding: 1px 4px 1.5px 4px;
-            ">
-                <span class="t">CHECK ALL<br/>PAGES</span> <span style="position:relative; font-family:'arial'; font-size:10px; vertical-align:middle; top:1px">➞</span>
+                    display:inline-block;
+                    position: relative;
+                    color: #967c62;
+                    line-height: 6px;
+                    padding:1px 3px 2px 4px;
+                    background-color: #ecd49a;
+                    border: 1px solid #a3a3a3;
+                    border-width: 0 1px 1px 0;
+                ">
+                    <div class="t">CHECK ALL<br/>PAGES</div> 
             </div>
         </div>
-
-        <!-- <div class="capture context font-regular_short" id="BulletinPagesNote" style="
-                 display: inline-block;
-+                color: #967c62;
-+                line-height: 6px;
-+                background-color: #ecd49a;
-                 border: 1px solid #a3a3a3;
-                 border-width: 0 1px 1px 0;
-                padding-top:1px; padding: 1px 4px;
-            ">
-            <div style="margin: 1px 3px 1.5px 4px;">
-                <span class="t">CHECK ALL<br/>PAGES</span> <span style="position:relative; font-family:'arial'; font-size:10px; vertical-align:middle; top:1px">➞</span>
-            </div>
-        </div>
-        </div> -->
 
         <!-- CitationInner -->    
         <div class="capture context" id="CitationInner" style="
@@ -503,16 +494,16 @@ Loading...
             <div class="t abs font-title_tall" style="left:16px; top:18px">
                 Diplomatic<br/>Authorization
             </div>
-            <div class="font-small" style="left:17px; top:60px; width:128px; overflow:hidden">
+            <div class="font-small" style="left:17px; top:60px; width:128px;">
                 <div class="t">
                     This document authorizes named agent as a diplomatic entity of a Council of Nations member state.
                 </div>
                 <div>&nbsp;</div>
-                <div style="white-space:nowrap">
+                <div style="white-space:nowrap; overflow:hidden">
                     <div class="abs marktxt font-regular" style="width:80%; right:0px; top:-2px; text-align:center">ALEXANDER STOLICHANOV</div>
                     <span class="t">AGENT</span>...........................................................
                 </div>
-                <div style="white-space:nowrap; margin-top:4px">
+                <div style="white-space:nowrap; margin-top:4px; overflow:hidden">
                     <div class="abs marktxt font-regular" style="left:42px; top:-2px; text-align:left">12345-67890</div>
                     <span class="t">PASSPORT</span>...........................................................
                 </div>
@@ -543,13 +534,14 @@ Loading...
             text-align: center;
         ">
             <img class="pageback" src="capture/EntryPermitInner.png"/>
+            <div class="quantize" style="left:10px; top:137px; width:137px; height:55px" data-pal="0xe0e9c7 0x896a67 0x000000"></div>
             <style>
                 #EntryPermitInner .solid { background-color: #e0e9c7; }
                 #EntryPermitInner .marktxt { color: #776789; top:1px; font-family:regular;}
                 #EntryPermitInner .line { border: 1px solid #896a67; border-width:0 0 1px 0; text-align:center; }
                 #EntryPermitInner table .line { position:relative; width: 70%; top:-2px; padding-top:6px; }
-                #EntryPermitInner table .marktxt { position:relative; top: 2px;}
-                #EntryPermitInner td { vertical-align: bottom;}
+                #EntryPermitInner table .marktxt { position:relative; top: 2px; }
+                #EntryPermitInner td { vertical-align: bottom; }
             </style>
             <div class="t font-title_tall solid" style="top:5px; padding:0 2px;">
                 ARSTOTZKA
@@ -572,9 +564,9 @@ Loading...
                 </div>
 
                 <table class="fullwidth font-small_tight" style="position:relative; top:-7px" valign="bottom">
-                    <tr><td class="t nowrap">Purpose</td><td class="line"><div id="$Purpose" class="marktxt">WORK</div></td></tr>
-                    <tr><td class="t nowrap">Duration</td><td class="line"><div id="$Duration" class="marktxt">2 WEEKS</div></td></tr>
-                    <tr><td class="t nowrap">Enter by</td><td class="line"><div id="$ExpirationDate" class="marktxt">1984.01.01</div></td></tr>
+                    <tr><td class="t nowrap">Purpose</td><td class="line"><span id="$Purpose" class="marktxt">WORK</span></td></tr>
+                    <tr><td class="t nowrap">Duration</td><td class="line"><span id="$Duration" class="marktxt">2 WEEKS</span></td></tr>
+                    <tr><td class="t nowrap">Enter by</td><td class="line"><span id="$ExpirationDate" class="marktxt">1984.01.01</span></td></tr>
                 </table>
             </div>
             <div class="t font-tiny solid abs" style="bottom:9px; padding:0 2px; right:12px;">
@@ -728,7 +720,7 @@ Loading...
                 <div class="t abs" style="text-align:left; width:25px">JOIN BEST GYM!</div>
                 <div class="t abs" style="text-align:right; right:8px; width:27px; overflow:hidden">JOIN BEST GYM!</div>
             </div>
-            <div class="t abs font-title_news" style="width:100%; top:70px">
+            <div class="t abs font-title_news" style="width:100%; top:69px">
                 GET BIG TOWN
             </div>
             <div class="t abs" style="width:100%; bottom:4px">
@@ -1088,7 +1080,7 @@ Loading...
             <style>
                 #PassportInnerUnitedFed .name { left:8px; top:97px;}
                 #PassportInnerUnitedFed table { left:50px; top:106px;}
-                #PassportInnerUnitedFed .nation { font-family:'passport_unitedfed'; top:77px; font-size:8px; position:relative; color:#a29490; background-color:#ede0d8; padding: 0 3.5px; display:inline-block;}
+                #PassportInnerUnitedFed .nation { font-family:'passport_unitedfed'; top:77px; font-size:8px; position:relative; color:#a29490; background-color:#ede0d8; padding: 0 2px; display:inline-block;}
                 #PassportInnerUnitedFed .face { left: 8px; top: 106px; }
                 #PassportInnerUnitedFed .id { right: 5px; bottom: 7px; text-align:right;}
             </style>
@@ -1257,10 +1249,10 @@ Loading...
                 <div class="abs" style="top:12px; width:100%">
                     <div class="t" style="display:inline-block; background-color:#e4e6bd; padding:0 2px">Arstotzkan</div>
                 </div>
-                <div class="t abs light moa font-title_thick" style="top:29px; width:100%">
+                <div class="t abs light moa font-title_thick" style="top:28px; width:100%">
                     Ministry<span>of</span>Admission
                 </div>
-                <div class="abs light font-title_thick" style="top:74px; width:100%">
+                <div class="abs light font-title_thick" style="top:73px; width:100%">
                     <div class="t rr">RULES</div><br/>
                     <div class="t rr">&amp;</div><br/>
                     <div class="t rr">REGULATIONS</div><br/>
@@ -1270,10 +1262,10 @@ Loading...
                 </div>                
             </div>
             <div class="right">
-                <div class="t abs font-title_thick" style="top:10px; width:100%">
+                <div class="t abs font-title_thick" style="top:9px; width:100%">
                     CONTENTS
                 </div>
-                <div class="abs font-propaganda property" style="top:123px">
+                <div class="abs font-propaganda property" style="top:122px">
                     <div class="t">PROPERTY OF</div>
                     <div class="t" style="font-size:15px; line-height:13px">M.O.A</div>
                 </div>
@@ -1333,7 +1325,7 @@ Loading...
             </div>
             <div class="right">
                 <div class="t dark font-title_thick" style="margin-top:9px">UPGRADES</div>
-                <div class="t" style="margin-top:15px">NO UPGRADES<br/>INSTALLED</div>
+                <div class="t" style="margin-top:16px">NO UPGRADES<br/>INSTALLED</div>
             </div>
         </div>
 
@@ -1357,7 +1349,7 @@ Loading...
             </div>
             <div class="right">
                 <div class="t dark font-title_thick" style="margin-top:9px">UPGRADES</div>
-                <div class="t" style="margin-top:15px">NO UPGRADES<br/>INSTALLED</div>
+                <div class="t" style="margin-top:16px">NO UPGRADES<br/>INSTALLED</div>
             </div>
         </div>
 
@@ -1370,6 +1362,9 @@ Loading...
                     <div class="t abs" style="left:65px; top:57px; line-height:10px; text-align:left">
                         Shutter<br/>Time &amp; Date<br/>Weight
                     </div>
+                    <div class="t abs" style="left:65px; top:123px; line-height:10px; text-align:left">
+                        Counter
+                    </div>
                     <div class="t abs" style="left:49px; top:141px; line-height:10px; text-align:left">
                         Rule Book<br/>Audio Trans.<br/>Bulletin
                     </div>
@@ -1377,7 +1372,7 @@ Loading...
             </div>
             <div class="right">
                 <div class="t dark font-title_thick" style="margin-top:9px">UPGRADES</div>
-                <div class="t" style="margin-top:15px">NO UPGRADES<br/>INSTALLED</div>
+                <div class="t" style="margin-top:16px">NO UPGRADES<br/>INSTALLED</div>
             </div>
         </div>
 
@@ -1388,12 +1383,12 @@ Loading...
                 <div class="t" style="margin-top:62px;">
                     OFFICIALLY RECOGNIZED
                 </div>
-                <div class="t font-title_thick" style="padding-top:2px">
+                <div class="t font-title_thick" style="padding-top:1px">
                     DOCUMENTS
                 </div>
             </div>
             <div class="right">
-                <div class="t abs font-title_thick" style="top:10px; width:100%">
+                <div class="t abs font-title_thick" style="top:9px; width:100%">
                     CONTENTS
                 </div>
             </div>
@@ -1498,7 +1493,7 @@ Loading...
             <div class="left">
                 <div class="doctitle">
                     <div class="t">DIPLOMATIC</div>
-                    <div class="t font-regular" style="margin-top:2px">
+                    <div class="t font-regular" style="margin-top:1px">
                         AUTHORIZATION
                     </div>
                 </div>
@@ -1540,12 +1535,12 @@ Loading...
                 </div>
             </div>
             <div class="right" style="margin-left:1px">
-                <div class="font-title_thick" style="margin-top:38px">
+                <div class="font-title_thick" style="margin-top:37px">
                     <div class="t">MINISTRY</div>
                     <div class="t of">OF</div>
                     <div class="t">HEALTH</div>
                 </div>
-                <div class="t" style="margin-top:1px">REGULATION DOCUMENT</div>
+                <div class="t" style="margin-top:2px">REGULATION DOCUMENT</div>
                 <div class="abs rulebutton rulebuttonborder" style="left:11px; top:91px; width:81px; height:46px">
                     <div class="outer"><div class="inner">
                         <p class="t">POLIO VACCINATION REQUIRED FOR ALL ENTRANTS</p>
@@ -1837,10 +1832,10 @@ Loading...
             <div class="t font-tiny solid" style="padding:0 4px;">
                 Ministry of Labor
             </div>
-            <div class="t font-title_tall" style="margin-top:2px;">
+            <div class="t font-title_tall" style="margin-top:1px">
                 Work Pass
             </div>
-            <div style="text-align:left; width:124px; margin-top:8px; margin-left:9px;">
+            <div style="text-align:left; width:124px; margin-top:9px; margin-left:9px;">
                 <div class="t font-small_tight">
                     This pass grants its holder the right to work in a specific field for a limited time.
                 </div>
@@ -2097,7 +2092,7 @@ Loading...
             <div class="quantize" style="width:360px; height:53px" data-pal="0xefeddc 0x605f58"></div>
             <img class="pageback" style="z-index:-200" src="capture/News.png"/>
             <div class="font-news" style="position:absolute; width:362px; top:12px; height:60px; vertical-align:bottom">
-                <div style="display:inline;">
+                <div class="capture-fix-border" style="display:inline;">
                     <span class="t" style="background-image:url(capture/NewsTitleBack.png); background-position:0 3px; padding:10px 10px 0 10px">The Truth of Arstotzka</span>
                 </div>
             </div>
@@ -6895,6 +6890,13 @@ HOLD YOUR FIRE
             <a href="css/fonts.css" target="_blank"><i class="fa fa-download"></i>ORIGINAL &amp; INSTRUCTIONS</a>
         </div>
         <div class="t">css/fonts.css</div>
+    </div>
+
+    <div class="font-override context" id="baked-captures-url">
+        <div>
+            <h1>Baked Captures Root URL</h1>
+        </div>
+        <div class="t">NONE</div>
     </div>
 
     <div class="help" id="help:achievements">

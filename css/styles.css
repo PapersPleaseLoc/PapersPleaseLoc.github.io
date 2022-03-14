@@ -1072,3 +1072,14 @@ pre {
 {
     display:none;
 } */
+
+.baked-notice {
+    color: #c0c0c0;
+    margin-bottom: -15px;
+    font-family: 'tiny';
+}
+
+.baked-usurped
+{
+    display: none;
+}

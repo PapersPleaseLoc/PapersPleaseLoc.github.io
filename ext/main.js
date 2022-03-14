@@ -311,7 +311,6 @@ function importCsvSync(str)
     updateVarious();
 
     //if (doneFunc != null) doneFunc();
-
     return { "message": "Imported " + numRowsImported + " rows" };
 }
 
@@ -599,6 +598,62 @@ function updateCustomizableImages()
 }
 
 //-----------------------------------------------------------------------------------------------------------
+// Baked captures
+//-----------------------------------------------------------------------------------------------------------
+function getBakedCapturesRootUrl()
+{
+    var overrideElem = $("#baked-captures-url .t");
+    if (!overrideElem.length) return null;
+
+    var bakedUrlRoot = $.trim(overrideElem.html());
+    if (bakedUrlRoot == "NONE") return null;
+
+    if (!bakedUrlRoot.endsWith("/")) bakedUrlRoot += "/";
+    return bakedUrlRoot;
+}
+
+function applyBakedCaptures()
+{
+    // undo any previously baked
+    $(".capture.baked").remove();
+    $(".baked-notice").remove();
+    $(".baked-usurped").each(function() {
+        var captureElem = $(this);
+        captureElem.removeClass("baked-usurped");
+        captureElem.addClass("capture");
+        captureElem.show();
+    });
+
+    // get baked-captures-url
+    var bakedUrlRoot = getBakedCapturesRootUrl();
+    if (bakedUrlRoot != null)
+    {
+        // apply - NOTE this checks all image urls and takes time. Wait for $.active == 0
+        $(".dir").each(function()
+        {
+            var dir = $(this).data("dir") + "/";
+            if (dir == "./") dir = "";
+            $(".capture", $(this)).each(function() {
+                var captureElem = $(this);
+                var captureId = captureElem.attr("id");
+                var imageUrl = bakedUrlRoot + dir + captureId + ".png";
+                $.get(imageUrl).done(function() 
+                {
+                    captureElem.removeClass("capture");
+                    captureElem.addClass("baked-usurped");
+                    captureElem.hide();
+                    captureElem.after(
+                        "<div class='baked-notice'>" + imageUrl + "</div>" +
+                        "<img class='capture baked' id='" + captureId + "' src=\'" + imageUrl + "' style='display:block'>"
+                    );
+                }).fail(function() {
+                });
+            })
+        });
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------------
 // Zoom
 //-----------------------------------------------------------------------------------------------------------
 var zoom = 1;
@@ -656,6 +711,7 @@ function updateVarious()
     updateCustomizableImages();
     updateStyleTweaks();
     updateFontOverride();
+    applyBakedCaptures();
 }
 
 var fontStylesheetLink = null;
@@ -1136,57 +1192,118 @@ function getImageQuantizeRects(captureElem)
     return pals;
 }
 
-function getCaptureElemExpand(captureElem)
+function captureFixBorders()
 {
-    var expand = { 'w': 0, 'h': 0 };
-    var expandData = $(captureElem).data("expand");
-    if (expandData)
+    // Puppeteer / Chromium has a problem keeping borders on whole-pixel lines if 
+    // the size/position of the box isn't on a pixel boundary. 
+    // Hack-fix it here by adjusting the width() and height() of the element if necessary.
+
+    var getBox = function(e)
     {
-        var expandVals = $.trim(expandData).split(" ");
-        expand.w = Number(expandVals[0]);
-        expand.h = Number(expandVals[1]);
+        var c = e.closest(".capture");
+        if (c != null && c.offset() != undefined)
+        {
+            return {
+                'x': e.offset().left - c.offset().left - $("body").scrollLeft(),
+                'y': e.offset().top - c.offset().top - $("body").scrollTop(),
+                'w': e.width(),
+                'h': e.height()
+            };
+        }
+        else
+        {
+            return null;
+        }
     }
-    return expand;
+
+    var hasFractionalPart = function(v)
+    {
+        return (v - Math.floor(v)) > 0.001
+    }
+
+    $(".capture-fix-border").each(function()
+    {
+        var e = $(this);
+        var align = e.css("text-align");
+        
+        var box = getBox(e);
+        if (box == null) return;
+        // line = JSON.stringify(box) + " " + align;
+
+        if (align == "left")
+        {
+            if (hasFractionalPart(box.x + box.w))
+            {
+                e.css("padding-right", (Number(e.css("padding-right").replace("px", "")) + 0.5) + "px");
+            }
+        }
+        else if (align == "center")
+        {
+            if (hasFractionalPart(box.x) || hasFractionalPart(box.w))
+                e.width(box.w + 1);
+        }
+
+        if (hasFractionalPart(box.y + box.h))
+        {
+            // what the fuck is this?
+            e.height(Math.ceil(box.h) - 0.5);
+        }
+
+        // line += " -> " + JSON.stringify(getBox(e));
+        // if (e.attr("id") == "borderfix")
+        //     console.log(line);
+    });
 }
 
 //-----------------------------------------------------------------------------------------------------------
 $.capture = {
-    begin: function(locCsv)
+    load: function(locCsv)
     {
         var result = importCsvSync(locCsv);
         if (result.error) return { 'error': result.error };
+        else return result;
+    },
+    begin: function()
+    {
+        captureFixBorders();
 
-        images = []
+        var images = []
         $(".dir").each(function()
         {
-            dir = $(this).data("dir") + "/";
+            var dir = $(this).data("dir") + "/";
             if (dir == "./") dir = "";
             $(".capture", $(this)).each(function(){
                 var captureElem = $(this);
-                var expand = getCaptureElemExpand(captureElem);
                 images.push(
                 { 
                     id: captureElem.attr("id"),
                     filename: dir + captureElem.attr("id") + ".png",
-                    w: captureElem.width() + expand.w,
-                    h: captureElem.height() + expand.h,
-                    quantizeRects: getImageQuantizeRects(captureElem)
+                    w: captureElem.width(),
+                    h: captureElem.height(),
+                    quantizeRects: getImageQuantizeRects(captureElem),
+                    wantAutoCrop: captureElem.hasClass("capture-fix-autocrop"),
+                    baked: captureElem.hasClass("baked")
                 });
             })
         });
 
         // zooming is handled by phantomjs page
+        // zoomIn();
         zoomOut();
         $(".transparent").css("color", "#ff00ff");
         markLib.beforeCapture();
         $("body, html, head, .capture").css("margin", 0);
         $("body, html, head, .capture").css("padding", 0);
 
+        // $(".capture").each(function(){
+        //     console.log("EACH [" + $(this).attr("id") + "] [" + $(this).attr("class") + "]");
+        // });
+        
         return { 'images': images, 'dataFiles': generateDataFiles(), 'lang': getLanguageCode() };
     },
     isolate: function(id)
     {
-        var elem = $("#" + id);
+        var elem = $("#" + id + ".capture");
         elem.detach().prependTo("body");
         elem.parents().show();
         elem.show();

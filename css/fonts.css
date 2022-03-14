@@ -102,9 +102,9 @@ in your custom stylesheet and in the PACK/data/Fonts.xml file with the same valu
 @font-face { font-family: 'title_news'; src: url('../fonts/MotorolaScreentype-U--shnmk16b.ttf'); } 
 .font-title_news { font-family: 'title_news'; font-size: 16px; line-height: 16px; }
 
-/* @font-face { font-family: 'title_serif'; src: local("Times New Roman"); font-weight: bold; } */
-@font-face { font-family: 'title_serif';src: url('../fonts/PT_Serif-Bold.ttf'); font-weight:700; }
-.font-title_serif { font-family:'title_serif'; font-weight:bold; font-size: 10px; line-height: 10px; }
+/* Wanted to use a specific non-system font here, but Times-Bold is inexplicably not bold when rendered through Puppeteer */
+/* @font-face { font-family: 'title_serif'; src: url('../fonts/Times-Bold.ttf'); } */
+.font-title_serif { font-family: 'serif'; font-size: 10px; line-height: 10px; font-weight: bold }
 
 @font-face { font-family: 'title_thick'; src: url('../fonts/ChixaDemiBold--shnmk12b.ttf'); }
 .font-title_thick { font-family: 'title_thick'; font-size: 14px; line-height: 11px; }
