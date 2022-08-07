@@ -1355,6 +1355,7 @@ $.capture = {
         markLib.beforeCapture();
         $("body, html, head, .capture").css("margin", 0);
         $("body, html, head, .capture").css("padding", 0);
+        $("body").css("background-color", "#ff00ff");
 
         // $(".capture").each(function(){
         //     console.log("EACH [" + $(this).attr("id") + "] [" + $(this).attr("class") + "]");

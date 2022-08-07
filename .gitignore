@@ -4,3 +4,4 @@ __tmp__*/
 *.zip
 node_modules
 makepacker.sh
+package-lock.json

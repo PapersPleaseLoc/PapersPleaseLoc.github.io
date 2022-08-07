@@ -2,7 +2,7 @@
 
 
 
-This packer is used to generate game-ready localization packs authored in the [loc tool for *Papers, Please*](http://paperspleaseloc.github.io/). It replaces the in-browser Chrome extension previously required to snapshot localized images and text and uses Node and PhantomJS to render page elements directly to images.
+This packer is used to generate game-ready localization packs authored in the [loc tool for *Papers, Please*](http://paperspleaseloc.github.io/). It replaces the in-browser Chrome extension previously required to snapshot localized images and text and uses Node and Puppeteer to render page elements directly to images.
 
 
 
@@ -21,13 +21,13 @@ npm install packer
 Edit the localization using the loc tool, then EXPORT the csv to somewhere on your hard drive. Run packer to generate a localization pack zip from this csv:
 
 ```bash
-node packer --csv <path.to.csv> --url <url.of.loctool>
+node packer --csv <path.to.csv> --url <url.of.loctool> --out <path.to.output.dir>
 ```
 
 For example:
 
 ```bash
-node packer --csv ~/Downloads/en.csv --url http://paperspleaseloc.github.io
+node packer --csv ~/Downloads/en.csv --url http://paperspleaseloc.github.io --out .
 ```
 
 The packer will load the csv, connect to the loc tool, and generate all necessary images and data files in a *\_\_temp\_\_<lang>/* subdirectory, then zip everything into *<lang>.zip* in the current directory.
@@ -49,4 +49,5 @@ This new implementation instead uses Headless Chrome and Puppeteer to render the
 
 ## Support
 
-This (and the loc tool) are completely unsupported. It was developed and tested briefly under MacOS. My hope is that Puppeteer generates the same output on all platforms.
+This (and the loc tool) are completely unsupported. It was developed and tested briefly under MacOS. My hope is that Puppeteer generates the same output on all platforms but I haven't confirmed this.
+
