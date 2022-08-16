@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "<Papers, Please> localization package builder",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PapersPleaseLoc/PapersPleaseLoc.github.io.git"
@@ -17,10 +15,10 @@
   },
   "homepage": "https://github.com/PapersPleaseLoc/PapersPleaseLoc.github.io#readme",
   "dependencies": {
-    "jimp": "0.16.1",
+    "jimp": "^0.16.0",
     "minimist": "^1.2.5",
     "node-zip": "^1.0.1",
-    "puppeteer": "^13.4.0"
+    "playwright": "^1.25.0"
   },
   "engines": {
     "node": ">=17.6.0"

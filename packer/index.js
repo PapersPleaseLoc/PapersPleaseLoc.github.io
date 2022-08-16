@@ -1,40 +1,24 @@
 const fs = require('fs');
 const path = require('path');
 const Jimp = require('jimp');
-const puppeteer = require('puppeteer');
+const { webkit } = require('playwright');
 const minimist = require('minimist');
 require('node-zip');
 
 //---------------------------------------------------------------------------------------------------------------------
-function mkDirByPathSync(targetDir, {isRelativeToScript = false} = {}) 
+function guaranteeDirSync(targetDir)
 {
-	// https://stackoverflow.com/a/40686853
-	const sep = path.sep;
-	const initDir = path.isAbsolute(targetDir) ? sep : '';
-	const baseDir = isRelativeToScript ? __dirname : '.';
-
-	targetDir.split(sep).reduce((parentDir, childDir) => {
-		const curDir = path.resolve(baseDir, parentDir, childDir);
-		try {
-			fs.mkdirSync(curDir);
-			//console.log(`Directory ${curDir} created!`);
-		} catch (err) {
-			if (err.code !== 'EEXIST') {
-				throw err;
-			}
-			//console.log(`Directory ${curDir} already exists!`);
-		}
-
-		return curDir;
-	}, initDir);
+	if (!fs.existsSync(targetDir))
+	{
+		fs.mkdirSync(targetDir, { recursive: true });
+	}
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 async function writeUtf8FileAsync(filename, contents)
 {
 	return new Promise(function(resolve, reject) {
-		dir = path.dirname(filename);
-		if (!fs.existsSync(dir)) mkDirByPathSync(dir);
+		guaranteeDirSync(path.dirname(filename));
 		fs.writeFile(filename, contents, "utf8", function(err) {
 			if (err) reject(err);
 			else resolve();
@@ -46,8 +30,7 @@ async function writeUtf8FileAsync(filename, contents)
 async function writeBinaryFileAsync(filename, contents)
 {
 	return new Promise(function(resolve, reject) {
-		dir = path.dirname(filename);
-		if (!fs.existsSync(dir)) mkDirByPathSync(dir);
+		guaranteeDirSync(path.dirname(filename));
 		fs.writeFile(filename, contents, 'binary', function(err) {
 			if (err) reject(err);
 			else resolve();
@@ -233,11 +216,58 @@ function autocropImage(image)
 		image.crop(x0, y0, x1-x0+1, y1-y0+1);
 }
 
+function scaleRect(rect, scale)
+{
+	return { x: rect.x*scale, y: rect.y*scale, width: rect.width*scale, height: rect.height*scale };
+}
+
+function downscale(image, step)
+{
+	var downscaledImage = new Jimp(image.bitmap.width/step, image.bitmap.height/step, (err, image) => {
+		// this image is 256 x 256, every pixel is set to 0x00000000
+	});
+
+	for (var dy=0; dy<downscaledImage.bitmap.height; dy++)	
+	{
+		for (var dx=0; dx<downscaledImage.bitmap.width; dx++)
+		{
+			var colorCounts = {};
+			var bestColor = 0;
+			var bestColorCount = 0;
+			for (var sy=dy*step; sy<(dy+1)*step; sy++)
+			{
+				for (var sx=dx*step; sx<(dx+1)*step; sx++)
+				{
+					var si = (sy * image.bitmap.width + sx) * 4;
+					var r = image.bitmap.data[si+0];
+					var g = image.bitmap.data[si+1];
+					var b = image.bitmap.data[si+2];
+					var a = image.bitmap.data[si+3];
+					var p = (r<<24) | (g<<16) | (b<<8) | a;
+					if (p in colorCounts) colorCounts[p] += 1;
+					else colorCounts[p] = 1;
+					if (colorCounts[p] > bestColorCount)
+					{
+						bestColor = p;
+						bestColorCount = colorCounts[p];
+					}
+				}
+			}
+			var di = ((dy * downscaledImage.bitmap.width) + dx) * 4;
+			downscaledImage.bitmap.data[di+0] = ((bestColor >> 24) & 0xff);
+			downscaledImage.bitmap.data[di+1] = ((bestColor >> 16) & 0xff);
+			downscaledImage.bitmap.data[di+2] = ((bestColor >>  8) & 0xff);
+			downscaledImage.bitmap.data[di+3] = ((bestColor      ) & 0xff);
+		}
+	}
+	return downscaledImage;
+}
+
 //---------------------------------------------------------------------------------------------------------------------
 async function finalizeImage(filename, width, height, quantizeRects, wantAutoCrop)
 {
 	// load and shrink
-	const image = await new Promise (resolve => 
+	var image = await new Promise(function(resolve, reject)
 	{
 		Jimp.read(filename, function(err, img) 
 		{
@@ -248,11 +278,10 @@ async function finalizeImage(filename, width, height, quantizeRects, wantAutoCro
 				autocropImage(img);
 			}
 
-			// if (width != img.width || height != img.height)
-			// {
-			// 	//img.resize(width, height, Jimp.RESIZE_NEAREST_NEIGHBOR);
-			// 	img = resizeNearestNeighbor(img, width, height);
-			// }
+			if (width != img.bitmap.width || height != img.bitmap.height)
+			{
+				// img = img.resize(width, height, Jimp.RESIZE_NEAREST_NEIGHBOR);
+			}
 
 			resolve(img);
 		});
@@ -261,11 +290,16 @@ async function finalizeImage(filename, width, height, quantizeRects, wantAutoCro
 	// quantize areas if necessary
 	for (var i=0; i<quantizeRects.length; i++)
 	{
-		await quantizeImage(image, quantizeRects[i].rect, quantizeRects[i].colors);
+		await quantizeImage(image, scaleRect(quantizeRects[i].rect, image.width/width), quantizeRects[i].colors);
 	}
 
 	// convert 0xff00ff -> transparent and 0x800080 -> shadow
 	await fixImageAlpha(image);
+
+	if (width != image.width || height != image.height)
+	{
+		image = await downscale(image, image.bitmap.width / width);
+	}
 
 	// overwrite original file
 	await image.write(filename);
@@ -282,7 +316,7 @@ function progress(name, i, count)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-function addToZip(dir, dirNameMap, zip)
+function addToZip(root, dir, zip)
 {
 	const filenames = fs.readdirSync(dir);
 	
@@ -292,26 +326,22 @@ function addToZip(dir, dirNameMap, zip)
 		const fullpath = path.join(dir, filename);
 		if (fs.statSync(fullpath).isDirectory())
 		{
-			addToZip(fullpath, dirNameMap, zip);
+			addToZip(root, fullpath, zip);
 		}
 		else
 		{
-			var parts = dir.split(path.sep);
-			for (var j=0; j<parts.length; j++)
-			{
-				parts[j] = (parts[j] in dirNameMap) ? dirNameMap[parts[j]] : parts[j];
-			}
-			var mappedDir = path.join.apply(null, parts);
+			var mappedDir = dir.replace(root, "").replace("\\", "/");
+			if (mappedDir.startsWith("/")) mappedDir = mappedDir.substr(1);
 			zip.folder(mappedDir).file(filename, fs.readFileSync(fullpath));
 		}
 	}
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-function makeZip(dir, dirNameMap, outputFilename)
+function makeZip(dir, outputFilename)
 {
 	const zip = new JSZip();
-	addToZip(dir, dirNameMap, zip);
+	addToZip(dir, dir, zip);
 	var data = zip.generate( {base64:false} );
 	fs.writeFileSync(outputFilename, data, 'binary');
 }
@@ -337,7 +367,7 @@ async function capture(page, scale, dir, csv)
 	if (typeof load.error !== 'undefined') abortWithError(load.error);
 
 	// wait for all image/resource requests for finish loading
-	await page.requestsDone();
+	await page.context().requestsDone();
 
 	const begin = await page.evaluate(function(scale) {
 		return $.capture.begin(scale);
@@ -370,16 +400,15 @@ async function capture(page, scale, dir, csv)
 	for (var i=0; i<images.length; i++)
 	{
 		const image = images[i];
-		// if (image.id != "RuleIssuingCity") continue;
+		// if (image.id != "ApartmentClass") continue;
 		//if (image.id != "BulletinPagesNote") continue;
 		//if (image.id != "BulletinInnerTouchTut") continue;
-		// if (!image.id.startsWith("AccessPermit")) continue;
+		// if (image.id != "ApartmentClass" && !image.id.startsWith("AccessPermit")) continue;
 		
 		console.log(progress("Image", i, images.length) + " " + image.filename + " (" + image.w + "x" + image.h + ")" + (image.quantizeRects.length ? " PAL" : "") + (image.baked ? " BAKED" : ""));
 		
 		const filename = path.join(dir, image.filename);
-
-		if (!fs.existsSync(path.dirname(filename))) mkDirByPathSync(path.dirname(filename));
+		guaranteeDirSync(path.dirname(filename));
 
 		// isolate element and capture page
 		await page.evaluate(function(imageId) { 
@@ -390,19 +419,9 @@ async function capture(page, scale, dir, csv)
 			"path": filename,
 			"clip": { "x":0, "y":0, "width":scale*image.w, "height":scale*image.h },
 			"omitBackground": true,
-			"encoding": "binary"
 		}
 		
 		await page.screenshot(options);
-
-		// Capturing just the element doesn't work correctly, of course
-		// var elem = await page.$("#" + image.id);
-		// const options = {
-		// 	"path": filename,
-		// 	"omitBackground": true,
-		// 	"encoding": "binary"
-		// }
-		// await elem.screenshot(options);
 
 		await finalizeImage(filename, image.w, image.h, image.quantizeRects, image.wantAutoCrop);
 	}
@@ -429,25 +448,25 @@ function abortWithError(err)
 	process.exit(1);
 }
 
-function attachRequestTracker(page)
+function attachRequestTracker(context)
 {
-	page.requestCount = 0;
+	context.requestCount = 0;
 	var requestTracker = {
-		request: function() { page.requestCount++; },// console.log(`request (${page.requestCount})`); },
-		requestfailed: function() { page.requestCount--; },//console.log(`requestfailed (${page.requestCount})`); },
-		requestfinished: function() { page.requestCount--; },//console.log(`requestfinished (${page.requestCount})`); },
+		request: function() { context.requestCount++; },// console.log(`request (${page.requestCount})`); },
+		requestfailed: function() { context.requestCount--; },//console.log(`requestfailed (${page.requestCount})`); },
+		requestfinished: function() { context.requestCount--; },//console.log(`requestfinished (${page.requestCount})`); },
 	};
 
-	page.on('request', requestTracker.request);
-    page.on('requestfailed', requestTracker.requestfailed);
-    page.on('requestfinished', requestTracker.requestfinished);
+	context.on('request', requestTracker.request);
+    context.on('requestfailed', requestTracker.requestfailed);
+    context.on('requestfinished', requestTracker.requestfinished);
 
-	page.requestsDone = function()
+	context.requestsDone = function()
 	{
 		return new Promise(function(resolve) {
 			function f()
 			{
-				if (page.requestCount == 0) 
+				if (context.requestCount == 0) 
 					resolve();
 				else 
 					setTimeout(f, 10);
@@ -475,25 +494,21 @@ function attachRequestTracker(page)
 
 	const url = args.url;
 
-	const instance = await puppeteer.launch();
-	const page = await instance.newPage();
+	const browser = await webkit.launch();
+	const context = await browser.newContext();
 
-	attachRequestTracker(page);
-
-	// page.on('console', message => console.log(message));
-	page.on('console', message => console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`));
-    // page.on('pageerror', ({ message }) => console.log(message));
-	// page.on('response', response => console.log(`${response.status()} ${response.url()}`));
-	// page.on('requestfailed', 
-	// 	request => console.log(`${request.failure().errorText} ${request.url()}`)
-	// );
-
-	page.on('requestfailed', request => {
+	context.on('requestfailed', request => {
         console.log(`url: ${request.url()}, errText: ${request.failure().errorText}, method: ${request.method()}`)
     });
-	page.on("pageerror", err => {
+	context.on("pageerror", err => {
         console.log(`Page error: ${err.toString()}`);
     });
+
+	attachRequestTracker(context);
+
+	const page = await context.newPage();
+
+	page.on('console', message => console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`));
 
 	console.log("Opening page: " + url);
 	const status = await page.goto(url);
@@ -502,23 +517,20 @@ function attachRequestTracker(page)
 	const code = path.parse(args.csv).name
 	
 	const dir = path.join(args.out, "__tmp__" + code);
-	fs.rmSync(dir, { recursive: true, force: true });
+	if (fs.existsSync(dir))
+	{
+		fs.rmSync(dir, { recursive: true, force: true });
+	}
 
 	const csv = fs.readFileSync(args.csv, "utf8");
 	
 	const lang = await capture(page, 1, dir, csv);
-	await instance.close();
+	await browser.close();
 
 	const zipFilename = path.join(args.out, lang + ".zip");
-
-	// remap zip dir entries from tmp dir to lang code
-	var dirNameMap = {};
-	dirNameMap[dir] = lang;
-	
 	console.log("Zipping: " + zipFilename);
-	makeZip(dir, dirNameMap, zipFilename);
+	makeZip(dir, zipFilename);
 	
 	console.timeEnd(timerId);
 
 })();
-
