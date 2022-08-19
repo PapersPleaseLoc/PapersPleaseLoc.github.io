@@ -53,10 +53,10 @@ pre {
 }
 .uibase, .ui textarea {
 	font-smooth: auto;
-	-webkit-font-smoothing: auto;
-	font-family: 'Courier New', fixed;
+	-webkit-font-smoothing: auto !important;
+	font-family: monospace;
 }
-	.ui i {
+	.ui .splitbutton i {
 		position: absolute;
 		padding: 7px 8px;
 		left: 0;
