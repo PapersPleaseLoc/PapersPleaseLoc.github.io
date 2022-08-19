@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Jimp = require('jimp');
-const { webkit } = require('playwright');
+const playwright = require('playwright');
 const minimist = require('minimist');
 require('node-zip');
 
@@ -290,7 +290,8 @@ async function finalizeImage(filename, width, height, quantizeRects, wantAutoCro
 	// quantize areas if necessary
 	for (var i=0; i<quantizeRects.length; i++)
 	{
-		await quantizeImage(image, scaleRect(quantizeRects[i].rect, image.width/width), quantizeRects[i].colors);
+		const scaledRect = scaleRect(quantizeRects[i].rect, image.bitmap.width/width);
+		await quantizeImage(image, scaledRect, quantizeRects[i].colors);
 	}
 
 	// convert 0xff00ff -> transparent and 0x800080 -> shadow
@@ -355,7 +356,7 @@ function sleep(ms)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-async function capture(page, scale, dir, csv)
+async function capture(page, scale, makeFonts, dir, csv)
 {
 	console.log("Preparing page");
 
@@ -369,9 +370,9 @@ async function capture(page, scale, dir, csv)
 	// wait for all image/resource requests for finish loading
 	await page.context().requestsDone();
 
-	const begin = await page.evaluate(function(scale) {
-		return $.capture.begin(scale);
-	}, scale);
+	const begin = await page.evaluate(await function(args) {
+		return $.capture.begin(args.scale, args.makeFonts);
+	}, {scale:scale, makeFonts:makeFonts});
 	
 	if (typeof begin.error !== 'undefined') abortWithError(begin.error);
 
@@ -392,8 +393,15 @@ async function capture(page, scale, dir, csv)
 			if (data != null)
 				await writeBinaryFileAsync(path.join(dir, dataFile.filename), data);
 		}
+		else if (dataFile.dataType == "dataURL")
+		{
+			const buffer = Buffer.from(dataFile.contents.split(",")[1], 'base64');
+			await writeBinaryFileAsync(path.join(dir, dataFile.filename), buffer);
+		}
 		else
+		{
 			await writeUtf8FileAsync(path.join(dir, dataFile.filename), dataFile.contents);
+		}
 	}
 
 	// write out all image files
@@ -485,8 +493,9 @@ function attachRequestTracker(context)
 	console.time(timerId);
 
 	var args = minimist(process.argv.slice(2), {
-		"string": [ "csv", "url", "out" ],
-		"unknown": function(a) { console.error("Unknown argument: " + a); return false; }
+		string: [ "csv", "url", "out" ],
+		boolean: [ "makeFonts" ],
+		unknown: function(a) { console.error("Unknown argument: " + a); return false; }
 	})
 	
 	if (args.csv == null || args.url == null || args.out == null) showUsage();
@@ -494,7 +503,7 @@ function attachRequestTracker(context)
 
 	const url = args.url;
 
-	const browser = await webkit.launch();
+	const browser = await playwright.webkit.launch();
 	const context = await browser.newContext();
 
 	context.on('requestfailed', request => {
@@ -524,7 +533,7 @@ function attachRequestTracker(context)
 
 	const csv = fs.readFileSync(args.csv, "utf8");
 	
-	const lang = await capture(page, 1, dir, csv);
+	const lang = await capture(page, 1, args.makeFonts, dir, csv);
 	await browser.close();
 
 	const zipFilename = path.join(args.out, lang + ".zip");
