@@ -153,6 +153,8 @@ function getUsedChars()
 		}
 	}
 
+	if ("\n" in usedCharsDict) delete usedCharsDict["\n"];
+
 	var usedChars = getDictKeys(usedCharsDict).sort().join("");
 	//console.log(usedChars);
 
@@ -1175,44 +1177,121 @@ function getFontSpecs()
 }
 
 //-----------------------------------------------------------------------------------------------------------
+function createMeasuringContext(font, threshold)
+{
+	// context.measureText is inconsistent on Windows/Mac (maybe due to text antialiasing) 
+	// so use this custom thresholding version instead.
+	canvas = document.createElement('canvas');
+	canvas.width = 200;
+	canvas.height = 200;
+
+	var context = canvas.getContext('2d');
+	context.font = font;
+	context.textAlign = 'left';
+	context.textBaseline = 'alphabetic';
+	
+	const originX = Math.floor(canvas.width/2);
+	const originY = Math.floor(canvas.height/2);
+
+	var result = 
+	{
+		measureText: function(letter)
+		{
+			// var measured = context.measureText(letter);
+			// measured.letter = letter;
+			// return measured;
+			context.fillStyle = "#000";
+			context.fillRect(0, 0, canvas.width, canvas.height);
+
+			context.fillStyle = "#fff";
+			context.fillText(letter, originX, originY);
+
+			const image = context.getImageData(0, 0, canvas.width, canvas.height);
+			var x0 = 1000;
+			var x1 = 0;
+			var y0 = 1000;
+			var y1 = 0;
+			for (var y=0; y<image.height; y++)
+			{
+				for (var x=0; x<image.width; x++)
+				{
+					if (image.data[(y*image.width + x) * 4 + 0] > threshold)
+					{
+						x0 = Math.min(x0, x);
+						x1 = Math.max(x1, x+1);
+						y0 = Math.min(y0, y);
+						y1 = Math.max(y1, y+1);
+					}
+				}
+			}
+
+			if (x1 < x0 || y1 < y0) 
+			{
+				// no pixels drawn, fall back to measureText()
+				var measured = context.measureText(letter);
+				const metrics = {
+					letter: letter,
+					actualBoundingBoxLeft: 0,
+					actualBoundingBoxRight: measured.width-1,
+					actualBoundingBoxAscent: 0,
+					actualBoundingBoxDescent: 0
+				};
+				return metrics;
+			}
+			else
+			{
+				const metrics = {
+					letter: letter,
+					actualBoundingBoxAscent: Math.max(0, originY - y0),
+					actualBoundingBoxDescent: Math.max(0, y1 - originY),
+					actualBoundingBoxLeft: originX - x0,
+					actualBoundingBoxRight: x1 - originX
+				}
+				// console.log(`${letter}: ${JSON.stringify(metrics)}`);
+				return metrics;
+			}
+		}
+	}
+
+	return result;
+}
+
+//-----------------------------------------------------------------------------------------------------------
 function createBitmapFont(familyName, fontSize, gameFace)
 {
 	const kRowSpacing = 1;
 	const kImageWidth = 512;
 	const kImagePadding = 1;
 	const kGlyphSpacing = 1;
+	const kThreshold = 200;
 
 	var font = fontSize + "px " + familyName;
 
-	var div = document.createElement('div');
-	document.body.appendChild(div);
+	const letters = getUsedChars();
 
-	var p = document.createElement('p');
-	p.textContent = familyName;
-	div.appendChild(p);
+	var measurer = createMeasuringContext(font, kThreshold);
+	var letterMetrics = [...letters].map( letter => measurer.measureText(letter) );
 
-	var canvas = document.createElement('canvas');
-	div.appendChild(canvas);
-	var context = canvas.getContext('2d');
-	context.textBaseline = 'alphabetic';
-	context.font = font;
-
+	// build list of all glyphs
 	var ascentMax = 0;
 	var descentMax = 0;
 	var glyphs = [];
-	const chars = getUsedChars();
-	[...chars].forEach(c => 
-	{
-		if (c != "\n")
-		{
-			var metrics = context.measureText(c);
-			ascentMax = Math.max(ascentMax, metrics.actualBoundingBoxAscent);
-			descentMax = Math.max(descentMax, metrics.actualBoundingBoxDescent);
-			glyphs.push({ letter:c, metrics:metrics, w:Math.ceil(metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight)});
-		}
-	});
-	const rowHeight = ascentMax + descentMax + kRowSpacing;
 
+	letterMetrics.forEach(metrics => 
+	{
+		ascentMax = Math.max(ascentMax, metrics.actualBoundingBoxAscent);
+		descentMax = Math.max(descentMax, metrics.actualBoundingBoxDescent);
+
+		const glyph = { 
+			letter: metrics.letter, 
+			metrics: metrics, 
+			w: Math.ceil(metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight)
+		};
+		glyphs.push(glyph);
+	});
+
+	// lay out all glyphs into rows	
+	const rowHeight = ascentMax + descentMax + kRowSpacing;
 	var rows = []
 	var rowIndex = 0
 	var rowWidth = 0
@@ -1231,15 +1310,27 @@ function createBitmapFont(familyName, fontSize, gameFace)
 		rows[rowIndex].glyphs.push(glyph);
 	});
 
+	// use canvas to render font atlas
+	const div = document.createElement('div');
+	document.body.appendChild(div);
+
+	const p = document.createElement('p');
+	p.textContent = familyName;
+	div.appendChild(p);
+
+	const canvas = document.createElement('canvas');
 	canvas.width  = kImageWidth;
 	canvas.height = rowHeight * rows.length + 2 * kImagePadding;
-	context = canvas.getContext('2d');
-
+	
+	div.appendChild(canvas);
+	
+	const context = canvas.getContext('2d');
+	// context.fillStyle = "#000";
 	context.fillStyle = "rgba(0, 0, 0, 0.0)";
 	context.fillRect(0, 0, canvas.width, canvas.height);
 	context.font = font;
-	context.textAlign = 'left';
 	context.textBaseline = 'alphabetic';
+	context.textAlign = 'left';
 	context.fillStyle = '#fff';
 
 	function escape(s) {
@@ -1252,33 +1343,63 @@ function createBitmapFont(familyName, fontSize, gameFace)
 		return s.replace( /[&"<>]/g, c => lookup[c] );
 	}
 
-	charMetrics = [];
+	charPositions = [];
 	rows.forEach((row, rowIndex) => 
 	{
 		const rowBaselineY = kImagePadding + rowIndex * rowHeight + ascentMax;
 		var glyphX = kImagePadding;
-		row.glyphs.forEach((glyph, glyphIndex) =>
+		row.glyphs.forEach(glyph =>
 		{
-			const m = glyph.metrics;
+			context.beginPath();
+			context.fillText(glyph.letter, glyphX + glyph.metrics.actualBoundingBoxLeft , rowBaselineY);
 
-			context.fillText(glyph.letter, glyphX + m.actualBoundingBoxLeft, rowBaselineY);
-
-			charMetrics.push({
+			charPositions.push({
 				id: glyph.letter.charCodeAt(0),
 				letter: escape(glyph.letter == " " ? "space" : glyph.letter),
 				x: glyphX,
-				y: rowBaselineY - m.actualBoundingBoxAscent,
-				width: glyph.w - 1,
-				height: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent,
-				xoffset: -m.actualBoundingBoxLeft,
-				yoffset: ascentMax - m.actualBoundingBoxAscent,
-				xadvance: glyph.w,
+				y: rowBaselineY - glyph.metrics.actualBoundingBoxAscent,
+				width: glyph.w,
+				height: glyph.metrics.actualBoundingBoxAscent + glyph.metrics.actualBoundingBoxDescent,
+				xoffset: -glyph.metrics.actualBoundingBoxLeft,
+				yoffset: ascentMax - glyph.metrics.actualBoundingBoxAscent,
+				// determinted empirically by comparing canvas metrics with old bitmap font app
+				xadvance: glyph.w + 1 - 2 * glyph.metrics.actualBoundingBoxLeft,
 			});
 
 			glyphX += glyph.w + kGlyphSpacing;
 		});
 	});
+
+	// apply threshold
+	const image = context.getImageData(0, 0, canvas.width, canvas.height);
+	for (var i=0; i<image.data.length/4; i++)
+	{
+		if (image.data[i*4] > kThreshold)
+		{
+			image.data[i*4+0] = 255;
+			image.data[i*4+1] = 255;
+			image.data[i*4+2] = 255;
+			image.data[i*4+3] = 255;
+		}
+		else
+		{
+			image.data[i*4+0] = 0;
+			image.data[i*4+1] = 0;
+			image.data[i*4+2] = 0;
+			image.data[i*4+3] = 0;
+		}
+	}
+	context.putImageData(image, 0, 0);
+
+	// debug show each glyph's bounding box
+	// context.fillStyle = "rgba(255, 0, 0, 0.5)";
+	// charPositions.forEach(m => {
+	// 	context.beginPath();
+	// 	context.rect(m.x, m.y, m.width, m.height);
+	// 	context.fill();
+	// });
 	
+	// generate .fnt xml file describing character positions in atlas
 	fntXmlLines = [
 		"<font>",
 		` <info size="${fontSize}" face="${gameFace}"/>`, // ignored by game
@@ -1286,7 +1407,7 @@ function createBitmapFont(familyName, fontSize, gameFace)
 		` <pages><page id="0" file="${gameFace}.png"/></pages>`,
 		` <chars count="${glyphs.length}">`
 	];
-	charMetrics.forEach(s => 
+	charPositions.forEach(s => 
 	{
 		//   <char width="0" page="0" x="1" y="6" xoffset="0" chnl="0" letter="space" height="0" yoffset="9" xadvance="2" id="32"/>
 		fntXmlLines.push(
@@ -1463,6 +1584,8 @@ prepareCustomizableImages();
 prepareTextElems();
 updateVarious();
 zoomIn();
+
+// createBitmapFont("title_tall", 16, "pixelplay");
 
 //-----------------------------------------------------------------------------------------------------------
 $(window).load(function()
