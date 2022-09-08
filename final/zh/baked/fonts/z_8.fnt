@@ -6,22 +6,22 @@
 		<page id="0" file="z_8.png"/>
 	</pages>
 	<chars count="1527">
-		<char id="10" x="1" y="7" width="0" height="0" xoffset="0" yoffset="12" xadvance="16" page="0" letter="&#13;" chnl="15" />
-		<char id="32" x="2" y="7" width="0" height="0" xoffset="0" yoffset="12" xadvance="4" page="0" letter="space" chnl="15" />
-		<char id="33" x="3" y="1" width="1" height="6" xoffset="0" yoffset="6" xadvance="2" page="0" letter="!" chnl="15" />
-		<char id="34" x="5" y="1" width="3" height="2" xoffset="0" yoffset="6" xadvance="3" page="0" letter="&quot;" chnl="15" />
+		<char id="10" x="1" y="7" width="0" height="0"xoffset="0" yoffset="12" xadvance="16" page="0" letter="&#13;" chnl="15" />
+		<char id="32" x="2" y="7" width="0" height="0"xoffset="0" yoffset="12" xadvance="4" page="0" letter="space" chnl="15" />
+		<char id="33" x="3" y="1" width="1" height="6"xoffset="0" yoffset="6" xadvance="2" page="0" letter="!" chnl="15" />
+		<char id="34" x="5" y="1" width="3" height="2" xoffset="0" yoffset="6" xadvance="4" page="0" letter="&quot;" chnl="15" />
 		<char id="35" x="9" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="#" chnl="15" />
 		<char id="36" x="13" y="1" width="3" height="7" xoffset="0" yoffset="6" xadvance="4" page="0" letter="$" chnl="15" />
 		<char id="37" x="17" y="1" width="5" height="6" xoffset="0" yoffset="6" xadvance="6" page="0" letter="%" chnl="15" />
 		<char id="38" x="23" y="1" width="4" height="6" xoffset="0" yoffset="6" xadvance="5" page="0" letter="&amp;" chnl="15" />
-		<char id="39" x="28" y="1" width="1" height="2" xoffset="0" yoffset="6" xadvance="2" page="0" letter="'" chnl="15" />
-		<char id="40" x="30" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="2" page="0" letter="(" chnl="15" />
-		<char id="41" x="33" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="2" page="0" letter=")" chnl="15" />
-		<char id="42" x="36" y="2" width="3" height="4" xoffset="0" yoffset="7" xadvance="3" page="0" letter="*" chnl="15" />
+		<char id="39" x="28" y="1" width="1" height="2"xoffset="0" yoffset="6" xadvance="2" page="0" letter="'" chnl="15" />
+		<char id="40" x="30" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="3" page="0" letter="(" chnl="15" />
+		<char id="41" x="33" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="3" page="0" letter=")" chnl="15" />
+		<char id="42" x="36" y="2" width="3" height="4" xoffset="0" yoffset="7" xadvance="4" page="0" letter="*" chnl="15" />
 		<char id="43" x="40" y="2" width="3" height="5" xoffset="1" yoffset="7" xadvance="5" page="0" letter="+" chnl="15" />
-		<char id="44" x="44" y="6" width="1" height="2" xoffset="0" yoffset="11" xadvance="2" page="0" letter="," chnl="15" />
+		<char id="44" x="44" y="6" width="1" height="2"xoffset="0" yoffset="11" xadvance="2" page="0" letter="," chnl="15" />
 		<char id="45" x="46" y="4" width="2" height="1" xoffset="0" yoffset="9" xadvance="3" page="0" letter="-" chnl="15" />
-		<char id="46" x="49" y="6" width="1" height="1" xoffset="0" yoffset="11" xadvance="2" page="0" letter="." chnl="15" />
+		<char id="46" x="49" y="6" width="1" height="1"xoffset="0" yoffset="11" xadvance="2" page="0" letter="." chnl="15" />
 		<char id="47" x="51" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="3" page="0" letter="/" chnl="15" />
 		<char id="48" x="54" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="0" chnl="15" />
 		<char id="49" x="58" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="1" chnl="15" />
@@ -33,12 +33,12 @@
 		<char id="55" x="82" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="7" chnl="15" />
 		<char id="56" x="86" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="8" chnl="15" />
 		<char id="57" x="90" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="9" chnl="15" />
-		<char id="58" x="94" y="2" width="1" height="4" xoffset="0" yoffset="7" xadvance="2" page="0" letter=":" chnl="15" />
-		<char id="59" x="96" y="2" width="1" height="5" xoffset="0" yoffset="7" xadvance="2" page="0" letter=";" chnl="15" />
-		<char id="60" x="98" y="2" width="3" height="5" xoffset="0" yoffset="7" xadvance="5" page="0" letter="&lt;" chnl="15" />
+		<char id="58" x="94" y="2" width="1" height="4"xoffset="0" yoffset="7" xadvance="2" page="0" letter=":" chnl="15" />
+		<char id="59" x="96" y="2" width="1" height="5"xoffset="0" yoffset="7" xadvance="2" page="0" letter=";" chnl="15" />
+		<char id="60" x="98" y="2" width="3" height="5" xoffset="0" yoffset="7" xadvance="4" page="0" letter="&lt;" chnl="15" />
 		<char id="61" x="102" y="3" width="4" height="3" xoffset="0" yoffset="8" xadvance="5" page="0" letter="=" chnl="15" />
-		<char id="62" x="107" y="2" width="3" height="5" xoffset="1" yoffset="7" xadvance="5" page="0" letter=">" chnl="15" />
-		<char id="63" x="111" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="3" page="0" letter="?" chnl="15" />
+		<char id="62" x="107" y="2" width="3" height="5" xoffset="1" yoffset="7" xadvance="5" page="0" letter="&gt;" chnl="15" />
+		<char id="63" x="69" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="?" chnl="15" />
 		<char id="64" x="114" y="1" width="5" height="7" xoffset="0" yoffset="6" xadvance="6" page="0" letter="@" chnl="15" />
 		<char id="65" x="120" y="1" width="4" height="6" xoffset="0" yoffset="6" xadvance="5" page="0" letter="A" chnl="15" />
 		<char id="66" x="125" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="B" chnl="15" />
@@ -48,7 +48,7 @@
 		<char id="70" x="143" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="F" chnl="15" />
 		<char id="71" x="147" y="1" width="4" height="6" xoffset="0" yoffset="6" xadvance="5" page="0" letter="G" chnl="15" />
 		<char id="72" x="152" y="1" width="4" height="6" xoffset="0" yoffset="6" xadvance="5" page="0" letter="H" chnl="15" />
-		<char id="73" x="157" y="1" width="1" height="6" xoffset="0" yoffset="6" xadvance="2" page="0" letter="I" chnl="15" />
+		<char id="73" x="157" y="1" width="1" height="6"xoffset="0" yoffset="6" xadvance="2" page="0" letter="I" chnl="15" />
 		<char id="74" x="159" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="3" page="0" letter="J" chnl="15" />
 		<char id="75" x="162" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="K" chnl="15" />
 		<char id="76" x="166" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="L" chnl="15" />
@@ -66,24 +66,24 @@
 		<char id="88" x="224" y="1" width="4" height="6" xoffset="0" yoffset="6" xadvance="5" page="0" letter="X" chnl="15" />
 		<char id="89" x="229" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="Y" chnl="15" />
 		<char id="90" x="233" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="Z" chnl="15" />
-		<char id="91" x="237" y="1" width="2" height="7" xoffset="0" yoffset="6" xadvance="2" page="0" letter="[" chnl="15" />
+		<char id="91" x="237" y="1" width="2" height="7" xoffset="0" yoffset="6" xadvance="3" page="0" letter="[" chnl="15" />
 		<char id="92" x="240" y="1" width="2" height="7" xoffset="0" yoffset="6" xadvance="3" page="0" letter="\" chnl="15" />
-		<char id="93" x="243" y="1" width="2" height="7" xoffset="0" yoffset="6" xadvance="2" page="0" letter="]" chnl="15" />
+		<char id="93" x="243" y="1" width="2" height="7" xoffset="0" yoffset="6" xadvance="3" page="0" letter="]" chnl="15" />
 		<char id="94" x="246" y="1" width="3" height="2" xoffset="1" yoffset="6" xadvance="5" page="0" letter="^" chnl="15" />
 		<char id="95" x="250" y="7" width="3" height="1" xoffset="0" yoffset="12" xadvance="4" page="0" letter="_" chnl="15" />
-		<char id="96" x="254" y="1" width="1" height="2" xoffset="0" yoffset="6" xadvance="2" page="0" letter="`" chnl="15" />
+		<char id="96" x="254" y="1" width="1" height="2"xoffset="0" yoffset="6" xadvance="2" page="0" letter="`" chnl="15" />
 		<char id="97" x="256" y="3" width="3" height="4" xoffset="0" yoffset="8" xadvance="4" page="0" letter="a" chnl="15" />
 		<char id="98" x="260" y="1" width="4" height="6" xoffset="0" yoffset="6" xadvance="5" page="0" letter="b" chnl="15" />
 		<char id="99" x="265" y="3" width="3" height="4" xoffset="0" yoffset="8" xadvance="4" page="0" letter="c" chnl="15" />
 		<char id="100" x="269" y="1" width="4" height="6" xoffset="0" yoffset="6" xadvance="5" page="0" letter="d" chnl="15" />
 		<char id="101" x="274" y="3" width="3" height="4" xoffset="0" yoffset="8" xadvance="4" page="0" letter="e" chnl="15" />
-		<char id="102" x="278" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="2" page="0" letter="f" chnl="15" />
+		<char id="102" x="278" y="1" width="2" height="6" xoffset="0" yoffset="6" xadvance="3" page="0" letter="f" chnl="15" />
 		<char id="103" x="281" y="3" width="3" height="5" xoffset="0" yoffset="8" xadvance="4" page="0" letter="g" chnl="15" />
 		<char id="104" x="285" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="h" chnl="15" />
-		<char id="105" x="289" y="1" width="1" height="6" xoffset="0" yoffset="6" xadvance="2" page="0" letter="i" chnl="15" />
+		<char id="105" x="289" y="1" width="1" height="6"xoffset="0" yoffset="6" xadvance="3" page="0" letter="i" chnl="15" />
 		<char id="106" x="291" y="1" width="2" height="7" xoffset="-1" yoffset="6" xadvance="2" page="0" letter="j" chnl="15" />
 		<char id="107" x="294" y="1" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="k" chnl="15" />
-		<char id="108" x="298" y="1" width="1" height="6" xoffset="0" yoffset="6" xadvance="2" page="0" letter="l" chnl="15" />
+		<char id="108" x="298" y="1" width="1" height="6"xoffset="0" yoffset="6" xadvance="2" page="0" letter="l" chnl="15" />
 		<char id="109" x="300" y="3" width="5" height="4" xoffset="1" yoffset="8" xadvance="7" page="0" letter="m" chnl="15" />
 		<char id="110" x="306" y="3" width="3" height="4" xoffset="0" yoffset="8" xadvance="4" page="0" letter="n" chnl="15" />
 		<char id="111" x="310" y="3" width="3" height="4" xoffset="0" yoffset="8" xadvance="4" page="0" letter="o" chnl="15" />
@@ -98,138 +98,138 @@
 		<char id="120" x="34" y="11" width="3" height="4" xoffset="0" yoffset="8" xadvance="4" page="0" letter="x" chnl="15" />
 		<char id="121" x="38" y="11" width="3" height="5" xoffset="0" yoffset="8" xadvance="4" page="0" letter="y" chnl="15" />
 		<char id="122" x="42" y="11" width="2" height="4" xoffset="0" yoffset="8" xadvance="3" page="0" letter="z" chnl="15" />
-		<char id="123" x="45" y="10" width="2" height="5" xoffset="0" yoffset="7" xadvance="2" page="0" letter="{" chnl="15" />
-		<char id="124" x="48" y="9" width="1" height="6" xoffset="0" yoffset="6" xadvance="2" page="0" letter="|" chnl="15" />
-		<char id="125" x="50" y="10" width="2" height="5" xoffset="0" yoffset="7" xadvance="2" page="0" letter="}" chnl="15" />
+		<char id="123" x="45" y="10" width="2" height="5" xoffset="0" yoffset="7" xadvance="3" page="0" letter="{" chnl="15" />
+		<char id="124" x="48" y="9" width="1" height="6"xoffset="0" yoffset="6" xadvance="2" page="0" letter="|" chnl="15" />
+		<char id="125" x="50" y="10" width="2" height="5" xoffset="0" yoffset="7" xadvance="3" page="0" letter="}" chnl="15" />
 		<char id="126" x="53" y="10" width="3" height="1" xoffset="0" yoffset="7" xadvance="4" page="0" letter="~" chnl="15" />
-		<char id="161" x="57" y="9" width="1" height="6" xoffset="1" yoffset="6" xadvance="4" page="0" letter="?" chnl="15" />
-		<char id="171" x="59" y="9" width="4" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="?" chnl="15" />
-		<char id="187" x="64" y="9" width="4" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="?" chnl="15" />
+		<char id="161" x="69" y="9" width="3" height="6" xoffset="1" yoffset="6" xadvance="4" page="0" letter="?" chnl="15" />
+		<char id="171" x="69" y="9" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="?" chnl="15" />
+		<char id="187" x="69" y="9" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="?" chnl="15" />
 		<char id="191" x="69" y="9" width="3" height="6" xoffset="0" yoffset="6" xadvance="4" page="0" letter="?" chnl="15" />
-		<char id="8212" x="73" y="12" width="8" height="1" xoffset="0" yoffset="9" xadvance="8" page="0" letter="—" chnl="15" />
+		<char id="8212" x="73" y="12" width="8" height="1" xoffset="0" yoffset="9" xadvance="9" page="0" letter="—" chnl="15" />
 		<char id="8220" x="82" y="9" width="5" height="3" xoffset="2" yoffset="6" xadvance="8" page="0" letter="“" chnl="15" />
-		<char id="8221" x="88" y="9" width="5" height="3" xoffset="0" yoffset="6" xadvance="8" page="0" letter="”" chnl="15" />
+		<char id="8221" x="88" y="9" width="5" height="3" xoffset="0" yoffset="6" xadvance="6" page="0" letter="”" chnl="15" />
 		<char id="8230" x="94" y="11" width="7" height="2" xoffset="0" yoffset="8" xadvance="8" page="0" letter="…" chnl="15" />
-		<char id="12289" x="102" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="、" chnl="15" />
-		<char id="12290" x="110" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="。" chnl="15" />
-		<char id="19968" x="118" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="一" chnl="15" />
-		<char id="19969" x="127" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="丁" chnl="15" />
-		<char id="19975" x="136" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="万" chnl="15" />
-		<char id="19976" x="145" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="丈" chnl="15" />
-		<char id="19977" x="154" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="三" chnl="15" />
-		<char id="19978" x="163" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="上" chnl="15" />
-		<char id="19979" x="172" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="下" chnl="15" />
-		<char id="19981" x="181" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="不" chnl="15" />
-		<char id="19982" x="190" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="与" chnl="15" />
-		<char id="19987" x="199" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="专" chnl="15" />
-		<char id="19988" x="208" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="且" chnl="15" />
-		<char id="19990" x="217" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="世" chnl="15" />
-		<char id="19994" x="226" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="业" chnl="15" />
-		<char id="19996" x="235" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="东" chnl="15" />
-		<char id="20002" x="244" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="丢" chnl="15" />
-		<char id="20004" x="253" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="两" chnl="15" />
-		<char id="20005" x="262" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="严" chnl="15" />
-		<char id="20010" x="271" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="个" chnl="15" />
-		<char id="20013" x="280" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="中" chnl="15" />
-		<char id="20020" x="289" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="临" chnl="15" />
-		<char id="20026" x="298" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="为" chnl="15" />
-		<char id="20027" x="307" y="9" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="主" chnl="15" />
-		<char id="20029" x="1" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="丽" chnl="15" />
-		<char id="20030" x="10" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="举" chnl="15" />
-		<char id="20037" x="19" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="久" chnl="15" />
-		<char id="20040" x="28" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="么" chnl="15" />
-		<char id="20041" x="37" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="义" chnl="15" />
-		<char id="20043" x="46" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="之" chnl="15" />
-		<char id="20045" x="55" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乍" chnl="15" />
-		<char id="20046" x="64" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乎" chnl="15" />
-		<char id="20048" x="73" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乐" chnl="15" />
-		<char id="20054" x="82" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乖" chnl="15" />
-		<char id="20057" x="91" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乙" chnl="15" />
-		<char id="20063" x="100" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="也" chnl="15" />
-		<char id="20070" x="109" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="书" chnl="15" />
-		<char id="20080" x="118" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="买" chnl="15" />
-		<char id="20081" x="127" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乱" chnl="15" />
-		<char id="20083" x="136" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乳" chnl="15" />
-		<char id="20102" x="145" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="了" chnl="15" />
-		<char id="20104" x="154" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="予" chnl="15" />
-		<char id="20105" x="163" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="争" chnl="15" />
-		<char id="20107" x="172" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="事" chnl="15" />
-		<char id="20108" x="181" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="二" chnl="15" />
-		<char id="20110" x="190" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="于" chnl="15" />
-		<char id="20111" x="199" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亏" chnl="15" />
-		<char id="20113" x="208" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="云" chnl="15" />
-		<char id="20122" x="217" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亚" chnl="15" />
-		<char id="20123" x="226" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="些" chnl="15" />
-		<char id="20129" x="235" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亡" chnl="15" />
-		<char id="20132" x="244" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="交" chnl="15" />
-		<char id="20134" x="253" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亦" chnl="15" />
-		<char id="20135" x="262" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="产" chnl="15" />
-		<char id="20139" x="271" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="享" chnl="15" />
-		<char id="20140" x="280" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="京" chnl="15" />
-		<char id="20141" x="289" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亭" chnl="15" />
-		<char id="20142" x="298" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亮" chnl="15" />
-		<char id="20146" x="307" y="17" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亲" chnl="15" />
-		<char id="20154" x="1" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="人" chnl="15" />
-		<char id="20160" x="10" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="什" chnl="15" />
-		<char id="20165" x="19" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="仅" chnl="15" />
-		<char id="20170" x="28" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="今" chnl="15" />
-		<char id="20171" x="37" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="介" chnl="15" />
-		<char id="20173" x="46" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="仍" chnl="15" />
-		<char id="20174" x="55" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="从" chnl="15" />
-		<char id="20180" x="64" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="仔" chnl="15" />
-		<char id="20182" x="73" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="他" chnl="15" />
-		<char id="20184" x="82" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="付" chnl="15" />
-		<char id="20195" x="91" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="代" chnl="15" />
-		<char id="20196" x="100" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="令" chnl="15" />
-		<char id="20197" x="109" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="以" chnl="15" />
-		<char id="20202" x="118" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="仪" chnl="15" />
-		<char id="20204" x="127" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="们" chnl="15" />
-		<char id="20214" x="136" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="件" chnl="15" />
-		<char id="20215" x="145" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="价" chnl="15" />
-		<char id="20219" x="154" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="任" chnl="15" />
-		<char id="20221" x="163" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="份" chnl="15" />
-		<char id="20237" x="172" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伍" chnl="15" />
-		<char id="20239" x="181" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伏" chnl="15" />
-		<char id="20241" x="190" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="休" chnl="15" />
-		<char id="20247" x="199" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="众" chnl="15" />
-		<char id="20248" x="208" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="优" chnl="15" />
-		<char id="20249" x="217" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伙" chnl="15" />
-		<char id="20250" x="226" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="会" chnl="15" />
-		<char id="20255" x="235" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伟" chnl="15" />
-		<char id="20256" x="244" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="传" chnl="15" />
-		<char id="20260" x="253" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伤" chnl="15" />
-		<char id="20262" x="262" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伦" chnl="15" />
-		<char id="20266" x="271" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伪" chnl="15" />
-		<char id="20271" x="280" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伯" chnl="15" />
-		<char id="20272" x="289" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="估" chnl="15" />
-		<char id="20284" x="298" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="似" chnl="15" />
-		<char id="20294" x="307" y="25" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="但" chnl="15" />
-		<char id="20301" x="1" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="位" chnl="15" />
-		<char id="20302" x="10" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="低" chnl="15" />
-		<char id="20303" x="19" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="住" chnl="15" />
-		<char id="20307" x="28" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="体" chnl="15" />
-		<char id="20309" x="37" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="何" chnl="15" />
-		<char id="20313" x="46" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="余" chnl="15" />
-		<char id="20316" x="55" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="作" chnl="15" />
-		<char id="20320" x="64" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="你" chnl="15" />
-		<char id="20329" x="73" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="佩" chnl="15" />
-		<char id="20339" x="82" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="佳" chnl="15" />
-		<char id="20351" x="91" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="使" chnl="15" />
-		<char id="20356" x="100" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="侄" chnl="15" />
-		<char id="20363" x="109" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="例" chnl="15" />
-		<char id="20379" x="118" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="供" chnl="15" />
-		<char id="20381" x="127" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="依" chnl="15" />
-		<char id="20389" x="136" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="侥" chnl="15" />
-		<char id="20391" x="145" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="侧" chnl="15" />
-		<char id="20405" x="154" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="侵" chnl="15" />
-		<char id="20415" x="163" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="便" chnl="15" />
-		<char id="20445" x="172" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="保" chnl="15" />
-		<char id="20449" x="181" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="信" chnl="15" />
-		<char id="20457" x="190" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="俩" chnl="15" />
-		<char id="20493" x="199" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="倍" chnl="15" />
-		<char id="20498" x="208" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="倒" chnl="15" />
-		<char id="20505" x="217" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="候" chnl="15" />
-		<char id="20518" x="226" y="33" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="倦" chnl="15" />
+		<char id="12289" x="102" y="9" width="2" height="7" xoffset="0" yoffset="6" xadvance="3" page="0" letter="、" chnl="15" />
+		<char id="12290" x="110" y="9" width="3" height="7" xoffset="0" yoffset="6" xadvance="4" page="0" letter="。" chnl="15" />
+		<char id="19968" x="118" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="一" chnl="15" />
+		<char id="19969" x="127" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="丁" chnl="15" />
+		<char id="19975" x="136" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="万" chnl="15" />
+		<char id="19976" x="145" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="丈" chnl="15" />
+		<char id="19977" x="154" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="三" chnl="15" />
+		<char id="19978" x="163" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="上" chnl="15" />
+		<char id="19979" x="172" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="下" chnl="15" />
+		<char id="19981" x="181" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="不" chnl="15" />
+		<char id="19982" x="190" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="与" chnl="15" />
+		<char id="19987" x="199" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="专" chnl="15" />
+		<char id="19988" x="208" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="且" chnl="15" />
+		<char id="19990" x="217" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="世" chnl="15" />
+		<char id="19994" x="226" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="业" chnl="15" />
+		<char id="19996" x="235" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="东" chnl="15" />
+		<char id="20002" x="244" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="丢" chnl="15" />
+		<char id="20004" x="253" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="两" chnl="15" />
+		<char id="20005" x="262" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="严" chnl="15" />
+		<char id="20010" x="271" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="个" chnl="15" />
+		<char id="20013" x="280" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="中" chnl="15" />
+		<char id="20020" x="289" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="临" chnl="15" />
+		<char id="20026" x="298" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="为" chnl="15" />
+		<char id="20027" x="307" y="9" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="主" chnl="15" />
+		<char id="20029" x="1" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="丽" chnl="15" />
+		<char id="20030" x="10" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="举" chnl="15" />
+		<char id="20037" x="19" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="久" chnl="15" />
+		<char id="20040" x="28" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="么" chnl="15" />
+		<char id="20041" x="37" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="义" chnl="15" />
+		<char id="20043" x="46" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="之" chnl="15" />
+		<char id="20045" x="55" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乍" chnl="15" />
+		<char id="20046" x="64" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乎" chnl="15" />
+		<char id="20048" x="73" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乐" chnl="15" />
+		<char id="20054" x="82" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乖" chnl="15" />
+		<char id="20057" x="91" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乙" chnl="15" />
+		<char id="20063" x="100" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="也" chnl="15" />
+		<char id="20070" x="109" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="书" chnl="15" />
+		<char id="20080" x="118" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="买" chnl="15" />
+		<char id="20081" x="127" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乱" chnl="15" />
+		<char id="20083" x="136" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="乳" chnl="15" />
+		<char id="20102" x="145" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="了" chnl="15" />
+		<char id="20104" x="154" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="予" chnl="15" />
+		<char id="20105" x="163" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="争" chnl="15" />
+		<char id="20107" x="172" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="事" chnl="15" />
+		<char id="20108" x="181" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="二" chnl="15" />
+		<char id="20110" x="190" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="于" chnl="15" />
+		<char id="20111" x="199" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亏" chnl="15" />
+		<char id="20113" x="208" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="云" chnl="15" />
+		<char id="20122" x="217" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亚" chnl="15" />
+		<char id="20123" x="226" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="些" chnl="15" />
+		<char id="20129" x="235" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亡" chnl="15" />
+		<char id="20132" x="244" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="交" chnl="15" />
+		<char id="20134" x="253" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亦" chnl="15" />
+		<char id="20135" x="262" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="产" chnl="15" />
+		<char id="20139" x="271" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="享" chnl="15" />
+		<char id="20140" x="280" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="京" chnl="15" />
+		<char id="20141" x="289" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亭" chnl="15" />
+		<char id="20142" x="298" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亮" chnl="15" />
+		<char id="20146" x="307" y="17" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="亲" chnl="15" />
+		<char id="20154" x="1" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="人" chnl="15" />
+		<char id="20160" x="10" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="什" chnl="15" />
+		<char id="20165" x="19" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="仅" chnl="15" />
+		<char id="20170" x="28" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="今" chnl="15" />
+		<char id="20171" x="37" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="介" chnl="15" />
+		<char id="20173" x="46" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="仍" chnl="15" />
+		<char id="20174" x="55" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="从" chnl="15" />
+		<char id="20180" x="64" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="仔" chnl="15" />
+		<char id="20182" x="73" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="他" chnl="15" />
+		<char id="20184" x="82" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="付" chnl="15" />
+		<char id="20195" x="91" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="代" chnl="15" />
+		<char id="20196" x="100" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="令" chnl="15" />
+		<char id="20197" x="109" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="以" chnl="15" />
+		<char id="20202" x="118" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="仪" chnl="15" />
+		<char id="20204" x="127" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="们" chnl="15" />
+		<char id="20214" x="136" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="件" chnl="15" />
+		<char id="20215" x="145" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="价" chnl="15" />
+		<char id="20219" x="154" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="任" chnl="15" />
+		<char id="20221" x="163" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="份" chnl="15" />
+		<char id="20237" x="172" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伍" chnl="15" />
+		<char id="20239" x="181" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伏" chnl="15" />
+		<char id="20241" x="190" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="休" chnl="15" />
+		<char id="20247" x="199" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="众" chnl="15" />
+		<char id="20248" x="208" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="优" chnl="15" />
+		<char id="20249" x="217" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伙" chnl="15" />
+		<char id="20250" x="226" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="会" chnl="15" />
+		<char id="20255" x="235" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伟" chnl="15" />
+		<char id="20256" x="244" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="传" chnl="15" />
+		<char id="20260" x="253" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伤" chnl="15" />
+		<char id="20262" x="262" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伦" chnl="15" />
+		<char id="20266" x="271" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伪" chnl="15" />
+		<char id="20271" x="280" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="伯" chnl="15" />
+		<char id="20272" x="289" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="估" chnl="15" />
+		<char id="20284" x="298" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="似" chnl="15" />
+		<char id="20294" x="307" y="25" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="但" chnl="15" />
+		<char id="20301" x="1" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="位" chnl="15" />
+		<char id="20302" x="10" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="低" chnl="15" />
+		<char id="20303" x="19" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="住" chnl="15" />
+		<char id="20307" x="28" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="体" chnl="15" />
+		<char id="20309" x="37" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="何" chnl="15" />
+		<char id="20313" x="46" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="余" chnl="15" />
+		<char id="20316" x="55" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="作" chnl="15" />
+		<char id="20320" x="64" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="你" chnl="15" />
+		<char id="20329" x="73" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="佩" chnl="15" />
+		<char id="20339" x="82" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="佳" chnl="15" />
+		<char id="20351" x="91" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="使" chnl="15" />
+		<char id="20356" x="100" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="侄" chnl="15" />
+		<char id="20363" x="109" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="例" chnl="15" />
+		<char id="20379" x="118" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="供" chnl="15" />
+		<char id="20381" x="127" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="依" chnl="15" />
+		<char id="20389" x="136" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="侥" chnl="15" />
+		<char id="20391" x="145" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="侧" chnl="15" />
+		<char id="20405" x="154" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="侵" chnl="15" />
+		<char id="20415" x="163" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="便" chnl="15" />
+		<char id="20445" x="172" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="保" chnl="15" />
+		<char id="20449" x="181" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="信" chnl="15" />
+		<char id="20457" x="190" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="俩" chnl="15" />
+		<char id="20493" x="199" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="倍" chnl="15" />
+		<char id="20498" x="208" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="倒" chnl="15" />
+		<char id="20505" x="217" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="候" chnl="15" />
+		<char id="20518" x="226" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="倦" chnl="15" />
 		<char id="20538" x="235" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="债" chnl="15" />
 		<char id="20540" x="243" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="值" chnl="15" />
 		<char id="20542" x="251" y="33" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="倾" chnl="15" />
@@ -338,7 +338,7 @@
 		<char id="21271" x="137" y="57" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="北" chnl="15" />
 		<char id="21273" x="145" y="57" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="匙" chnl="15" />
 		<char id="21305" x="153" y="57" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="匹" chnl="15" />
-		<char id="21306" x="161" y="57" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="区" chnl="15" />
+		<char id="21306" x="162" y="57" width="6" height="7" xoffset="0" yoffset="6" xadvance="7" page="0" letter="区" chnl="15" />
 		<char id="21307" x="169" y="57" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="医" chnl="15" />
 		<char id="21310" x="177" y="57" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="匾" chnl="15" />
 		<char id="21311" x="185" y="57" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="匿" chnl="15" />
@@ -1278,50 +1278,50 @@
 		<char id="35268" x="169" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="规" chnl="15" />
 		<char id="35270" x="177" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="视" chnl="15" />
 		<char id="35273" x="185" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="觉" chnl="15" />
-		<char id="35282" x="193" y="249" width="6" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="角" chnl="15" />
+		<char id="35282" x="193" y="249" width="6" height="7" xoffset="0" yoffset="6" xadvance="7" page="0" letter="角" chnl="15" />
 		<char id="35299" x="200" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="解" chnl="15" />
 		<char id="35302" x="208" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="触" chnl="15" />
 		<char id="35328" x="216" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="言" chnl="15" />
 		<char id="35686" x="224" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="警" chnl="15" />
-		<char id="35745" x="232" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="计" chnl="15" />
-		<char id="35748" x="241" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="认" chnl="15" />
-		<char id="35752" x="250" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="讨" chnl="15" />
-		<char id="35753" x="259" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="让" chnl="15" />
-		<char id="35758" x="268" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="议" chnl="15" />
-		<char id="35759" x="277" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="讯" chnl="15" />
-		<char id="35760" x="286" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="记" chnl="15" />
-		<char id="35762" x="295" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="讲" chnl="15" />
-		<char id="35768" x="304" y="249" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="许" chnl="15" />
-		<char id="35770" x="1" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="论" chnl="15" />
-		<char id="35774" x="10" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="设" chnl="15" />
-		<char id="35777" x="19" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="证" chnl="15" />
-		<char id="35780" x="28" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="评" chnl="15" />
-		<char id="35781" x="37" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诅" chnl="15" />
-		<char id="35782" x="46" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="识" chnl="15" />
-		<char id="35785" x="55" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诉" chnl="15" />
-		<char id="35797" x="64" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="试" chnl="15" />
-		<char id="35802" x="73" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诚" chnl="15" />
-		<char id="35805" x="82" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="话" chnl="15" />
-		<char id="35809" x="91" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诡" chnl="15" />
-		<char id="35813" x="100" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="该" chnl="15" />
-		<char id="35814" x="109" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="详" chnl="15" />
-		<char id="35821" x="118" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="语" chnl="15" />
-		<char id="35823" x="127" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="误" chnl="15" />
-		<char id="35828" x="136" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="说" chnl="15" />
-		<char id="35831" x="145" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="请" chnl="15" />
-		<char id="35834" x="154" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诺" chnl="15" />
-		<char id="35835" x="163" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="读" chnl="15" />
-		<char id="35841" x="172" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谁" chnl="15" />
-		<char id="35843" x="181" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="调" chnl="15" />
-		<char id="35848" x="190" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谈" chnl="15" />
-		<char id="35850" x="199" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谊" chnl="15" />
-		<char id="35851" x="208" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谋" chnl="15" />
-		<char id="35853" x="217" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谍" chnl="15" />
-		<char id="35854" x="226" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谎" chnl="15" />
-		<char id="35874" x="235" y="257" width="8" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谢" chnl="15" />
+		<char id="35745" x="232" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="计" chnl="15" />
+		<char id="35748" x="241" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="认" chnl="15" />
+		<char id="35752" x="250" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="讨" chnl="15" />
+		<char id="35753" x="259" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="让" chnl="15" />
+		<char id="35758" x="268" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="议" chnl="15" />
+		<char id="35759" x="277" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="讯" chnl="15" />
+		<char id="35760" x="286" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="记" chnl="15" />
+		<char id="35762" x="295" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="讲" chnl="15" />
+		<char id="35768" x="304" y="249" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="许" chnl="15" />
+		<char id="35770" x="1" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="论" chnl="15" />
+		<char id="35774" x="10" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="设" chnl="15" />
+		<char id="35777" x="19" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="证" chnl="15" />
+		<char id="35780" x="28" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="评" chnl="15" />
+		<char id="35781" x="37" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诅" chnl="15" />
+		<char id="35782" x="46" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="识" chnl="15" />
+		<char id="35785" x="55" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诉" chnl="15" />
+		<char id="35797" x="64" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="试" chnl="15" />
+		<char id="35802" x="73" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诚" chnl="15" />
+		<char id="35805" x="82" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="话" chnl="15" />
+		<char id="35809" x="91" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诡" chnl="15" />
+		<char id="35813" x="100" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="该" chnl="15" />
+		<char id="35814" x="109" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="详" chnl="15" />
+		<char id="35821" x="118" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="语" chnl="15" />
+		<char id="35823" x="127" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="误" chnl="15" />
+		<char id="35828" x="136" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="说" chnl="15" />
+		<char id="35831" x="145" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="请" chnl="15" />
+		<char id="35834" x="154" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="诺" chnl="15" />
+		<char id="35835" x="163" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="读" chnl="15" />
+		<char id="35841" x="172" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谁" chnl="15" />
+		<char id="35843" x="181" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="调" chnl="15" />
+		<char id="35848" x="190" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谈" chnl="15" />
+		<char id="35850" x="199" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谊" chnl="15" />
+		<char id="35851" x="208" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谋" chnl="15" />
+		<char id="35853" x="217" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谍" chnl="15" />
+		<char id="35854" x="226" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谎" chnl="15" />
+		<char id="35874" x="235" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="谢" chnl="15" />
 		<char id="35937" x="244" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="象" chnl="15" />
 		<char id="35980" x="252" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="貌" chnl="15" />
-		<char id="36127" x="260" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="负" chnl="15" />
+		<char id="36127" x="261" y="257" width="6" height="7" xoffset="0" yoffset="6" xadvance="7" page="0" letter="负" chnl="15" />
 		<char id="36129" x="268" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="贡" chnl="15" />
 		<char id="36130" x="276" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="财" chnl="15" />
 		<char id="36131" x="284" y="257" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="责" chnl="15" />
@@ -1527,12 +1527,12 @@
 		<char id="40664" x="9" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="默" chnl="15" />
 		<char id="40784" x="17" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="齐" chnl="15" />
 		<char id="40857" x="25" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="龙" chnl="15" />
-		<char id="65281" x="33" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="！" chnl="15" />
-		<char id="65288" x="41" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="（" chnl="15" />
-		<char id="65289" x="49" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="）" chnl="15" />
-		<char id="65292" x="57" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="，" chnl="15" />
-		<char id="65306" x="65" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="：" chnl="15" />
-		<char id="65311" x="73" y="305" width="7" height="7" xoffset="0" yoffset="6" xadvance="8" page="0" letter="？" chnl="15" />
+		<char id="65281" x="33" y="305" width="7" height="7"xoffset="0" yoffset="6" xadvance="8" page="0" letter="！" chnl="15" />
+		<char id="65288" x="44" y="305" width="3" height="7" xoffset="0" yoffset="6" xadvance="4" page="0" letter="（" chnl="15" />
+		<char id="65289" x="51" y="305" width="3" height="7" xoffset="0" yoffset="6" xadvance="4" page="0" letter="）" chnl="15" />
+		<char id="65292" x="57" y="305" width="2" height="7" xoffset="0" yoffset="6" xadvance="3" page="0" letter="，" chnl="15" />
+		<char id="65306" x="67" y="305" width="2" height="7" xoffset="0" yoffset="6" xadvance="3" page="0" letter="：" chnl="15" />
+		<char id="65311" x="74" y="305" width="6" height="7" xoffset="0" yoffset="6" xadvance="7" page="0" letter="？" chnl="15" />
 	</chars>
 	<kerning count="0">
 	</kerning>
