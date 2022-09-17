@@ -517,7 +517,24 @@ function attachRequestTracker(context)
 
 	const page = await context.newPage();
 
-	page.on('console', message => console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`));
+	page.on('console', message => {
+		const messageText = message.text();
+		const messageType = message.type().substring(0, 3).toUpperCase();
+		const messageUrl = message.location() ? message.location().url : "";
+
+		if (message.type() == "error" && messageText.includes("404") && messageUrl.includes("/baked/"))
+		{
+			// ignore 404 errors on baked images
+		}
+		else if (messageUrl.length > 0)
+		{
+			console.log(`${messageType} ${messageText} (${messageUrl})`);
+		}
+		else
+		{
+			console.log(`${messageType} ${messageText}`);
+		}
+	});
 
 	console.log("Opening page: " + url);
 	const status = await page.goto(url);
